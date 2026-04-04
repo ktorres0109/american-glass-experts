@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>American Glass Experts Inc. | Glass Repair &amp; Installation Los Angeles</title>
+  <meta name="description" content="American Glass Experts Inc. — professional glass repair and installation serving Los Angeles, Ventura, San Bernardino, and Riverside Counties. Licensed, fast, reliable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --mint: #7ec8c8; --mint-light: #a8dada; --navy: #1a2e44; --navy-dark: #111e2e; --white: #ffffff; --off-white: #f5f8f8; --text: #2c3e50; --text-light: #5a6e7f; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--white); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,46,68,0.96); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 70px; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--mint); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--mint); }
+    .hero { min-height: 100vh; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4060 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 24px 60px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -30%; left: -10%; width: 70%; height: 150%; background: radial-gradient(ellipse, rgba(126,200,200,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 600; color: var(--white); line-height: 1.1; max-width: 800px; margin-bottom: 24px; }
+    .hero h1 span { color: var(--mint); }
+    .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+    .btn-primary { display: inline-block; background: var(--mint); color: var(--navy-dark); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 36px; border-radius: 2px; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--mint-light); transform: translateY(-1px); }
+    .btn-outline { display: inline-block; border: 1px solid var(--mint); color: var(--mint); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 36px; border-radius: 2px; margin-left: 16px; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover { background: var(--mint); color: var(--navy-dark); }
+    section { padding: 80px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 20px; }
+    .section-subtitle { font-size: 1rem; color: var(--text-light); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
+    .services-section { background: var(--off-white); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .service-card { background: var(--white); border: 1px solid rgba(126,200,200,0.25); border-top: 3px solid var(--mint); padding: 32px 28px; transition: box-shadow 0.2s, transform 0.2s; }
+    .service-card:hover { box-shadow: 0 8px 30px rgba(26,46,68,0.1); transform: translateY(-3px); }
+    .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+    .service-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+    .why-item { text-align: center; }
+    .why-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: var(--mint); line-height: 1; margin-bottom: 8px; }
+    .why-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+    .why-item p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+    .img-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #d0e8e8 0%, #b8d8d8 100%); display: flex; align-items: center; justify-content: center; border-radius: 2px; margin-bottom: 40px; }
+    .img-placeholder span { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); opacity: 0.5; }
+    .areas-section { background: var(--navy); }
+    .areas-section h2 { color: var(--white); }
+    .areas-section .section-subtitle { color: rgba(255,255,255,0.65); }
+    .areas-list { display: flex; flex-wrap: wrap; gap: 12px; }
+    .area-tag { background: rgba(126,200,200,0.12); border: 1px solid rgba(126,200,200,0.3); color: var(--mint-light); padding: 8px 20px; font-size: 0.85rem; letter-spacing: 0.05em; border-radius: 2px; }
+    .contact-strip { background: var(--navy-dark); padding: 60px 40px; }
+    .contact-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
+    .contact-strip h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--white); font-weight: 600; }
+    .contact-strip h3 span { color: var(--mint); }
+    .contact-details { display: flex; flex-direction: column; gap: 6px; }
+    .contact-details a, .contact-details span { color: rgba(255,255,255,0.75); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+    .contact-details a:hover { color: var(--mint); }
+    footer { background: #0c151f; padding: 32px 40px; text-align: center; }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    footer a { color: var(--mint); text-decoration: none; opacity: 0.7; }
+    footer a:hover { opacity: 1; }
+    @media (max-width: 768px) { nav { padding: 0 20px; } .nav-links { gap: 20px; } section { padding: 60px 20px; } .contact-strip { padding: 40px 20px; } .btn-outline { margin-left: 0; margin-top: 12px; display: block; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">American Glass Experts</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#areas">Service Areas</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reseda.html">Reseda</a></li>
+    </ul>
+  </nav>
+  <section class="hero">
+    <p class="hero-eyebrow">Licensed · Bonded · Insured</p>
+    <h1>Expert Glass Repair &amp;<br><span>Installation Services</span></h1>
+    <p>Serving Los Angeles and surrounding counties with professional glass solutions — windows, storefronts, showers, mirrors, and more.</p>
+    <div>
+      <a href="contact.html" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:+18057506471" class="btn-outline">Call (805) 750-6471</a>
+    </div>
+  </section>
+  <section class="services-section" id="services">
+    <div class="section-inner">
+      <p class="section-label">What We Do</p>
+      <h2>Our Glass Services</h2>
+      <p class="section-subtitle">From emergency repairs to full custom installations, we handle every glass need for residential and commercial clients.</p>
+      <div class="services-grid">
+        <div class="service-card"><h3>Window Repair &amp; Replacement</h3><p>Broken seals, cracked panes, foggy insulated glass — we repair or replace residential and commercial windows quickly and cleanly.</p></div>
+        <div class="service-card"><h3>Storefront Glass</h3><p>Tempered and laminated storefront systems, glass doors, and commercial entrance solutions for businesses throughout LA County.</p></div>
+        <div class="service-card"><h3>Shower Enclosures</h3><p>Frameless and semi-frameless shower glass, custom-cut panels, and door replacements for a clean, modern look.</p></div>
+        <div class="service-card"><h3>Mirror Installation</h3><p>Custom-cut mirrors for bathrooms, gyms, closets, and decorative applications — cut to size and professionally installed.</p></div>
+        <div class="service-card"><h3>Sliding Glass Doors</h3><p>Patio door glass replacement, track repair, and new installations. We work with all major door brands and custom sizes.</p></div>
+        <div class="service-card"><h3>Emergency Board-Up</h3><p>24-hour emergency glass board-up service for break-ins, accidents, or storm damage. Fast response across the region.</p></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="section-inner">
+      <p class="section-label">Why Choose Us</p>
+      <h2>Trusted Since Day One</h2>
+      <p class="section-subtitle">Founded by brothers Franklin and Bryant, American Glass Experts is a family business built on quality work and honest pricing.</p>
+      <div class="img-placeholder"><span>Photo — Team / Shop / Work in Progress</span></div>
+      <div class="why-grid">
+        <div class="why-item"><div class="why-number">20+</div><h4>Years Experience</h4><p>Decades of glass expertise across residential and commercial projects of all sizes.</p></div>
+        <div class="why-item"><div class="why-number">4</div><h4>Counties Served</h4><p>LA, Ventura, San Bernardino, and Riverside — we come to you.</p></div>
+        <div class="why-item"><div class="why-number">24/7</div><h4>Emergency Service</h4><p>Board-up and emergency glass calls answered around the clock.</p></div>
+        <div class="why-item"><div class="why-number">100%</div><h4>Family Owned</h4><p>No middlemen. You deal directly with the owners on every job.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="areas-section" id="areas">
+    <div class="section-inner">
+      <p class="section-label">Where We Work</p>
+      <h2>Service Areas</h2>
+      <p class="section-subtitle">We serve the greater Los Angeles area including four counties. If you're not sure we cover your city — just call us.</p>
+      <div class="areas-list">
+        <span class="area-tag">Reseda</span><span class="area-tag">Los Angeles</span><span class="area-tag">Van Nuys</span>
+        <span class="area-tag">Northridge</span><span class="area-tag">Canoga Park</span><span class="area-tag">Woodland Hills</span>
+        <span class="area-tag">Chatsworth</span><span class="area-tag">Granada Hills</span><span class="area-tag">Burbank</span>
+        <span class="area-tag">Glendale</span><span class="area-tag">Ventura County</span><span class="area-tag">San Bernardino County</span>
+        <span class="area-tag">Riverside County</span><span class="area-tag">And More</span>
+      </div>
+    </div>
+  </section>
+  <div class="contact-strip">
+    <div class="contact-strip-inner">
+      <h3>Ready to Get Started?<br><span>We're a Call Away.</span></h3>
+      <div class="contact-details">
+        <a href="tel:+18057506471">📞 (805) 750-6471</a>
+        <span>📍 Reseda, CA 91335</span>
+        <span>Mon–Fri: 8am–6pm · Sat: 9am–4pm</span>
+        <a href="contact.html">→ Send Us a Message</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2024 American Glass Experts Inc. · Reseda, CA · Serving LA, Ventura, San Bernardino &amp; Riverside Counties<br>
+    <a href="contact.html">Contact</a> · <a href="reseda.html">Reseda</a> · Licensed &amp; Insured</p>
+  </footer>
+</body>
+</html>

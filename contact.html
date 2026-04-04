@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | American Glass Experts Inc.</title>
+  <meta name="description" content="Contact American Glass Experts Inc. for glass repair and installation in Los Angeles. Free estimates, fast response." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --mint: #7ec8c8; --mint-light: #a8dada; --navy: #1a2e44; --navy-dark: #111e2e; --white: #ffffff; --off-white: #f5f8f8; --text: #2c3e50; --text-light: #5a6e7f; }
+    body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--white); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,46,68,0.96); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 70px; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--mint); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+    .nav-links a:hover { opacity: 1; color: var(--mint); }
+    .page-header { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); padding: 140px 40px 80px; text-align: center; }
+    .page-header .eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 16px; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; color: var(--white); line-height: 1.1; }
+    .contact-section { padding: 80px 40px; }
+    .contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; }
+    .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 24px; }
+    .info-item { margin-bottom: 24px; }
+    .info-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mint); margin-bottom: 4px; }
+    .info-item p, .info-item a { font-size: 0.95rem; color: var(--text); text-decoration: none; line-height: 1.6; }
+    .info-item a:hover { color: var(--mint); }
+    .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-top: 4px; }
+    .hours-grid span { font-size: 0.85rem; color: var(--text-light); }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); display: block; margin-bottom: 6px; }
+    input, textarea, select { width: 100%; background: var(--off-white); border: 1px solid rgba(26,46,68,0.15); border-radius: 2px; padding: 12px 16px; font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--text); transition: border-color 0.2s; outline: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--mint); }
+    textarea { resize: vertical; min-height: 130px; }
+    .btn-submit { background: var(--navy); color: var(--white); border: none; padding: 14px 40px; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 2px; cursor: pointer; align-self: flex-start; transition: background 0.2s, transform 0.15s; }
+    .btn-submit:hover { background: var(--mint); color: var(--navy-dark); transform: translateY(-1px); }
+    .form-success { display: none; background: rgba(126,200,200,0.1); border: 1px solid var(--mint); padding: 20px 24px; border-radius: 2px; color: var(--navy); font-size: 0.95rem; }
+    footer { background: #0c151f; padding: 32px 40px; text-align: center; margin-top: 40px; }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    footer a { color: var(--mint); text-decoration: none; opacity: 0.7; }
+    footer a:hover { opacity: 1; }
+    @media (max-width: 768px) { nav { padding: 0 20px; } .contact-section { padding: 60px 20px; } .contact-inner { grid-template-columns: 1fr; gap: 40px; } .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">American Glass Experts</a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#areas">Service Areas</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="reseda.html">Reseda</a></li>
+    </ul>
+  </nav>
+  <div class="page-header">
+    <p class="eyebrow">Get In Touch</p>
+    <h1>Contact American Glass Experts</h1>
+  </div>
+  <section class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h3>We're Ready to Help</h3>
+        <div class="info-item">
+          <p class="info-label">Phone</p>
+          <a href="tel:+18057506471">(805) 750-6471</a>
+        </div>
+        <div class="info-item">
+          <p class="info-label">Address</p>
+          <p>Reseda, CA 91335<br>Los Angeles County</p>
+        </div>
+        <div class="info-item">
+          <p class="info-label">Business Hours</p>
+          <div class="hours-grid">
+            <span>Monday</span><span>8am – 6pm</span>
+            <span>Tuesday</span><span>8am – 6pm</span>
+            <span>Wednesday</span><span>8am – 6pm</span>
+            <span>Thursday</span><span>8am – 6pm</span>
+            <span>Friday</span><span>8am – 6pm</span>
+            <span>Saturday</span><span>9am – 4pm</span>
+            <span>Sunday</span><span>Closed</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <p class="info-label">Emergency Service</p>
+          <p>24/7 board-up &amp; emergency glass — call anytime.</p>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New Quote Request — American Glass Experts" />
+        <input type="hidden" name="redirect" value="false" />
+        <input type="checkbox" name="botcheck" style="display:none" />
+        <div class="form-row">
+          <div><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Bryant Smith" required /></div>
+          <div><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(818) 555-0100" /></div>
+        </div>
+        <div><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="bryant@example.com" required /></div>
+        <div>
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Window Repair / Replacement</option>
+            <option>Storefront Glass</option>
+            <option>Shower Enclosure</option>
+            <option>Mirror Installation</option>
+            <option>Sliding Glass Door</option>
+            <option>Emergency Board-Up</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div><label for="message">Tell Us About Your Project</label><textarea id="message" name="message" placeholder="Describe the job, include your city/address if possible…"></textarea></div>
+        <div class="form-success" id="formSuccess">✓ Message sent! We'll get back to you within one business day.</div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+  <footer>
+    <p>© 2024 American Glass Experts Inc. · Reseda, CA · Serving LA, Ventura, San Bernardino &amp; Riverside Counties<br>
+    <a href="index.html">Home</a> · <a href="reseda.html">Reseda</a> · Licensed &amp; Insured</p>
+  </footer>
+  <script>
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      const json = await res.json();
+      if (json.success) { success.style.display = 'block'; form.reset(); }
+    });
+  </script>
+</body>
+</html>
