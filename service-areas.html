@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glass Repair Service Areas | American Glass Experts Inc.</title>
+  <meta name="description" content="American Glass Experts Inc. serves Los Angeles, Ventura, San Bernardino, and Riverside Counties. Find your city and get a free glass repair or installation estimate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --mint: #7ec8c8; --mint-light: #a8dada; --navy: #1a2e44; --navy-dark: #111e2e; --white: #ffffff; --off-white: #f5f8f8; --text: #2c3e50; --text-light: #5a6e7f; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text); background: var(--white); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,46,68,0.96); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 70px; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--mint); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--mint); }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      padding: 130px 40px 70px; text-align: center;
+    }
+    .page-header .eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 16px; }
+    .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+    .page-header p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* SEARCH */
+    .search-bar { background: var(--navy); padding: 28px 40px; display: flex; justify-content: center; }
+    .search-wrap { position: relative; width: 100%; max-width: 500px; }
+    .search-wrap input {
+      width: 100%; padding: 14px 20px 14px 44px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(126,200,200,0.3);
+      border-radius: 2px; color: var(--white); font-family: 'Jost', sans-serif;
+      font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+    }
+    .search-wrap input::placeholder { color: rgba(255,255,255,0.35); }
+    .search-wrap input:focus { border-color: var(--mint); }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--mint); font-size: 1rem; }
+    #no-results { display: none; text-align: center; color: var(--text-light); padding: 40px; font-size: 0.95rem; }
+
+    /* REGIONS */
+    .regions { padding: 72px 40px; }
+    .regions-inner { max-width: 1100px; margin: 0 auto; }
+
+    .region { margin-bottom: 64px; }
+    .region-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid rgba(126,200,200,0.2); }
+    .region-icon { width: 40px; height: 40px; background: var(--navy); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .region-icon svg { width: 18px; height: 18px; fill: var(--mint); }
+    .region-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--navy); }
+    .region-count { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-left: auto; }
+
+    .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+
+    .city-card {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--off-white); border: 1px solid rgba(126,200,200,0.15);
+      border-left: 3px solid var(--mint);
+      padding: 14px 16px; text-decoration: none;
+      color: var(--text); font-size: 0.9rem; font-weight: 400;
+      transition: background 0.18s, border-color 0.18s, transform 0.15s, box-shadow 0.15s;
+    }
+    .city-card:hover {
+      background: var(--white); border-left-color: var(--mint);
+      border-color: rgba(126,200,200,0.5);
+      transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,46,68,0.08);
+      color: var(--navy);
+    }
+    .city-card .arrow { color: var(--mint); font-size: 0.8rem; opacity: 0.6; transition: opacity 0.15s, transform 0.15s; }
+    .city-card:hover .arrow { opacity: 1; transform: translateX(3px); }
+    .city-card.hidden { display: none; }
+
+    /* CTA */
+    .cta-section { background: var(--navy); text-align: center; padding: 80px 40px; }
+    .cta-section .eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
+    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; color: var(--white); margin-bottom: 16px; }
+    .cta-section p { color: rgba(255,255,255,0.65); font-size: 1rem; max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+    .btn-primary { display: inline-block; background: var(--mint); color: var(--navy-dark); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 36px; border-radius: 2px; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: var(--mint-light); transform: translateY(-1px); }
+    .btn-outline { display: inline-block; border: 1px solid rgba(126,200,200,0.6); color: var(--mint); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 36px; border-radius: 2px; margin-left: 12px; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover { background: var(--mint); color: var(--navy-dark); }
+
+    footer { background: #0c151f; padding: 32px 40px; text-align: center; }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+    footer a { color: var(--mint); text-decoration: none; opacity: 0.7; }
+    footer a:hover { opacity: 1; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { gap: 16px; } .nav-links a { font-size: 0.75rem; }
+      .page-header { padding: 110px 20px 50px; }
+      .search-bar { padding: 20px; }
+      .regions { padding: 48px 20px; }
+      .city-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .btn-outline { margin-left: 0; margin-top: 12px; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">American Glass Experts</a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="service-areas.html" class="active">Service Areas</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="eyebrow">Where We Work</p>
+    <h1>Glass Repair &amp; Installation<br>Across Southern California</h1>
+    <p>We serve Los Angeles, Ventura, San Bernardino, and Riverside Counties. Find your city below — every location gets the same quality work.</p>
+  </div>
+
+  <div class="search-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="citySearch" placeholder="Search your city…" autocomplete="off" />
+    </div>
+  </div>
+
+  <div class="regions" id="regionsContainer">
+    <div class="regions-inner">
+
+      <!-- SAN FERNANDO VALLEY -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">San Fernando Valley</span>
+          <span class="region-count">15 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="reseda.html" class="city-card" data-city="Reseda"><span>Reseda</span><span class="arrow">→</span></a>
+          <a href="van-nuys.html" class="city-card" data-city="Van Nuys"><span>Van Nuys</span><span class="arrow">→</span></a>
+          <a href="northridge.html" class="city-card" data-city="Northridge"><span>Northridge</span><span class="arrow">→</span></a>
+          <a href="canoga-park.html" class="city-card" data-city="Canoga Park"><span>Canoga Park</span><span class="arrow">→</span></a>
+          <a href="woodland-hills.html" class="city-card" data-city="Woodland Hills"><span>Woodland Hills</span><span class="arrow">→</span></a>
+          <a href="chatsworth.html" class="city-card" data-city="Chatsworth"><span>Chatsworth</span><span class="arrow">→</span></a>
+          <a href="granada-hills.html" class="city-card" data-city="Granada Hills"><span>Granada Hills</span><span class="arrow">→</span></a>
+          <a href="north-hollywood.html" class="city-card" data-city="North Hollywood"><span>North Hollywood</span><span class="arrow">→</span></a>
+          <a href="studio-city.html" class="city-card" data-city="Studio City"><span>Studio City</span><span class="arrow">→</span></a>
+          <a href="sherman-oaks.html" class="city-card" data-city="Sherman Oaks"><span>Sherman Oaks</span><span class="arrow">→</span></a>
+          <a href="encino.html" class="city-card" data-city="Encino"><span>Encino</span><span class="arrow">→</span></a>
+          <a href="tarzana.html" class="city-card" data-city="Tarzana"><span>Tarzana</span><span class="arrow">→</span></a>
+          <a href="west-hills.html" class="city-card" data-city="West Hills"><span>West Hills</span><span class="arrow">→</span></a>
+          <a href="winnetka.html" class="city-card" data-city="Winnetka"><span>Winnetka</span><span class="arrow">→</span></a>
+          <a href="valley-village.html" class="city-card" data-city="Valley Village"><span>Valley Village</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- NORTHEAST SFV / BURBANK / GLENDALE -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">Burbank, Glendale &amp; Northeast LA</span>
+          <span class="region-count">8 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="burbank.html" class="city-card" data-city="Burbank"><span>Burbank</span><span class="arrow">→</span></a>
+          <a href="glendale.html" class="city-card" data-city="Glendale"><span>Glendale</span><span class="arrow">→</span></a>
+          <a href="los-angeles.html" class="city-card" data-city="Los Angeles"><span>Los Angeles</span><span class="arrow">→</span></a>
+          <a href="arleta.html" class="city-card" data-city="Arleta"><span>Arleta</span><span class="arrow">→</span></a>
+          <a href="pacoima.html" class="city-card" data-city="Pacoima"><span>Pacoima</span><span class="arrow">→</span></a>
+          <a href="sylmar.html" class="city-card" data-city="Sylmar"><span>Sylmar</span><span class="arrow">→</span></a>
+          <a href="mission-hills.html" class="city-card" data-city="Mission Hills"><span>Mission Hills</span><span class="arrow">→</span></a>
+          <a href="north-hills.html" class="city-card" data-city="North Hills"><span>North Hills</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- VENTURA COUNTY -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">Ventura County</span>
+          <span class="region-count">7 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="ventura.html" class="city-card" data-city="Ventura"><span>Ventura</span><span class="arrow">→</span></a>
+          <a href="oxnard.html" class="city-card" data-city="Oxnard"><span>Oxnard</span><span class="arrow">→</span></a>
+          <a href="thousand-oaks.html" class="city-card" data-city="Thousand Oaks"><span>Thousand Oaks</span><span class="arrow">→</span></a>
+          <a href="simi-valley.html" class="city-card" data-city="Simi Valley"><span>Simi Valley</span><span class="arrow">→</span></a>
+          <a href="agoura-hills.html" class="city-card" data-city="Agoura Hills"><span>Agoura Hills</span><span class="arrow">→</span></a>
+          <a href="bell-canyon.html" class="city-card" data-city="Bell Canyon"><span>Bell Canyon</span><span class="arrow">→</span></a>
+          <a href="hidden-hills.html" class="city-card" data-city="Hidden Hills"><span>Hidden Hills</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- INLAND EMPIRE: SAN BERNARDINO -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">Inland Empire — San Bernardino County</span>
+          <span class="region-count">6 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="san-bernardino.html" class="city-card" data-city="San Bernardino"><span>San Bernardino</span><span class="arrow">→</span></a>
+          <a href="rancho-cucamonga.html" class="city-card" data-city="Rancho Cucamonga"><span>Rancho Cucamonga</span><span class="arrow">→</span></a>
+          <a href="fontana.html" class="city-card" data-city="Fontana"><span>Fontana</span><span class="arrow">→</span></a>
+          <a href="ontario.html" class="city-card" data-city="Ontario"><span>Ontario</span><span class="arrow">→</span></a>
+          <a href="rialto.html" class="city-card" data-city="Rialto"><span>Rialto</span><span class="arrow">→</span></a>
+          <a href="jurupa-valley.html" class="city-card" data-city="Jurupa Valley"><span>Jurupa Valley</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- INLAND EMPIRE: RIVERSIDE -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">Inland Empire — Riverside County</span>
+          <span class="region-count">4 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="riverside.html" class="city-card" data-city="Riverside"><span>Riverside</span><span class="arrow">→</span></a>
+          <a href="corona.html" class="city-card" data-city="Corona"><span>Corona</span><span class="arrow">→</span></a>
+          <a href="moreno-valley.html" class="city-card" data-city="Moreno Valley"><span>Moreno Valley</span><span class="arrow">→</span></a>
+          <a href="jurupa-valley.html" class="city-card" data-city="Jurupa Valley"><span>Jurupa Valley</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- SGV / EAST LA COUNTY -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">San Gabriel Valley &amp; East LA County</span>
+          <span class="region-count">3 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="west-covina.html" class="city-card" data-city="West Covina"><span>West Covina</span><span class="arrow">→</span></a>
+          <a href="panorama-city.html" class="city-card" data-city="Panorama City"><span>Panorama City</span><span class="arrow">→</span></a>
+          <a href="san-fernando.html" class="city-card" data-city="San Fernando"><span>San Fernando</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- WEST / MALIBU / TOPANGA -->
+      <div class="region" data-region>
+        <div class="region-header">
+          <div class="region-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="region-name">West LA, Calabasas &amp; Canyons</span>
+          <span class="region-count">3 cities</span>
+        </div>
+        <div class="city-grid">
+          <a href="calabasas.html" class="city-card" data-city="Calabasas"><span>Calabasas</span><span class="arrow">→</span></a>
+          <a href="topanga-canyon.html" class="city-card" data-city="Topanga Canyon"><span>Topanga Canyon</span><span class="arrow">→</span></a>
+          <a href="north-hollywood.html" class="city-card" data-city="North Hollywood"><span>North Hollywood</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div id="no-results">No cities found matching your search. <a href="contact.html" style="color:var(--mint)">Contact us directly</a> and we'll let you know if we cover your area.</div>
+
+    </div>
+  </div>
+
+  <section class="cta-section">
+    <div>
+      <p class="eyebrow">Don't See Your City?</p>
+      <h2>We Probably Still Cover You</h2>
+      <p>We serve all of LA, Ventura, San Bernardino, and Riverside Counties. If your city isn't listed, just call — we'll let you know.</p>
+      <a href="contact.html" class="btn-primary">Get a Free Estimate</a>
+      <a href="tel:+18057506471" class="btn-outline">Call (805) 750-6471</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 American Glass Experts Inc. · Reseda, CA · Serving LA, Ventura, San Bernardino &amp; Riverside Counties<br>
+    <a href="index.html">Home</a> · <a href="contact.html">Contact</a> · <a href="service-areas.html">Service Areas</a> · Licensed &amp; Insured</p>
+  </footer>
+
+  <script>
+    const input = document.getElementById('citySearch');
+    const noResults = document.getElementById('no-results');
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.city-card');
+      const regions = document.querySelectorAll('[data-region]');
+      let anyVisible = false;
+
+      cards.forEach(card => {
+        const name = card.getAttribute('data-city').toLowerCase();
+        const show = !q || name.includes(q);
+        card.classList.toggle('hidden', !show);
+        if (show) anyVisible = true;
+      });
+
+      // Hide regions where all cards are hidden
+      regions.forEach(region => {
+        const visible = [...region.querySelectorAll('.city-card')].some(c => !c.classList.contains('hidden'));
+        region.style.display = visible ? '' : 'none';
+      });
+
+      noResults.style.display = anyVisible ? 'none' : 'block';
+    });
+  </script>
+</body>
+</html>
