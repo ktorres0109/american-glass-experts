@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glass Repair &amp; Installation in Moreno Valley, CA | American Glass Experts Inc.</title>
-  <meta name="description" content="Professional glass repair and installation in Moreno Valley, CA. American Glass Experts Inc. serves Moreno Valley and surrounding areas — windows, storefronts, showers, mirrors. Free estimates. Call (805) 750-6471." />
+  <meta name="description" content="Local glass repair and installation in Moreno Valley, CA. American Glass Experts Inc. serves Moreno Valley — windows, storefronts, showers, mirrors, emergency board-up. Free estimates. Call (805) 750-6471." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "American Glass Experts Inc.",
-    "description": "Professional glass repair and installation serving Moreno Valley, CA.",
+    "description": "Professional glass repair and installation serving Moreno Valley, CA and the Inland Empire.",
     "telephone": "+1-805-750-6471",
     "address": { "@type": "PostalAddress", "addressLocality": "Moreno Valley", "addressRegion": "CA", "postalCode": "92553", "addressCountry": "US" },
-    "areaServed": "Moreno Valley",
+    "geo": { "@type": "GeoCoordinates", "latitude": 33.9425, "longitude": -117.2297 },
+    "areaServed": "Moreno Valley, CA",
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "09:00", "closes": "16:00" }
@@ -34,13 +35,14 @@
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
     .nav-links a:hover { opacity: 1; color: var(--mint); }
-    .hero { min-height: 70vh; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, #1a3a55 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 60px; position: relative; overflow: hidden; }
+    .hero { min-height: 72vh; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, #1a3a55 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 60px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -20%; right: -5%; width: 55%; height: 130%; background: radial-gradient(ellipse, rgba(126,200,200,0.07) 0%, transparent 70%); pointer-events: none; }
     .breadcrumb { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
     .breadcrumb a { color: var(--mint); text-decoration: none; }
     .hero-eyebrow { font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 16px; }
     .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 600; color: var(--white); line-height: 1.1; max-width: 800px; margin-bottom: 20px; }
     .hero h1 span { color: var(--mint); }
-    .hero p { font-size: 1rem; color: rgba(255,255,255,0.72); max-width: 560px; line-height: 1.75; margin-bottom: 36px; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.72); max-width: 580px; line-height: 1.75; margin-bottom: 36px; }
     .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
     .btn-primary { display: inline-block; background: var(--mint); color: var(--navy-dark); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 36px; border-radius: 2px; transition: background 0.2s, transform 0.15s; }
     .btn-primary:hover { background: var(--mint-light); transform: translateY(-1px); }
@@ -48,19 +50,29 @@
     .btn-outline:hover { background: var(--mint); color: var(--navy-dark); }
     .trust-bar { background: var(--navy); padding: 20px 40px; display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; }
     .trust-item { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); display: flex; align-items: center; gap: 8px; }
-    .trust-item::before { content: "✓"; color: var(--mint); font-size: 0.9rem; }
+    .trust-item::before { content: "✓"; color: var(--mint); }
     section { padding: 80px 40px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mint); margin-bottom: 12px; }
     h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 16px; }
-    .section-subtitle { font-size: 0.97rem; color: var(--text-light); max-width: 580px; line-height: 1.72; margin-bottom: 48px; }
+    .section-subtitle { font-size: 0.97rem; color: var(--text-light); max-width: 600px; line-height: 1.72; margin-bottom: 48px; }
     .services-section { background: var(--off-white); }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
     .service-card { background: var(--white); border: 1px solid rgba(126,200,200,0.2); border-top: 3px solid var(--mint); padding: 28px 24px; transition: box-shadow 0.2s, transform 0.2s; }
     .service-card:hover { box-shadow: 0 8px 28px rgba(26,46,68,0.09); transform: translateY(-2px); }
     .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
     .service-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.62; }
-    .faq-list { max-width: 720px; }
+    .about-section .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .about-text p { font-size: 0.97rem; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
+    .about-text .streets { margin-top: 20px; padding: 16px 20px; background: var(--off-white); border-left: 3px solid var(--mint); font-size: 0.88rem; color: var(--text-light); line-height: 1.7; }
+    .about-text .streets strong { color: var(--navy); display: block; margin-bottom: 4px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .img-placeholder { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #cce5e5 0%, #b0d4d4 100%); display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+    .img-placeholder span { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); opacity: 0.45; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+    .stat { text-align: center; padding: 28px 16px; border: 1px solid rgba(126,200,200,0.2); }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; color: var(--mint); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+    .faq-list { max-width: 760px; }
     .faq-item { border-bottom: 1px solid rgba(26,46,68,0.1); padding: 20px 0; }
     .faq-item:first-child { border-top: 1px solid rgba(26,46,68,0.1); }
     .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--navy); font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
@@ -75,7 +87,7 @@
     footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
     footer a { color: var(--mint); text-decoration: none; opacity: 0.7; }
     footer a:hover { opacity: 1; }
-    @media (max-width: 768px) { nav { padding: 0 20px; } .nav-links { gap: 16px; } section { padding: 60px 20px; } .trust-bar { padding: 16px 20px; gap: 20px; } }
+    @media (max-width: 768px) { nav { padding: 0 20px; } .nav-links { gap: 16px; } section { padding: 60px 20px; } .trust-bar { padding: 16px 20px; gap: 20px; } .about-section .about-grid { grid-template-columns: 1fr; } .stats-row { grid-template-columns: repeat(2,1fr); } }
   </style>
 </head>
 <body>
@@ -92,7 +104,7 @@
     <p class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Service Areas &nbsp;/&nbsp; Moreno Valley, CA</p>
     <p class="hero-eyebrow">Moreno Valley, CA &middot; Riverside County</p>
     <h1>Glass Repair &amp; Installation<br>in <span>Moreno Valley, CA</span></h1>
-    <p>American Glass Experts Inc. serves Moreno Valley and the Inland Empire with fast, professional glass repair and installation — residential and commercial.</p>
+    <p>Moreno Valley is one of the largest cities in the IE — and American Glass Experts Inc. covers all of it, from March Air Reserve Base to the Sunnymead Ranch neighborhoods.</p>
     <div class="hero-btns">
       <a href="contact.html" class="btn-primary">Get a Free Estimate</a>
       <a href="tel:+18057506471" class="btn-outline">Call (805) 750-6471</a>
@@ -104,36 +116,60 @@
     <span class="trust-item">Serving Moreno Valley</span>
     <span class="trust-item">Free Estimates</span>
     <span class="trust-item">24/7 Emergency Service</span>
-    <span class="trust-item">Family Owned</span>
+    <span class="trust-item">Family Owned &amp; Operated</span>
   </div>
 
   <section class="services-section">
     <div class="section-inner">
       <p class="section-label">Moreno Valley Glass Services</p>
       <h2>What We Do in Moreno Valley</h2>
-      <p class="section-subtitle">From cracked windows to full storefront installs — we handle every glass job in Moreno Valley quickly and professionally.</p>
+      <p class="section-subtitle">Every job in Moreno Valley gets the same care we give our home base in Reseda — quality materials, clean installs, honest pricing.</p>
       <div class="services-grid">
-        <div class="service-card"><h3>Window Repair &amp; Replacement</h3><p>Foggy double-pane windows, broken glass, failed seals — repaired or replaced on-site throughout Moreno Valley.</p></div>
-        <div class="service-card"><h3>Storefront Glass</h3><p>Commercial storefront glass, tempered panels, aluminum frames, and glass door installations for Moreno Valley businesses.</p></div>
-        <div class="service-card"><h3>Shower Enclosures</h3><p>Frameless shower glass, custom panel cuts, and door replacements for homes in Moreno Valley.</p></div>
-        <div class="service-card"><h3>Mirror Installation</h3><p>Custom-cut mirrors for bathrooms, gyms, closets, and decorative use — installed throughout Moreno Valley.</p></div>
-        <div class="service-card"><h3>Sliding Glass Doors</h3><p>Patio door glass replacement, track repair, and new installations for Moreno Valley homes and rentals.</p></div>
-        <div class="service-card"><h3>Emergency Board-Up</h3><p>24-hour emergency board-up for break-ins or storm damage in Moreno Valley. Fast response, any time.</p></div>
+        <div class="service-card"><h3>Window Repair &amp; Replacement</h3><p>Foggy seals, cracked panes, broken glass — we repair or replace on-site throughout Moreno Valley. All glass types and window styles.</p></div>
+        <div class="service-card"><h3>Storefront Glass</h3><p>Tempered storefront panels, aluminum frame systems, commercial glass doors — for Moreno Valley businesses of all sizes.</p></div>
+        <div class="service-card"><h3>Frameless Shower Enclosures</h3><p>Custom frameless and semi-frameless shower glass for Moreno Valley homes and bathroom remodels. Clean, modern, built to last.</p></div>
+        <div class="service-card"><h3>Mirror Installation</h3><p>Custom-cut bathroom, gym, closet, and decorative mirrors — professionally installed throughout Moreno Valley.</p></div>
+        <div class="service-card"><h3>Sliding &amp; Patio Doors</h3><p>Patio door glass replacement, track and roller repair, new installations for Moreno Valley homes and rental properties.</p></div>
+        <div class="service-card"><h3>Emergency Board-Up</h3><p>Break-in, accident, or storm damage in Moreno Valley? We respond within hours, 24 hours a day, 7 days a week.</p></div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="about-section">
     <div class="section-inner">
-      <p class="section-label">Why Call Us</p>
-      <h2>Your Glass Experts in Moreno Valley</h2>
-      <p class="section-subtitle">Founded by brothers Franklin and Bryant, American Glass Experts is a family business serving the Inland Empire with honest pricing and quality work on every job.</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">Why We Know Moreno Valley</p>
+          <h2>Local Knowledge,<br>Professional Results</h2>
+          <p>We serve Moreno Valley homeowners and businesses across all major zip codes: 92551, 92552, 92553, 92555, and 92557. From the newer subdivisions near Perris Boulevard to the commercial strip on Alessandro Boulevard, we handle window repairs, storefront glass, frameless shower installs, mirror work, and emergency board-ups. Moreno Valley's rapid growth means lots of new construction and lots of glass — and we're there for all of it.</p>
+          <div class="streets">
+            <strong>Areas &amp; Streets We Serve</strong>
+            Sunnymead Ranch, March Air Reserve area, Towngate, Hidden Springs, Moreno Valley Ranch &mdash; including Alessandro Blvd, Perris Blvd, Cactus Ave, Pigeon Pass Rd, Day St and surrounding areas.
+          </div>
+          <a href="contact.html" class="btn-primary" style="display:inline-block;margin-top:28px;">Request Service in Moreno Valley</a>
+        </div>
+        <div class="img-placeholder"><span>Photo — Moreno Valley Job</span></div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Emergency Response</div></div>
+        <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Estimates Always</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Counties Served</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--off-white);">
+    <div class="section-inner">
+      <p class="section-label">Common Questions</p>
+      <h2>Moreno Valley Glass FAQ</h2>
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Do you serve Moreno Valley?<span class="toggle">+</span></div><div class="faq-a">Yes — we regularly serve Moreno Valley and all of Riverside County. Call us to confirm availability and get a free estimate for your job.</div></div>
-        <div class="faq-item"><div class="faq-q">How fast can you respond in Moreno Valley?<span class="toggle">+</span></div><div class="faq-a">Most calls in Moreno Valley get same-day or next-day service. Emergency board-ups are handled within a few hours, 24/7.</div></div>
-        <div class="faq-item"><div class="faq-q">Are estimates free?<span class="toggle">+</span></div><div class="faq-a">Always. Call us or fill out the contact form and we'll give you a price before we show up.</div></div>
-        <div class="faq-item"><div class="faq-q">Do you work with insurance claims?<span class="toggle">+</span></div><div class="faq-a">Yes. We provide documentation and itemized quotes for insurance claims from break-ins, accidents, or storm damage.</div></div>
-        <div class="faq-item"><div class="faq-q">Are you licensed and insured?<span class="toggle">+</span></div><div class="faq-a">Yes — fully licensed and insured to operate in California. We'll provide license info on request.</div></div>
+        <div class="faq-item"><div class="faq-q">Do you serve all parts of Moreno Valley including Sunnymead Ranch?<span class="toggle">+</span></div><div class="faq-a">Yes — we cover all of Moreno Valley including Sunnymead Ranch, Towngate, Moreno Valley Ranch, and all zip codes from 92551 to 92557.</div></div>
+        <div class="faq-item"><div class="faq-q">Do you do glass for new construction homes in Moreno Valley?<span class="toggle">+</span></div><div class="faq-a">Yes — we work with developers and homeowners on new construction glass including frameless showers, mirrors, and window installs.</div></div>
+        <div class="faq-item"><div class="faq-q">Can you handle commercial glass on Alessandro Blvd?<span class="toggle">+</span></div><div class="faq-a">Yes. Storefront glass, commercial windows, and glass door systems along Alessandro and Perris Blvd are regular jobs for us.</div></div>
+        <div class="faq-item"><div class="faq-q">How fast can you get to Moreno Valley for an emergency?<span class="toggle">+</span></div><div class="faq-a">Emergency board-ups in Moreno Valley are handled within a few hours. Same-day and next-day service for standard calls.</div></div>
+        <div class="faq-item"><div class="faq-q">Are you licensed in Riverside County?<span class="toggle">+</span></div><div class="faq-a">Yes, fully licensed and insured in California and Riverside County.</div></div>
+        
       </div>
     </div>
   </section>
@@ -142,7 +178,7 @@
     <div class="section-inner">
       <p class="section-label">Get Started</p>
       <h2>Need Glass Work in Moreno Valley?</h2>
-      <p>Local, licensed, and ready. Get a free estimate or call us — we usually pick up.</p>
+      <p>Local experts, free estimates, fast response. Call us or send a message — we'll get back to you fast.</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
         <a href="contact.html" class="btn-primary">Get a Free Estimate</a>
         <a href="tel:+18057506471" class="btn-outline">Call (805) 750-6471</a>
@@ -152,7 +188,7 @@
 
   <footer>
     <p>&copy; 2024 American Glass Experts Inc. &middot; Serving Moreno Valley, CA and the Inland Empire<br>
-    <a href="index.html">Home</a> &middot; <a href="contact.html">Contact</a> &middot; <a href="reseda.html">Reseda</a> &middot; Licensed &amp; Insured</p>
+    <a href="index.html">Home</a> &middot; <a href="contact.html">Contact</a> &middot; <a href="reseda.html">Reseda</a> &middot; Licensed &amp; Insured in California</p>
   </footer>
 
   <script>
