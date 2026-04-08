@@ -195,10 +195,11 @@
   </footer>
 
   <script>
-    document.querySelectorAll('.faq-item').forEach(item => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
       item.querySelector('.faq-q').addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        faqItems.forEach(i => i.classList.remove('open'));
         if (!isOpen) item.classList.add('open');
       });
     });
