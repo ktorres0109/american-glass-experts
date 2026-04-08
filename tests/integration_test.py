@@ -20,7 +20,9 @@ def test_city_search_filtering():
         page.route(re.compile(r"https?://.*"), lambda route: route.abort())
 
         # Load the local HTML file
-        file_path = os.path.abspath("service-areas.html")
+        # Use absolute path relative to this script to handle execution from different directories
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        file_path = os.path.join(base_dir, "service-areas.html")
         page.goto(f"file://{file_path}")
 
         # Define locators
