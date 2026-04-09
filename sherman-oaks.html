@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
+<script>!function(){var t=localStorage.getItem("age-theme");document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}();</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glass Repair &amp; Installation in Sherman Oaks, CA | American Glass Experts Inc.</title>
@@ -1401,9 +1402,10 @@ function applyTheme(theme) {
 }
 
 function initTheme() {
-  const saved = localStorage.getItem(THEME_KEY);
-  // Default is light (white). Only apply dark if explicitly saved.
-  applyTheme(saved === 'dark' ? 'dark' : 'light');
+  // Theme already applied by inline <head> script to prevent flash.
+  // Just ensure the icon state is correct.
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current);
 }
 
 function toggleTheme() {
