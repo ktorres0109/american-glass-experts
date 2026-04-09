@@ -879,8 +879,7 @@ section { padding: 100px 0; }
 <nav class="nav" id="main-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="logo.avif" alt="American Glass Experts" onerror="this.style.display='none'" />
-      <span class="nav-logo-text">American <span>Glass</span> Experts</span>
+      <img src="logo-icon.png" alt="American Glass Experts" onerror="this.style.display='none'" />
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
@@ -1344,3 +1343,317 @@ section { padding: 100px 0; }
   </div>
 </div>
 
+<script>
+/* ═══════════════════════════════════════════════
+   AMERICAN GLASS EXPERTS — main.js
+   ═══════════════════════════════════════════════ */
+
+// ── THEME TOGGLE ──────────────────────────────
+const THEME_KEY = 'age-theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+function initTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+// ── NAV ───────────────────────────────────────
+function initNav() {
+  const nav = document.getElementById('main-nav');
+  if (!nav) return;
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  const links = nav.querySelectorAll('.nav-links a');
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === path || (path === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('nav-mobile');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+}
+
+// ── SCROLL REVEAL ─────────────────────────────
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  // Fallback: if observer not supported, show all immediately
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(el => observer.observe(el));
+}
+
+// ── FAQ ACCORDION ─────────────────────────────
+function initFAQ() {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+}
+
+// ── INLINE FORM TOGGLE ────────────────────────
+function initInlineForm() {
+  const toggle = document.getElementById('form-toggle');
+  const wrap = document.getElementById('inline-form-wrap');
+  if (!toggle || !wrap) return;
+  toggle.addEventListener('click', () => {
+    wrap.classList.toggle('open');
+    toggle.textContent = wrap.classList.contains('open')
+      ? '↑ Never mind, I\'ll call'
+      : '↓ Prefer to write? Send a message instead';
+  });
+}
+
+// ── MODAL ─────────────────────────────────────
+const modalState = { service: '', type: '', glassType: '', fixture: '' };
+
+function openModal(serviceData) {
+  const backdrop = document.getElementById('modal-backdrop');
+  if (!backdrop) return;
+  modalState.service = serviceData.name;
+  modalState.type = '';
+  modalState.glassType = '';
+  modalState.fixture = '';
+  document.getElementById('modal-service-name').textContent = serviceData.name;
+  document.getElementById('modal-service-desc').textContent = serviceData.desc;
+  renderChips('modal-types', serviceData.types || [], 'type');
+  renderChips('modal-glass', serviceData.glassOptions || [], 'glassType');
+  renderChips('modal-fixtures', serviceData.fixtures || [], 'fixture');
+  const svcInput = document.getElementById('modal-service-input');
+  if (svcInput) svcInput.value = serviceData.name;
+  toggleOptionSection('modal-types-wrap', serviceData.types?.length > 0);
+  toggleOptionSection('modal-glass-wrap', serviceData.glassOptions?.length > 0);
+  toggleOptionSection('modal-fixtures-wrap', serviceData.fixtures?.length > 0);
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function toggleOptionSection(id, show) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = show ? 'flex' : 'none';
+}
+
+function closeModal() {
+  const backdrop = document.getElementById('modal-backdrop');
+  if (!backdrop) return;
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderChips(containerId, options, stateKey) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = options.map(opt =>
+    `<button class="option-chip" data-value="${opt}" data-key="${stateKey}">${opt}</button>`
+  ).join('');
+  container.querySelectorAll('.option-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      container.querySelectorAll('.option-chip').forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      modalState[stateKey] = chip.dataset.value;
+    });
+  });
+}
+
+function initModal() {
+  const backdrop = document.getElementById('modal-backdrop');
+  if (!backdrop) return;
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+  document.getElementById('modal-close')?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  const form = document.getElementById('modal-form');
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name     = document.getElementById('modal-name').value.trim();
+      const location = document.getElementById('modal-location').value.trim();
+      const notes    = document.getElementById('modal-notes').value.trim();
+      const prefs = [modalState.type, modalState.glassType, modalState.fixture].filter(Boolean).join(', ');
+      const message = `Customer ${name} requested an estimate in ${location}, wants ${modalState.service}${prefs ? `, prefers ${prefs}` : ''}${notes ? `, notes: ${notes}` : ''}.`;
+      const submitBtn = form.querySelector('[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: '53665885-fb86-4fce-8d07-d90806ff1317',
+            subject: `Estimate Request — ${modalState.service} — ${name}`,
+            message, name, email: 'no-reply@estimate.com',
+          }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          showModalSuccess();
+        } else {
+          submitBtn.textContent = 'Send Estimate Request';
+          submitBtn.disabled = false;
+          alert('Something went wrong. Please call us at (805) 750-6471.');
+        }
+      } catch {
+        submitBtn.textContent = 'Send Estimate Request';
+        submitBtn.disabled = false;
+        alert('Network error. Please call us at (805) 750-6471.');
+      }
+    });
+  }
+}
+
+function showModalSuccess() {
+  const body = document.getElementById('modal-body');
+  const footer = document.getElementById('modal-footer');
+  if (body) body.innerHTML = `
+    <div style="text-align:center;padding:32px 0;">
+      <div style="width:56px;height:56px;background:var(--blue-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 style="margin-bottom:10px;">Request Sent!</h3>
+      <p style="color:var(--text-mid);font-size:.95rem;">We'll reach out within a few hours. For urgent needs, call <a href="tel:+18057506471" style="color:var(--blue);font-weight:600;">(805) 750-6471</a>.</p>
+    </div>
+  `;
+  if (footer) footer.style.display = 'none';
+}
+
+// ── SERVICE DATA ──────────────────────────────
+const SERVICES = {
+  'shower-doors': {
+    name: 'Shower Enclosures',
+    desc: 'Custom frameless and framed shower glass — we fabricate, deliver, and install.',
+    types: ['Frameless', 'Semi-Frameless', 'Framed', 'Sliding', 'Neo-Angle', 'Barn Door Style'],
+    glassOptions: ['Clear', 'Starphire (Ultra-Clear)', 'Frosted', 'Rain', 'Bronze Tint', 'Gray Tint'],
+    fixtures: ['Chrome', 'Brushed Nickel', 'Matte Black', 'Brass / Gold', 'Oil-Rubbed Bronze'],
+  },
+  'windows': {
+    name: 'Window Repair & Replacement',
+    desc: 'Broken seals, foggy glass, cracked panes — repaired or replaced fast, all glass types.',
+    types: ['Single Pane', 'Dual Pane (Insulated)', 'Tempered', 'Laminated', 'Picture Window', 'Sliding'],
+    glassOptions: ['Clear', 'Low-E (Energy Efficient)', 'Obscure / Privacy', 'Tempered Safety', 'Laminated'],
+    fixtures: [],
+  },
+  'mirrors': {
+    name: 'Custom Mirrors',
+    desc: 'Custom-cut bathroom, closet, gym, and decorative mirrors. Any size, any finish.',
+    types: ['Frameless', 'Beveled Edge', 'Wall Mirror', 'Closet Mirror', 'Gym Mirror', 'Decorative'],
+    glassOptions: ['Standard Clear', 'Low-Iron (Extra Clear)', 'Antique / Bronze Tint', 'Black Mirror'],
+    fixtures: [],
+  },
+  'storefronts': {
+    name: 'Commercial Storefronts',
+    desc: 'Tempered glass panels, aluminum framing, and commercial entrance systems.',
+    types: ['Storefront System', 'Glass Partition', 'Commercial Door', 'Curtain Wall', 'Window Wall'],
+    glassOptions: ['Clear Tempered', 'Tinted', 'Frosted / Privacy', 'Laminated Safety', 'Reflective'],
+    fixtures: ['Aluminum (Clear)', 'Bronze Aluminum', 'Dark Bronze', 'Black Aluminum'],
+  },
+  'tabletops': {
+    name: 'Tabletops & Custom Glass',
+    desc: 'Custom-cut glass for tables, shelves, counters, and decorative pieces.',
+    types: ['Tabletop', 'Shelf', 'Counter Cover', 'Cabinet Insert', 'Decorative Panel'],
+    glassOptions: ['Clear', 'Low-Iron (Extra Clear)', 'Frosted', 'Tinted', 'Textured'],
+    fixtures: [],
+  },
+  'emergency': {
+    name: 'Emergency Repairs',
+    desc: 'Break-in board-up, storm damage, urgent replacement. We move fast.',
+    types: ['Board-Up', 'Same-Day Replacement', 'Break-In Repair', 'Storm Damage'],
+    glassOptions: ['Tempered', 'Laminated', 'Standard', 'Plexiglass (Temp)'],
+    fixtures: [],
+  },
+};
+
+window.openServiceModal = function(key) {
+  const data = SERVICES[key];
+  if (data) openModal(data);
+};
+window.closeModal = closeModal;
+
+// ── CONTACT STRIP FORM ────────────────────────
+function initContactForm() {
+  const form = document.getElementById('contact-strip-form');
+  if (!form) return;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name    = document.getElementById('cs-name').value.trim();
+    const phone   = document.getElementById('cs-phone').value.trim();
+    const service = document.getElementById('cs-service').value;
+    const notes   = document.getElementById('cs-notes').value.trim();
+    const message = `Quick contact from ${name} (${phone}). Service: ${service}. Notes: ${notes}`;
+    const btn = form.querySelector('[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '53665885-fb86-4fce-8d07-d90806ff1317',
+          subject: `Quick Contact — ${name}`,
+          message, name, email: 'no-reply@quickcontact.com',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.innerHTML = '<p style="color:var(--blue);font-weight:600;text-align:center;padding:20px 0;">✓ Sent! We\'ll be in touch soon.</p>';
+      } else { btn.disabled = false; btn.textContent = 'Send Message'; }
+    } catch { btn.disabled = false; btn.textContent = 'Send Message'; }
+  });
+}
+
+// ── INIT ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initNav();
+  initReveal();
+  initFAQ();
+  initModal();
+  initInlineForm();
+  initContactForm();
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
+});
+</script>
+</body>
+</html>
