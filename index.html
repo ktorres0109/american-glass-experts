@@ -197,6 +197,11 @@ section { padding: 100px 0; }
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo img { height: 40px; width: auto; }
+/* Light mode: use dark logo; dark mode: use white logo */
+.nav-logo .logo-light { display: block; }
+.nav-logo .logo-dark  { display: none; }
+[data-theme="dark"] .nav-logo .logo-light { display: none; }
+[data-theme="dark"] .nav-logo .logo-dark  { display: block; }
 .nav-logo-text { font-family: var(--head); font-size: 1.15rem; font-weight: 700; color: var(--charcoal); }
 [data-theme="dark"] .nav-logo-text { color: var(--white); }
 .nav-logo-text span { color: var(--blue); }
@@ -260,7 +265,7 @@ section { padding: 100px 0; }
   position: relative; z-index: 2;
   background: var(--bg);
   display: flex; flex-direction: column; justify-content: center;
-  padding: 100px 64px 80px 0;
+  padding: 100px 80px 100px 8%;
 }
 .hero-left::after {
   content: '';
@@ -879,7 +884,8 @@ section { padding: 100px 0; }
 <nav class="nav" id="main-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="logo-icon.png" alt="American Glass Experts" onerror="this.style.display='none'" />
+      <img src="logo-icon-dark.png" class="logo-light" alt="American Glass Experts" />
+      <img src="logo-icon.png"      class="logo-dark"  alt="American Glass Experts" />
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
@@ -914,7 +920,6 @@ section { padding: 100px 0; }
 <!-- HERO — split panel -->
 <section class="hero" style="padding:0;">
   <div class="hero-left">
-    <div style="padding: 100px 48px 120px 8%;">
       <div class="hero-badge"><span class="dot"></span> C-17 Licensed · CSLB #1125850</div>
       <h1>Glass Done Right.<br><em>Every Time.</em></h1>
       <p class="hero-sub">Custom shower enclosures, commercial storefronts, window replacement, and mirrors across Southern California. We handle everything — you just wait for the finished product.</p>
@@ -931,7 +936,6 @@ section { padding: 100px 0; }
           Not ready to call? <a href="contact.html">Send a message</a> — we respond fast.
         </div>
       </div>
-    </div>
   </div>
 
   <div class="hero-right">

@@ -224,6 +224,10 @@ section { padding: 100px 0; }
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo img { height: 40px; width: auto; }
+.nav-logo .logo-light { display: block; }
+.nav-logo .logo-dark  { display: none; }
+[data-theme="dark"] .nav-logo .logo-light { display: none; }
+[data-theme="dark"] .nav-logo .logo-dark  { display: block; }
 .nav-logo-text { font-family: var(--head); font-size: 1.15rem; font-weight: 700; color: var(--charcoal); }
 [data-theme="dark"] .nav-logo-text { color: var(--white); }
 .nav-logo-text span { color: var(--blue); }
@@ -895,7 +899,8 @@ section { padding: 100px 0; }
 </div>
 <nav class="nav" id="main-nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="logo-icon.png" alt="American Glass Experts" onerror="this.style.display='none'" /> Experts</span></a>
+    <a href="index.html" class="nav-logo"><img src="logo-icon-dark.png" class="logo-light" alt="American Glass Experts" />
+      <img src="logo-icon.png"      class="logo-dark"  alt="American Glass Experts" /> Experts</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="service-areas.html">Service Areas</a></li><li><a href="contact.html" class="active">Contact</a></li>
     </ul>
