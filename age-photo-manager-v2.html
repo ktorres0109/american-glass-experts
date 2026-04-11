@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AGE Photo Manager</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f0f;--surface:#181818;--border:#262626;
+  --accent:#7ec8c8;--text:#e5e5e5;--dim:#555;
+  --green:#22c55e;--red:#ef4444;--orange:#f59e0b;
+}
+body{background:var(--bg);color:var(--text);font-family:'SF Pro Display',-apple-system,sans-serif;font-size:13px;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+/* TOP BAR */
+.topbar{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+.topbar h1{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.06em}
+.topbar-sep{width:1px;height:18px;background:var(--border)}
+.cat-btn{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:11px;cursor:pointer;transition:all .15s}
+.cat-btn.active,.cat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cat-btn[data-cat="shower"].active{border-color:#60a5fa;color:#60a5fa}
+.cat-btn[data-cat="windows"].active{border-color:#34d399;color:#34d399}
+.cat-btn[data-cat="storefronts"].active{border-color:#f59e0b;color:#f59e0b}
+.cat-btn[data-cat="mirrors"].active{border-color:#c084fc;color:#c084fc}
+.cat-btn[data-cat="custom"].active{border-color:#fb7185;color:#fb7185}
+.topbar-right{margin-left:auto;display:flex;gap:8px}
+.btn{padding:6px 14px;border:none;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.04em}
+.btn-primary{background:var(--accent);color:#0f0f0f}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+
+/* MAIN LAYOUT */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* GRID */
+.grid-wrap{flex:1;overflow-y:auto;padding:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px}
+.thumb{position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb:hover{border-color:var(--dim)}
+.thumb.sel{border-color:white}
+.thumb .num{position:absolute;top:4px;left:4px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px;line-height:1}
+.thumb .cat-dot{position:absolute;bottom:4px;left:4px;width:8px;height:8px;border-radius:50%}
+.thumb .slot-badge{position:absolute;top:4px;right:4px;background:var(--accent);color:#0f0f0f;font-size:9px;font-weight:700;padding:1px 4px;border-radius:2px;line-height:1.4;max-width:70px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thumb.uncat .num{background:rgba(239,68,68,.8)}
+
+/* SIDEBAR */
+.sidebar{width:220px;border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sidebar-sec{border-bottom:1px solid var(--border);padding:12px}
+.sidebar-sec h3{font-size:10px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.img-preview{width:100%;aspect-ratio:4/3;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:10px}
+.img-preview img{width:100%;height:100%;object-fit:cover}
+.img-preview .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:11px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px}
+.cat-tag{padding:5px 6px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:10px;cursor:pointer;text-align:center;transition:all .15s}
+.cat-tag:hover{border-color:var(--accent);color:var(--accent)}
+.cat-tag.active{font-weight:700}
+.cat-tag[data-c="shower"].active{background:#1e3a5f;border-color:#60a5fa;color:#60a5fa}
+.cat-tag[data-c="windows"].active{background:#1a3a2e;border-color:#34d399;color:#34d399}
+.cat-tag[data-c="storefronts"].active{background:#3a2e0f;border-color:#f59e0b;color:#f59e0b}
+.cat-tag[data-c="mirrors"].active{background:#2e1a3a;border-color:#c084fc;color:#c084fc}
+.cat-tag[data-c="custom"].active{background:#3a1a22;border-color:#fb7185;color:#fb7185}
+.cat-tag[data-c="all"].active{background:#1a3a3a;border-color:var(--accent);color:var(--accent)}
+.slot-list{display:flex;flex-direction:column;gap:4px}
+.slot-row{display:flex;align-items:center;gap:6px;font-size:11px}
+.slot-row span{flex:1;color:var(--dim)}
+.slot-row .slot-val{color:var(--accent);font-weight:600;min-width:28px}
+.slot-pick{padding:3px 8px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:10px;cursor:pointer}
+.slot-pick:hover{border-color:var(--accent);color:var(--accent)}
+.slot-pick.assigned{border-color:var(--accent);color:var(--accent)}
+.progress-wrap{padding:8px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--dim);flex-shrink:0}
+.progress-bar{height:2px;background:var(--border);border-radius:1px;margin-top:4px}
+.progress-fill{height:100%;background:var(--accent);border-radius:1px;width:0%;transition:width .3s}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>AGE PHOTOS</h1>
+  <div class="topbar-sep"></div>
+  <div id="drop-target" style="border:1px dashed var(--border);border-radius:4px;padding:4px 12px;cursor:pointer;font-size:11px;color:var(--dim);transition:all .15s" 
+       ondragover="event.preventDefault();this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+       ondragleave="this.style.borderColor='var(--border)';this.style.color='var(--dim)'"
+       ondrop="handleDrop(event)"
+       onclick="document.getElementById('file-input').click()">
+    ⬆ Drop folder or click
+  </div>
+  <input type="file" id="file-input" multiple accept="image/*,.heic" style="display:none">
+  <div id="upload-progress" style="font-size:11px;color:var(--dim);display:none"></div>
+  <div class="topbar-sep"></div>
+  <button class="cat-btn active" data-filter="all">All</button>
+  <button class="cat-btn" data-filter="shower">Shower</button>
+  <button class="cat-btn" data-filter="windows">Windows</button>
+  <button class="cat-btn" data-filter="storefronts">Storefronts</button>
+  <button class="cat-btn" data-filter="mirrors">Mirrors</button>
+  <button class="cat-btn" data-filter="custom">Partitions</button>
+  <button class="cat-btn" data-filter="uncat">Untagged</button>
+  <div class="topbar-right">
+    <span id="count-info" style="color:var(--dim);font-size:11px;align-self:center"></span>
+    <button class="btn btn-ghost" id="btn-load">↺ Reload</button>
+    <button class="btn btn-primary" id="btn-deploy">⬆ Generate & Deploy</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="grid-wrap">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-sec">
+      <h3>Selected Photo</h3>
+      <div class="img-preview" id="preview"><div class="placeholder">← click a photo</div></div>
+      <div id="sel-num" style="font-size:11px;color:var(--dim);margin-bottom:8px;text-align:center"></div>
+      <div class="cat-grid">
+        <button class="cat-tag" data-c="shower">🚿 Shower</button>
+        <button class="cat-tag" data-c="windows">🪟 Windows</button>
+        <button class="cat-tag" data-c="storefronts">🏪 Storefront</button>
+        <button class="cat-tag" data-c="mirrors">🪞 Mirrors</button>
+        <button class="cat-tag" data-c="custom">✦ Partitions</button>
+        <button class="cat-tag" data-c="all">⊕ All</button>
+      </div>
+    </div>
+    <div class="sidebar-sec">
+      <h3>Page Slots</h3>
+      <div class="slot-list" id="slot-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="progress-wrap" id="progress-wrap" style="display:none">
+  <span id="progress-text">Deploying...</span>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<script>
+const PUB = 'https://YOUR_R2_PUBLIC_ID.r2.dev/gallery';
+let TOTAL = 0; // set dynamically after upload or load from R2
+
+const SLOTS = [
+  {id:'hero',        label:'Homepage Hero'},
+  {id:'shower-card', label:'Shower Card'},
+  {id:'windows-card',label:'Windows Card'},
+  {id:'storefronts-card',label:'Storefronts Card'},
+  {id:'mirrors-card',label:'Mirrors Card'},
+  {id:'custom-card', label:'Partitions Card'},
+  {id:'emergency-card',label:'Emergency Card'},
+  {id:'team',        label:'Team Photo'},
+];
+
+const CAT_COLORS = {
+  shower:'#60a5fa', windows:'#34d399', storefronts:'#f59e0b',
+  mirrors:'#c084fc', custom:'#fb7185', all:'#7ec8c8'
+};
+
+// State
+let photos = {}; // num -> {cat, slots:[]}
+let sel = null;
+let filter = 'all';
+
+// Load saved state from localStorage
+function loadState() {
+  try { const s = localStorage.getItem('age-photos-v2'); if(s) photos = JSON.parse(s); } catch(e){}
+}
+function saveState() {
+  try { localStorage.setItem('age-photos-v2', JSON.stringify(photos)); } catch(e){}
+}
+
+function getPhoto(n) {
+  if (!photos[n]) photos[n] = {cat: null, slots: []};
+  return photos[n];
+}
+
+// Render grid
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const tagged = Object.values(photos).filter(p => p.cat).length;
+  document.getElementById('count-info').textContent = `${tagged}/${TOTAL} tagged`;
+
+  const nums = [];
+  for (let i = 1; i <= TOTAL; i++) nums.push(i);
+  if (TOTAL === 0) { grid.innerHTML = '<div style="color:var(--dim);padding:40px;font-size:12px;">No photos yet — drop your folder above to upload</div>'; return; }
+
+  const filtered = nums.filter(n => {
+    const p = getPhoto(n);
+    if (filter === 'all') return true;
+    if (filter === 'uncat') return !p.cat;
+    return p.cat === filter;
+  });
+
+  grid.innerHTML = '';
+  filtered.forEach(n => {
+    const p = getPhoto(n);
+    const div = document.createElement('div');
+    div.className = 'thumb' + (sel === n ? ' sel' : '') + (!p.cat ? ' uncat' : '');
+    div.dataset.n = n;
+
+    const slotLabel = p.slots && p.slots.length ? p.slots.map(s => SLOTS.find(x=>x.id===s)?.label?.split(' ')[0]).join(',') : '';
+
+    div.innerHTML = `
+      <img src="${PUB}/${n}.jpg" loading="lazy" onerror="this.style.opacity=.2">
+      <div class="num">${n}</div>
+      ${p.cat ? `<div class="cat-dot" style="background:${CAT_COLORS[p.cat]||'#666'}"></div>` : ''}
+      ${slotLabel ? `<div class="slot-badge">${slotLabel}</div>` : ''}
+    `;
+    div.addEventListener('click', () => selectPhoto(n));
+    grid.appendChild(div);
+  });
+}
+
+function selectPhoto(n) {
+  sel = n;
+  const p = getPhoto(n);
+
+  // Update preview
+  document.getElementById('preview').innerHTML = `<img src="${PUB}/${n}.jpg" onerror="this.style.opacity=.2">`;
+  document.getElementById('sel-num').textContent = `Photo #${n}${p.cat ? ' · ' + p.cat : ' · untagged'}`;
+
+  // Update cat tags
+  document.querySelectorAll('.cat-tag').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.c === p.cat);
+  });
+
+  // Update slot list
+  renderSlots(n, p);
+
+  // Re-render grid to show selection
+  renderGrid();
+}
+
+function renderSlots(n, p) {
+  const list = document.getElementById('slot-list');
+  list.innerHTML = '';
+  SLOTS.forEach(slot => {
+    const assigned = p.slots && p.slots.includes(slot.id);
+    // Find if another photo has this slot
+    const other = Object.entries(photos).find(([num, ph]) => num != n && ph.slots && ph.slots.includes(slot.id));
+    const row = document.createElement('div');
+    row.className = 'slot-row';
+    row.innerHTML = `
+      <span>${slot.label}</span>
+      <button class="slot-pick ${assigned ? 'assigned' : ''}" data-slot="${slot.id}">
+        ${assigned ? '✓' : other ? `#${other[0]}` : 'Pick'}
+      </button>
+    `;
+    row.querySelector('.slot-pick').addEventListener('click', () => toggleSlot(n, slot.id));
+    list.appendChild(row);
+  });
+}
+
+function toggleSlot(n, slotId) {
+  const p = getPhoto(n);
+  if (!p.slots) p.slots = [];
+  if (p.slots.includes(slotId)) {
+    p.slots = p.slots.filter(s => s !== slotId);
+  } else {
+    // Remove from any other photo
+    Object.values(photos).forEach(ph => { if(ph.slots) ph.slots = ph.slots.filter(s => s !== slotId); });
+    p.slots.push(slotId);
+  }
+  saveState();
+  renderSlots(n, p);
+  renderGrid();
+}
+
+// Category tags
+document.querySelectorAll('.cat-tag').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (sel === null) return;
+    const p = getPhoto(sel);
+    p.cat = p.cat === btn.dataset.c ? null : btn.dataset.c;
+    saveState();
+    selectPhoto(sel);
+  });
+});
+
+// Filter buttons
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.dataset.filter;
+    renderGrid();
+  });
+});
+
+// Keyboard shortcuts: arrow keys to navigate, 1-6 to tag
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  const cats = ['shower','windows','storefronts','mirrors','custom','all'];
+  const catKey = parseInt(e.key);
+  if (catKey >= 1 && catKey <= 6 && sel !== null) {
+    const p = getPhoto(sel);
+    p.cat = p.cat === cats[catKey-1] ? null : cats[catKey-1];
+    saveState();
+    selectPhoto(sel);
+    // Auto-advance to next
+    if (sel < TOTAL) selectPhoto(sel + 1);
+    return;
+  }
+  if (e.key === 'ArrowRight' && sel !== null && sel < TOTAL) { selectPhoto(sel + 1); }
+  if (e.key === 'ArrowLeft' && sel !== null && sel > 1) { selectPhoto(sel - 1); }
+});
+
+// Deploy
+document.getElementById('btn-deploy').addEventListener('click', deployToSite);
+
+async function deployToSite() {
+  const btn = document.getElementById('btn-deploy');
+  btn.disabled = true;
+  const pw = document.getElementById('progress-wrap');
+  const pf = document.getElementById('progress-fill');
+  const pt = document.getElementById('progress-text');
+  pw.style.display = 'block';
+
+  const delays = ['', ' d1', ' d2', ' d3', ' d4'];
+  const catMap = {shower:'Shower Enclosure', windows:'Window Work', storefronts:'Commercial Storefront', mirrors:'Mirror', custom:'Glass Partitions', all:'Glass Project'};
+
+  // Build gallery items HTML
+  let items = '';
+  for (let i = 1; i <= TOTAL; i++) {
+    const p = getPhoto(i);
+    const cat = p.cat || 'all';
+    const label = catMap[cat] || 'Glass Project';
+    const delay = delays[i % 5];
+    items += `
+        <div class="gallery-item reveal${delay}" data-cat="${cat}" data-title="${label} — American Glass Experts">
+          <img src="${PUB}/${i}.jpg" loading="lazy" alt="${label} by American Glass Experts" style="width:100%;height:100%;object-fit:cover;">
+          <div class="gallery-overlay"><div class="gallery-label">${label}</div></div>
+          <div class="gallery-expand"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+        </div>`;
+  }
+
+  // Slot assignments
+  const slots = {};
+  Object.entries(photos).forEach(([num, p]) => {
+    if (p.slots) p.slots.forEach(s => { slots[s] = `${PUB}/${num}.jpg`; });
+  });
+
+  const payload = { gallery_html: items, slots };
+
+  pt.textContent = 'Calling deploy API...';
+  pf.style.width = '30%';
+
+  try {
+    const res = await fetch('https://american-glass-experts.kelvinsalinas59.workers.dev/deploy', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    pf.style.width = '100%';
+    if (res.ok) {
+      pt.textContent = '✓ Deployed! Refresh the site.';
+    } else {
+      pt.textContent = `Error ${res.status} — copy the HTML below and paste manually`;
+      showManualFallback(items, slots);
+    }
+  } catch(e) {
+    pf.style.width = '100%';
+    pt.textContent = 'Deploy API not available — use Copy HTML below';
+    showManualFallback(items, slots);
+  }
+  btn.disabled = false;
+}
+
+function showManualFallback(items, slots) {
+  const slotComment = '<!-- PAGE SLOT ASSIGNMENTS\n' + Object.entries(slots).map(([k,v])=>`  ${k}: ${v}`).join('\n') + '\n-->';
+  const full = slotComment + '\n' + items;
+  const ta = document.createElement('textarea');
+  ta.value = full;
+  ta.style = 'width:100%;height:120px;background:#111;color:#e5e5e5;border:1px solid #333;padding:8px;font-size:10px;font-family:monospace;margin-top:8px;resize:none';
+  document.getElementById('progress-wrap').appendChild(ta);
+  const copyBtn = document.createElement('button');
+  copyBtn.textContent = 'Copy HTML';
+  copyBtn.className = 'btn btn-primary';
+  copyBtn.style = 'margin-top:6px';
+  copyBtn.onclick = () => { navigator.clipboard.writeText(full); copyBtn.textContent = 'Copied!'; };
+  document.getElementById('progress-wrap').appendChild(copyBtn);
+}
+
+document.getElementById('btn-load').addEventListener('click', () => {
+  loadState(); renderGrid();
+});
+
+// Keyboard shortcut hint
+const hint = document.createElement('div');
+hint.style = 'position:fixed;bottom:8px;left:12px;font-size:10px;color:var(--dim)';
+hint.textContent = 'Keys: 1=Shower 2=Windows 3=Storefront 4=Mirrors 5=Partitions 6=All  ←→ navigate';
+document.body.appendChild(hint);
+
+
+// ── AWS4 Signing ──
+async function sha256(msg) {
+  const d = typeof msg==='string'?new TextEncoder().encode(msg):msg;
+  return crypto.subtle.digest('SHA-256',d);
+}
+function toHex(buf){return[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');}
+async function hmac(key,data){
+  const k=key instanceof ArrayBuffer?key:new TextEncoder().encode(key);
+  const ck=await crypto.subtle.importKey('raw',k,{name:'HMAC',hash:'SHA-256'},false,['sign']);
+  return crypto.subtle.sign('HMAC',ck,typeof data==='string'?new TextEncoder().encode(data):data);
+}
+async function signingKey(secret,date,region,service){
+  const kD=await hmac('AWS4'+secret,date);
+  const kR=await hmac(kD,region);
+  const kS=await hmac(kR,service);
+  return hmac(kS,'aws4_request');
+}
+async function putObject(key,body,contentType){
+  const endpoint='https://YOUR_CF_ACCOUNT_ID.r2.cloudflarestorage.com';
+  const bucket='ageimages';
+  const accessKey='YOUR_R2_ACCESS_KEY_ID';
+  const secretKey='YOUR_R2_SECRET_KEY';
+  const host=`${bucket}.${endpoint.replace('https://','').replace('http://','')}`;
+  const url=`https://${host}/${key}`;
+  const now=new Date();
+  const amzDate=now.toISOString().replace(/[:\-]|\.\d{3}/g,'').slice(0,15)+'Z';
+  const dateStr=amzDate.slice(0,8);
+  const bytes=body instanceof Uint8Array?body:new Uint8Array(await body.arrayBuffer());
+  const bodyHash=toHex(await sha256(bytes));
+  const canon=`content-type:${contentType}\nhost:${host}\nx-amz-content-sha256:${bodyHash}\nx-amz-date:${amzDate}\n`;
+  const sh='content-type;host;x-amz-content-sha256;x-amz-date';
+  const cr=['PUT',`/${key}`,'',canon,sh,bodyHash].join('\n');
+  const cs=`${dateStr}/auto/s3/aws4_request`;
+  const sts=['AWS4-HMAC-SHA256',amzDate,cs,toHex(await sha256(cr))].join('\n');
+  const sk=await signingKey(secretKey,dateStr,'auto','s3');
+  const sig=toHex(await hmac(sk,sts));
+  const auth=`AWS4-HMAC-SHA256 Credential=${accessKey}/${cs}, SignedHeaders=${sh}, Signature=${sig}`;
+  const res=await fetch(url,{method:'PUT',headers:{'Content-Type':contentType,'x-amz-date':amzDate,'x-amz-content-sha256':bodyHash,'Authorization':auth},body:bytes});
+  if(!res.ok){const t=await res.text();throw new Error(`${res.status}: ${t.slice(0,100)}`);}
+}
+async function toWebP(file){
+  const bitmap=await createImageBitmap(file);
+  const {width:w,height:h}=bitmap;
+  const longest=Math.max(w,h);
+  const scale=longest>1200?1200/longest:1;
+  const nw=Math.round(w*scale),nh=Math.round(h*scale);
+  const canvas=new OffscreenCanvas(nw,nh);
+  canvas.getContext('2d').drawImage(bitmap,0,0,nw,nh);
+  bitmap.close();
+  const blob=await canvas.convertToBlob({type:'image/webp',quality:0.82});
+  return new Uint8Array(await blob.arrayBuffer());
+}
+
+async function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('drop-target').style.borderColor='var(--border)';
+  document.getElementById('drop-target').style.color='var(--dim)';
+  const items=[...e.dataTransfer.items];
+  const collected=[];
+  async function readEntry(entry){
+    if(entry.isFile){await new Promise(res=>entry.file(f=>{collected.push(f);res();}));}
+    else if(entry.isDirectory){const reader=entry.createReader();await new Promise(res=>reader.readEntries(async entries=>{for(const en of entries)await readEntry(en);res();}));}
+  }
+  for(const item of items){const entry=item.webkitGetAsEntry();if(entry)await readEntry(entry);}
+  const imgs=collected.filter(f=>/\.(jpe?g|png|webp|heic)$/i.test(f.name));
+  if(imgs.length)await uploadFiles(imgs);
+}
+
+document.getElementById('file-input').addEventListener('change',async e=>{
+  if(e.target.files.length)await uploadFiles([...e.target.files]);
+});
+
+async function uploadFiles(files){
+  const prog=document.getElementById('upload-progress');
+  prog.style.display='block';
+  // Start numbering from current TOTAL+1
+  const startNum=TOTAL+1;
+  for(let i=0;i<files.length;i++){
+    const file=files[i];
+    const num=startNum+i;
+    prog.textContent=`Uploading ${num}/${startNum+files.length-1} — ${file.name}`;
+    try{
+      const origBytes=new Uint8Array(await file.arrayBuffer());
+      await putObject(`gallery-original/${num}.jpg`,origBytes,'image/jpeg');
+      const webpBytes=await toWebP(file);
+      await putObject(`gallery/${num}.jpg`,webpBytes,'image/webp');
+      TOTAL=Math.max(TOTAL,num);
+      localStorage.setItem("age-total",TOTAL);
+    }catch(e){
+      prog.textContent=`✗ ${file.name}: ${e.message}`;
+      await new Promise(r=>setTimeout(r,1500));
+    }
+  }
+  prog.textContent=`✓ ${files.length} photos uploaded (total: ${TOTAL})`;
+  saveState();
+  renderGrid();
+}
+
+// Init
+loadState();
+// Load TOTAL from saved state
+TOTAL = parseInt(localStorage.getItem("age-total") || "0");
+renderGrid();
+</script>
+</body>
+</html>
