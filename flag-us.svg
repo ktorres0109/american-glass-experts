@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 34" width="28" height="16">
+  <!-- 13 stripes -->
+  <rect width="60" height="34" fill="#B22234"/>
+  <rect y="2.6" width="60" height="2.6" fill="#fff"/>
+  <rect y="7.8" width="60" height="2.6" fill="#fff"/>
+  <rect y="13" width="60" height="2.6" fill="#fff"/>
+  <rect y="18.2" width="60" height="2.6" fill="#fff"/>
+  <rect y="23.4" width="60" height="2.6" fill="#fff"/>
+  <rect y="28.6" width="60" height="2.6" fill="#fff"/>
+  <!-- Canton (blue field) -->
+  <rect width="24" height="18.2" fill="#3C3B6E"/>
+  <!-- Stars: 5 rows of 6, 4 rows of 5 alternating -->
+  <g fill="#fff" font-size="3.2" text-anchor="middle">
+    <!-- row 1: 6 stars at y=2 -->
+    <text x="2" y="3.8">★</text><text x="6" y="3.8">★</text><text x="10" y="3.8">★</text><text x="14" y="3.8">★</text><text x="18" y="3.8">★</text><text x="22" y="3.8">★</text>
+    <!-- row 2: 5 stars offset -->
+    <text x="4" y="6.4">★</text><text x="8" y="6.4">★</text><text x="12" y="6.4">★</text><text x="16" y="6.4">★</text><text x="20" y="6.4">★</text>
+    <!-- row 3 -->
+    <text x="2" y="9">★</text><text x="6" y="9">★</text><text x="10" y="9">★</text><text x="14" y="9">★</text><text x="18" y="9">★</text><text x="22" y="9">★</text>
+    <!-- row 4 -->
+    <text x="4" y="11.6">★</text><text x="8" y="11.6">★</text><text x="12" y="11.6">★</text><text x="16" y="11.6">★</text><text x="20" y="11.6">★</text>
+    <!-- row 5 -->
+    <text x="2" y="14.2">★</text><text x="6" y="14.2">★</text><text x="10" y="14.2">★</text><text x="14" y="14.2">★</text><text x="18" y="14.2">★</text><text x="22" y="14.2">★</text>
+    <!-- row 6 -->
+    <text x="4" y="16.8">★</text><text x="8" y="16.8">★</text><text x="12" y="16.8">★</text><text x="16" y="16.8">★</text><text x="20" y="16.8">★</text>
+  </g>
+</svg>
