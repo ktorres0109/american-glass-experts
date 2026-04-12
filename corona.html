@@ -909,6 +909,17 @@ section { padding: 100px 0; }
 .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s}
 .d4{transition-delay:.28s} .d5{transition-delay:.35s} .d6{transition-delay:.42s}
 
+
+/* ── SKIP TO CONTENT (WCAG) ── */
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  background: var(--blue); color: #fff;
+  padding: 10px 20px; border-radius: 0 0 var(--r) var(--r);
+  font-size: 0.85rem; font-weight: 700; z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .container { padding: 0 32px; }
@@ -957,6 +968,7 @@ section { padding: 100px 0; }
   <link rel="apple-touch-icon" href="logo-icon-dark.png">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- TOP BAR -->
   <div class="top-bar">
@@ -1052,7 +1064,7 @@ section { padding: 100px 0; }
   </div>
 
   <!-- SERVICES GRID -->
-  <section>
+  <section id="main-content">
     <div class="container">
       <div class="reveal">
         <span class="section-label">Corona Glass Services</span>
