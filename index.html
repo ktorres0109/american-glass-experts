@@ -829,7 +829,7 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .about-grid { gap: 48px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 80px 0 60px; }
+  .hero-left { padding: 80px 24px 60px; }
   .hero-left::after { display: none; }
   .hero-right { display: none; }
   .hero-trust-strip { padding: 14px 32px; gap: 24px; flex-wrap: wrap; }
@@ -857,7 +857,9 @@ section { padding: 100px 0; }
   .services-intro { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 480px) {
-  h1 { font-size: 2.2rem; }
+  h1 { font-size: 2rem; }
+  .hero-left { padding: 60px 20px 40px; overflow-x: hidden; }
+  .hero-sub { font-size: 0.95rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .hero-btns { flex-direction: column; }
   .modal-footer-cta { flex-direction: column; }
