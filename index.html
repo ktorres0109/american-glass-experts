@@ -342,6 +342,7 @@ section { padding: 100px 0; }
   color: var(--blue); font-size: 0.71rem; font-weight: 700;
   letter-spacing: 0.2em; text-transform: uppercase;
   padding: 8px 18px; border-radius: 100px; margin-bottom: 24px;
+  max-width: 100%; white-space: normal; flex-wrap: wrap;
 }
 .hero-badge .dot {
   width: 6px; height: 6px; background: var(--blue); border-radius: 50%;
@@ -842,7 +843,7 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .about-grid { gap: 48px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 80px 24px 60px; }
+  .hero-left { padding: 48px 24px 48px; }
   .hero-left::after { display: none; }
   .hero-right { display: none; }
   .hero-trust-strip { padding: 14px 32px; gap: 24px; flex-wrap: wrap; }
@@ -871,7 +872,9 @@ section { padding: 100px 0; }
 }
 @media (max-width: 480px) {
   h1 { font-size: 2rem; }
-  .hero-left { padding: 60px 20px 40px; overflow-x: hidden; }
+  .hero-left { padding: 40px 20px 32px; overflow-x: hidden; }
+  .hero-badge { font-size: 0.62rem; letter-spacing: 0.1em; padding: 6px 12px; }
+  .hero-trust-strip { display: none; }
   .hero-sub { font-size: 0.95rem; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .hero-btns { flex-direction: column; }
@@ -1023,18 +1026,6 @@ section { padding: 100px 0; }
 
   <!-- Bottom trust strip (overlaps both panels on desktop) -->
   <div class="hero-trust-strip">
-    <div class="hero-trust-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <strong>C-17 Licensed</strong> #1125850
-    </div>
-    <div class="hero-trust-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      Bonded &amp; Insured
-    </div>
-    <div class="hero-trust-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      Family Owned &amp; Operated
-    </div>
     <div class="hero-trust-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       Free Estimates
@@ -1195,9 +1186,9 @@ section { padding: 100px 0; }
   <div class="container">
     <div style="max-width:720px;">
       <span class="section-label">Who We Are</span>
-        <h2>A Family Business Built on <em>Glass</em></h2>
+        <h2>Built on <em>Glass</em></h2>
         <div class="about-text">
-          <p>American Glass Experts Inc. is a family-owned glass company based in Reseda, CA — serving the San Fernando Valley and all of Southern California. Our team brings more than <strong>20 years of combined hands-on glazing experience</strong> to every job.</p>
+          <p>American Glass Experts Inc. is a licensed glass company based in Reseda, CA — serving the San Fernando Valley and all of Southern California. Our crew brings more than <strong>20 years of combined hands-on glazing experience</strong> to every job.</p>
           <p>We specialize in glass partitions design, storefronts, and glass partitions. We work closely with contractors, architects, and homeowners to make sure every project is finished on time and within budget. Any size job — we show up, do it right, leave the site clean.</p>
           <p><strong>We make the glass. We come to you. We install it. You just wait for the finished product.</strong></p>
           <div class="license-badge">
