@@ -243,6 +243,12 @@ section { padding: 100px 0; }
 .nav-links a:hover { color: var(--charcoal); background: var(--bg-soft); }
 [data-theme="dark"] .nav-links a:hover { color: var(--white); }
 .nav-links a.active { color: var(--blue); font-weight: 600; }
+.nav-dropdown { position: relative; }
+.nav-sub { display: none; position: absolute; top: 100%; left: 0; min-width: 210px; background: var(--bg-nav); border: 1px solid var(--border); border-radius: 8px; padding: 6px; box-shadow: var(--sh-md); z-index: 1000; list-style: none; margin: 0; }
+.nav-dropdown:hover .nav-sub { display: block; }
+.nav-sub li { margin: 0; padding: 0; }
+.nav-sub li a { display: block; padding: 8px 12px; border-radius: 6px; font-size: .82rem; color: var(--text); white-space: nowrap; font-weight: 400; }
+.nav-sub li a:hover { background: var(--bg-soft); color: var(--blue); }
 
 .nav-right { display: flex; align-items: center; gap: 10px; }
 .theme-toggle {
