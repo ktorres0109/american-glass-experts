@@ -1,5 +1,20 @@
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // Redirect HTTP → HTTPS
+    if (url.protocol === 'http:') {
+      url.protocol = 'https:';
+      url.hostname = 'www.americanglassexperts.us';
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // Redirect non-www → www
+    if (url.hostname === 'americanglassexperts.us') {
+      url.hostname = 'www.americanglassexperts.us';
+      return Response.redirect(url.toString(), 301);
+    }
+
     const response = await env.ASSETS.fetch(request);
 
     const newHeaders = new Headers(response.headers);

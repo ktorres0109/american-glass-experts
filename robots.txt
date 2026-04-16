@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Allow AI crawlers to use content for search answers and grounding (not training)
+# Content-Signal: search=yes, ai-input=yes, ai-train=no
+# Note: Cloudflare may prepend its own managed bot rules above this section.
+# To allow Google AI Overviews: remove Google-Extended from Cloudflare bot settings.
+
 Sitemap: https://www.americanglassexperts.us/sitemap.xml
