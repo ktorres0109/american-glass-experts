@@ -5,13 +5,18 @@ Replaces the About card (d4) in each city page.
 Run again to regenerate: existing d4 cards are replaced.
 """
 
+import os
 import re
 import json
+import sys
 import time
 import urllib.request
 from pathlib import Path
 
-GEMINI_API_KEY = "AIzaSyBSVDvudMVGPnV1ABzMeFL5On19qFO7P0g"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    print("Error: set GEMINI_API_KEY env var before running")
+    sys.exit(1)
 GEMINI_URL = (
     "https://generativelanguage.googleapis.com/v1beta/models/"
     "gemini-2.5-flash:generateContent?key=" + GEMINI_API_KEY
