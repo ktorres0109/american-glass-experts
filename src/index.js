@@ -51,6 +51,7 @@ export default {
         "img-src 'self' data: https:",
         "connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com",
         "form-action 'self' https://api.web3forms.com",
+        "frame-src https://www.google.com https://maps.google.com",
         "frame-ancestors 'none'",
         "base-uri 'self'",
       ].join('; ')

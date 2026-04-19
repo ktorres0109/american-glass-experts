@@ -15,7 +15,30 @@
   <meta property="og:image:height" content="380" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://www.americanglassexperts.us/logo-icon.png" />
- />
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "@id": "https://www.americanglassexperts.us/contact#webpage",
+      "url": "https://www.americanglassexperts.us/contact",
+      "name": "Contact American Glass Experts | Free Estimate",
+      "description": "Contact American Glass Experts Inc. for a free estimate. Call (805) 750-6471 or fill out our form. Serving all of Southern California.",
+      "isPartOf": {"@id": "https://www.americanglassexperts.us/#website"},
+      "about": {"@id": "https://www.americanglassexperts.us/#business"},
+      "breadcrumb": {"@id": "https://www.americanglassexperts.us/contact#breadcrumb"}
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://www.americanglassexperts.us/contact#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.americanglassexperts.us/"},
+        {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.americanglassexperts.us/contact"}
+      ]
+    }
+  ]
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" />
   <link rel="preload" as="image" href="logo-icon-dark.png" />
@@ -1060,6 +1083,29 @@ section { padding: 100px 0; }
   </div>
 </section>
 
+<!-- GOOGLE MAP -->
+<section style="padding:0;background:var(--bg);">
+  <div class="container" style="padding-top:56px;padding-bottom:56px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <span class="section-label" style="justify-content:center;">Find Us</span>
+      <h2>Our Location</h2>
+      <p style="color:var(--text-mid);max-width:440px;margin:10px auto 0;font-size:.95rem;">6853 Reseda Blvd, Reseda, CA 91335 — serving all of Southern California.</p>
+    </div>
+    <div style="border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);height:380px;">
+      <iframe
+        src="https://www.google.com/maps?q=6853+Reseda+Blvd,+Reseda,+CA+91335&output=embed"
+        width="100%"
+        height="380"
+        style="border:0;display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="American Glass Experts location — 6853 Reseda Blvd, Reseda CA"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICE AREAS STRIP -->
 <div style="background:var(--bg-soft);border-top:1px solid var(--border);padding:56px 0;">
   <div class="container" style="text-align:center;">
@@ -1083,7 +1129,7 @@ section { padding: 100px 0; }
       <div class="footer-col"><h5>Company</h5><a href="/">Home</a><a href="/gallery">Gallery</a><a href="/service-areas">Service Areas</a></div>
       <div class="footer-col"><h5>Contact</h5><a href="tel:+18057506471"> (805) 750-6471 — Call or Text Anytime</a><a href="mailto:info@americanglassexperts.us">info@americanglassexperts.us</a><a href="#">6853 Reseda Blvd, Reseda CA</a></div>
     </div>
-    <div class="footer-bottom"><p>© 2025 American Glass Experts Inc. · C-17 Licensed · CSLB #1125850</p></div>
+    <div class="footer-bottom"><p>© 2025 American Glass Experts Inc. · C-17 Licensed · CSLB #1125850</p><div><a href="/privacy-policy">Privacy Policy</a></div></div>
   </div>
 </footer>
 <script>
