@@ -15,6 +15,12 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    // Redirect trailing slash → no slash (301 permanent, not 307)
+    if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+      url.pathname = url.pathname.slice(0, -1);
+      return Response.redirect(url.toString(), 301);
+    }
+
     const response = await env.ASSETS.fetch(request);
 
     const newHeaders = new Headers(response.headers);
