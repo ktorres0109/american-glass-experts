@@ -32,8 +32,23 @@ Hours: Monday–Saturday, 7am–10pm
 
 ## Pages
 - Homepage: https://www.americanglassexperts.us/
-- Services: https://www.americanglassexperts.us/services.html
-- Gallery: https://www.americanglassexperts.us/gallery.html
-- Service Areas: https://www.americanglassexperts.us/service-areas.html
-- Contact: https://www.americanglassexperts.us/contact.html
+- Services: https://www.americanglassexperts.us/services
+- Shower Enclosures: https://www.americanglassexperts.us/shower-enclosures
+- Window Repair: https://www.americanglassexperts.us/window-repair
+- Storefront Glass: https://www.americanglassexperts.us/storefront-glass
+- Custom Mirrors: https://www.americanglassexperts.us/custom-mirrors
+- Emergency Glass: https://www.americanglassexperts.us/emergency-glass
+- Gallery: https://www.americanglassexperts.us/gallery
+- Service Areas: https://www.americanglassexperts.us/service-areas
+- About: https://www.americanglassexperts.us/about
+- Contact: https://www.americanglassexperts.us/contact
+- Blog: https://www.americanglassexperts.us/blog
 - Sitemap: https://www.americanglassexperts.us/sitemap.xml
+
+## Blog Posts
+- Foggy Window Repair Los Angeles: https://www.americanglassexperts.us/blog/foggy-window-repair-los-angeles
+- Frameless Shower Door Cost Los Angeles: https://www.americanglassexperts.us/blog/frameless-shower-door-cost-los-angeles
+- Storefront Glass Replacement Los Angeles: https://www.americanglassexperts.us/blog/storefront-glass-replacement-los-angeles
+- Emergency Glass Repair Los Angeles: https://www.americanglassexperts.us/blog/emergency-glass-repair-los-angeles
+- Glass Shower Door Installation Los Angeles: https://www.americanglassexperts.us/blog/glass-shower-door-installation-los-angeles
+- Commercial Storefront Glass Repair Los Angeles: https://www.americanglassexperts.us/blog/commercial-storefront-glass-repair-los-angeles
