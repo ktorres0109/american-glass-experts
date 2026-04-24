@@ -953,16 +953,31 @@ section { padding: 100px 0; }
 }</script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Emergency Glass Repair and Board-Up",
+  "@type": ["HomeAndConstructionBusiness", "EmergencyService"],
+  "@id": "https://www.americanglassexperts.us/emergency-glass#service",
+  "name": "American Glass Experts — Emergency Glass Repair",
+  "description": "24/7 emergency glass repair and board-up for broken windows, storefronts, and doors across Southern California. Typical dispatch within 1–2 hours.",
+  "telephone": "+1-805-750-6471",
+  "url": "https://www.americanglassexperts.us/emergency-glass",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "Los Angeles County"},
+    {"@type": "AdministrativeArea", "name": "Ventura County"},
+    {"@type": "AdministrativeArea", "name": "San Bernardino County"},
+    {"@type": "AdministrativeArea", "name": "Riverside County"}
+  ],
+  "offers": {"@type": "Offer", "priceRange": "$100-$300", "priceCurrency": "USD"},
   "provider": {
     "@type": "HomeAndConstructionBusiness",
-    "name": "American Glass Experts Inc.",
-    "telephone": "+1-805-750-6471",
-    "areaServed": "Los Angeles, Ventura, San Bernardino, Riverside Counties, California"
-  },
-  "areaServed": "Los Angeles, Southern California",
-  "url": "https://www.americanglassexperts.us/emergency-glass"
+    "@id": "https://www.americanglassexperts.us/#business"
+  }
 }</script>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
