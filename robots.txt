@@ -7,3 +7,13 @@ Allow: /
 # To allow Google AI Overviews: remove Google-Extended from Cloudflare bot settings.
 
 Sitemap: https://www.americanglassexperts.us/sitemap.xml
+
+# Block AI training crawlers (search grounding still allowed via above rules)
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
