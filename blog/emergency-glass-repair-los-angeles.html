@@ -978,6 +978,8 @@ section { padding: 100px 0; }
 <li class="nav-dropdown"><a href="/services">Services ▾</a><ul class="nav-sub"><li><a href="/shower-enclosures">Shower Enclosures</a></li><li><a href="/window-repair">Window Repair</a></li><li><a href="/storefront-glass">Storefront Glass</a></li><li><a href="/custom-mirrors">Custom Mirrors</a></li><li><a href="/emergency-glass">Emergency Glass</a></li></ul></li>
 <li><a href="/gallery">Gallery</a></li>
 <li><a href="/service-areas">Service Areas</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/blog" class="active">Blog</a></li>
 <li><a href="/contact">Contact</a></li></ul>
     <div class="nav-right">
       <button class="theme-toggle" aria-label="Toggle dark mode">
@@ -991,13 +993,20 @@ section { padding: 100px 0; }
     </button>
   </div>
 </nav>
-<div class="nav-mobile-menu" id="nav-mobile-menu">
-  <ul><li><a href="/">Home</a></li>
-<li class="nav-dropdown"><a href="/services">Services ▾</a><ul class="nav-sub"><li><a href="/shower-enclosures">Shower Enclosures</a></li><li><a href="/window-repair">Window Repair</a></li><li><a href="/storefront-glass">Storefront Glass</a></li><li><a href="/custom-mirrors">Custom Mirrors</a></li><li><a href="/emergency-glass">Emergency Glass</a></li></ul></li>
-<li><a href="/gallery">Gallery</a></li>
-<li><a href="/service-areas">Service Areas</a></li>
-<li><a href="/contact">Contact</a></li></ul>
-  <a href="tel:+18057506471" class="btn-call" style="margin-top:16px;">Call (805) 750-6471</a>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="/">Home <span>→</span></a>
+  <a href="/services">Services <span>→</span></a>
+  <a href="/shower-enclosures" style="padding-left:28px;font-size:.9rem;color:var(--text-mid);">Shower Enclosures <span>→</span></a>
+  <a href="/window-repair" style="padding-left:28px;font-size:.9rem;color:var(--text-mid);">Window Repair <span>→</span></a>
+  <a href="/storefront-glass" style="padding-left:28px;font-size:.9rem;color:var(--text-mid);">Storefront Glass <span>→</span></a>
+  <a href="/custom-mirrors" style="padding-left:28px;font-size:.9rem;color:var(--text-mid);">Custom Mirrors <span>→</span></a>
+  <a href="/emergency-glass" style="padding-left:28px;font-size:.9rem;color:var(--text-mid);">Emergency Glass <span>→</span></a>
+  <a href="/gallery">Gallery <span>→</span></a>
+  <a href="/service-areas">Service Areas <span>→</span></a>
+  <a href="/about">About <span>→</span></a>
+  <a href="/blog" class="active">Blog <span>→</span></a>
+  <a href="/contact">Contact <span>→</span></a>
+  <a href="tel:+18057506471" style="color:var(--blue);font-weight:700;margin-top:12px;">📞 (805) 750-6471</a>
 </div>
 <main id="main-content">
   <section class="page-hero" style="padding-bottom:32px;">
@@ -1506,7 +1515,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const btn=document.querySelector('.theme-toggle');
 if(btn)btn.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('age-theme',t);});
 // Mobile nav
-const hb=document.getElementById('nav-hamburger'),mn=document.getElementById('nav-mobile-menu');
+const hb=document.getElementById('nav-hamburger'),mn=document.getElementById('nav-mobile');
 if(hb&&mn)hb.addEventListener('click',()=>mn.classList.toggle('open'));
 // Scroll nav
 window.addEventListener('scroll',()=>{const n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>40);});
