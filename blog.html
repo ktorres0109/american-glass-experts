@@ -263,18 +263,33 @@ section { padding: 88px 0; }
 .blog-card:hover .blog-card-link { gap: 10px; }
 
 /* ── CTA BAND ── */
-.cta-band { background: var(--charcoal); color: #fff; padding: 56px 0; text-align: center; }
-[data-theme="dark"] .cta-band { background: var(--bg-soft); border-top: 1px solid var(--border); }
+.cta-band {
+  background: var(--charcoal); color: #fff; padding: 96px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+[data-theme="dark"] .cta-band { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .cta-band h2 { font-family: var(--head); font-size: 2rem; margin-bottom: 12px; color: #fff; }
 .cta-band p { opacity: .85; margin-bottom: 28px; }
-.cta-band .btn-call { background: #4a90d9; }
 .btn-call {
   display: inline-flex; align-items: center; gap: 10px;
-  background: #fff; color: var(--blue); font-weight: 700;
-  padding: 14px 28px; border-radius: var(--r); font-size: 1rem;
-  transition: background var(--t), box-shadow var(--t);
+  background: var(--blue); color: #fff;
+  font-family: var(--body); font-size: 1rem; font-weight: 700;
+  padding: 17px 40px; border-radius: var(--r); letter-spacing: 0.01em;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 20px var(--blue-glow), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transition: all var(--t);
 }
-.btn-call:hover { background: #f0f5ff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.btn-call:hover {
+  background: var(--blue-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--blue-glow);
+}
 
 /* ── FOOTER ── */
 .footer { background: var(--charcoal); padding: 72px 0 40px; color: #fff; }
@@ -455,7 +470,8 @@ section { padding: 88px 0; }
   </section>
 
   <section class="cta-band">
-    <div class="container">
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="section-label" style="display:flex;justify-content:center;color:rgba(255,255,255,0.4);margin-bottom:16px;">Get In Touch</span>
       <h2>Questions? We're Here to Help.</h2>
       <p>C-17 Licensed · CSLB #1125850 · Serving Los Angeles &amp; Southern California</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
