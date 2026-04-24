@@ -140,15 +140,15 @@ section { padding: 88px 0; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 26px; border-radius: var(--r); font-weight: 600;
-  font-size: 0.92rem; cursor: pointer; border: 2px solid transparent;
-  transition: background var(--t), color var(--t), border-color var(--t), box-shadow var(--t);
-  font-family: var(--body);
+  font-family: var(--body); font-size: 0.83rem; font-weight: 600;
+  letter-spacing: 0.04em; padding: 13px 28px; border-radius: var(--r);
+  border: none; cursor: pointer; transition: all var(--t); white-space: nowrap;
 }
-.btn-primary { background: var(--blue); color: #fff; }
-.btn-primary:hover { background: var(--blue-dk); box-shadow: 0 4px 20px var(--blue-glow); }
-.btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
-.btn-outline:hover { background: var(--blue-dim); }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 2px 12px var(--blue-glow); }
+.btn-primary:hover { background: var(--blue-dk); box-shadow: 0 6px 24px var(--blue-glow); }
+.btn-outline { background: transparent; border: 1.5px solid var(--border-md); color: var(--text); }
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-dim); }
 
 /* ── TOP BAR ── */
 .top-bar {
