@@ -1,0 +1,657 @@
+{
+  "burbank": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "adelanto": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "agoura-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "alhambra": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "apple-valley": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "arleta": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "azusa": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "baldwin-park": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "banning": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "beaumont": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "bell-canyon": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "big-bear-lake": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "calabasas": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "calimesa": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "camarillo": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "canoga-park": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "canyon-lake": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "carson": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "cathedral-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "chatsworth": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "chino-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "chino": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "claremont": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "coachella": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "colton": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "compton": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "corona": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "covina": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "culver-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "desert-hot-springs": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "diamond-bar": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "downey": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "duarte": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "eastvale": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "el-monte": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "el-segundo": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "encino": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "fillmore": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "fontana": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "gardena": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "glendale": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "glendora": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "granada-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "grand-terrace": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "hawthorne": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "hemet": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "hesperia": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "hidden-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "indian-wells": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "indio": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "inglewood": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "jurupa-valley": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "la-puente": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "la-quinta": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "la-verne": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "lake-elsinore": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "lakewood": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "loma-linda": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "long-beach": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "los-angeles": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "malibu": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "menifee": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "mission-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "monrovia": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "montclair": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "montebello": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "monterey-park": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "moorpark": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "moreno-valley": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "murrieta": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "newbury-park": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "norco": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "north-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "north-hollywood": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "northridge": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "oak-park": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "ontario": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "oxnard": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "pacific-palisades": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "pacoima": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "palm-desert": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "palm-springs": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "panorama-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "pasadena": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "perris": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "pico-rivera": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "pomona": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "port-hueneme": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "rancho-cucamonga": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "rancho-mirage": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "redlands": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "reseda": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "rialto": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "riverside": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "rubidoux": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-bernardino": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-dimas": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-fernando": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-gabriel": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-jacinto": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "san-marino": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "santa-clarita": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "santa-monica": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "santa-paula": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "sherman-oaks": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "simi-valley": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "south-pasadena": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "studio-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "sun-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "sylmar": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "tarzana": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "temecula": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "temple-city": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "thousand-oaks": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "topanga-canyon": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "torrance": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "upland": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "valley-village": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "van-nuys": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "ventura": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "victorville": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "walnut": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "west-covina": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "west-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "westlake-village": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "whittier": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "wildomar": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "winchester": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "winnetka": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  },
+  "woodland-hills": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": true
+  },
+  "yucaipa": {
+    "status": "ok",
+    "cards_patched": 6,
+    "wcu_patched": false
+  }
+}
