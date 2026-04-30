@@ -1,209 +1,261 @@
 #!/usr/bin/env python3
 """
-Add cross-links:
-1. Service pages → "Cities We Serve" section (body inline links to city pages)
-2. City pages → "Our Glass Services" section (body inline links to service pages)
+Add blog ↔ city cross-links.
+1. Blog posts → city pill links (service areas callout before </main>)
+2. City pages → blog post cards (related reading before <!-- FOOTER -->)
 """
-import os
-import re
+import os, re, glob
 
-# ── Service page data ──────────────────────────────────────────────
-SERVICE_PAGES = {
-    "shower-enclosures": {
-        "name": "Shower Enclosures",
-        "desc": "Frameless, semi-frameless, and sliding shower glass",
+ROOT = "/Users/kel/Documents/projects/american-glass-experts"
+
+# ── BLOG POST DATA ─────────────────────────────────────────────────────────────
+BLOGS = {
+    "frameless-shower-door-cost-los-angeles": {
+        "title": "How Much Does a Frameless Shower Door Cost in LA? (2026)",
+        "label": "Cost Guide · 2026",
     },
-    "window-repair": {
-        "name": "Window Repair",
-        "desc": "Broken seals, foggy double-pane, cracked or shattered glass",
+    "glass-shower-door-installation-los-angeles": {
+        "title": "Glass Shower Door Installation: What to Expect",
+        "label": "Installation Guide",
     },
-    "storefront-glass": {
-        "name": "Storefront Glass",
-        "desc": "Tempered panels, aluminum framing, and commercial glass doors",
+    "foggy-window-repair-los-angeles": {
+        "title": "Foggy Window Repair vs. Replacement in Los Angeles",
+        "label": "Window Guide",
     },
-    "custom-mirrors": {
-        "name": "Custom Mirrors",
-        "desc": "Bathroom, closet, gym, and wall mirrors — any size, any finish",
+    "emergency-glass-repair-los-angeles": {
+        "title": "Emergency Glass Repair in Los Angeles: What to Do First",
+        "label": "Emergency Guide",
     },
-    "emergency-glass": {
-        "name": "Emergency Glass",
-        "desc": "Same-day board-up and urgent glass replacement",
+    "storefront-glass-replacement-los-angeles": {
+        "title": "Storefront Glass Replacement: A Contractor's Guide",
+        "label": "Storefront Guide",
+    },
+    "commercial-storefront-glass-repair-los-angeles": {
+        "title": "Commercial Storefront Glass Repair in Los Angeles",
+        "label": "Commercial Guide",
     },
 }
 
-# ── Cities by county for service pages ────────────────────────────
-CITIES_BY_COUNTY = {
-    "San Fernando Valley": [
-        ("reseda", "Reseda"),
-        ("northridge", "Northridge"),
-        ("woodland-hills", "Woodland Hills"),
-        ("canoga-park", "Canoga Park"),
-        ("chatsworth", "Chatsworth"),
-        ("van-nuys", "Van Nuys"),
-        ("sherman-oaks", "Sherman Oaks"),
-        ("encino", "Encino"),
-        ("tarzana", "Tarzana"),
-        ("north-hollywood", "North Hollywood"),
-        ("studio-city", "Studio City"),
-        ("burbank", "Burbank"),
-        ("glendale", "Glendale"),
+# ── BLOG → CITY MAPPING ────────────────────────────────────────────────────────
+# 6 contextually relevant cities per post
+BLOG_CITIES = {
+    "frameless-shower-door-cost-los-angeles": [
+        ("Burbank",        "burbank"),
+        ("Glendale",       "glendale"),
+        ("Pasadena",       "pasadena"),
+        ("Woodland Hills", "woodland-hills"),
+        ("Calabasas",      "calabasas"),
+        ("Sherman Oaks",   "sherman-oaks"),
     ],
-    "Los Angeles County": [
-        ("los-angeles", "Los Angeles"),
-        ("pasadena", "Pasadena"),
-        ("santa-monica", "Santa Monica"),
-        ("long-beach", "Long Beach"),
-        ("torrance", "Torrance"),
-        ("inglewood", "Inglewood"),
-        ("compton", "Compton"),
-        ("downey", "Downey"),
-        ("culver-city", "Culver City"),
-        ("malibu", "Malibu"),
+    "glass-shower-door-installation-los-angeles": [
+        ("Calabasas",        "calabasas"),
+        ("Hidden Hills",     "hidden-hills"),
+        ("Malibu",           "malibu"),
+        ("Sherman Oaks",     "sherman-oaks"),
+        ("Encino",           "encino"),
+        ("Pasadena",         "pasadena"),
     ],
-    "Ventura County": [
-        ("thousand-oaks", "Thousand Oaks"),
-        ("simi-valley", "Simi Valley"),
-        ("camarillo", "Camarillo"),
-        ("oxnard", "Oxnard"),
-        ("ventura", "Ventura"),
-        ("moorpark", "Moorpark"),
+    "foggy-window-repair-los-angeles": [
+        ("Pasadena",       "pasadena"),
+        ("Glendale",       "glendale"),
+        ("Burbank",        "burbank"),
+        ("San Marino",     "san-marino"),
+        ("South Pasadena", "south-pasadena"),
+        ("Alhambra",       "alhambra"),
     ],
-    "San Bernardino &amp; Riverside Counties": [
-        ("rancho-cucamonga", "Rancho Cucamonga"),
-        ("ontario", "Ontario"),
-        ("fontana", "Fontana"),
-        ("riverside", "Riverside"),
-        ("corona", "Corona"),
-        ("san-bernardino", "San Bernardino"),
-        ("moreno-valley", "Moreno Valley"),
-        ("rialto", "Rialto"),
+    "emergency-glass-repair-los-angeles": [
+        ("Los Angeles",    "los-angeles"),
+        ("Burbank",        "burbank"),
+        ("Glendale",       "glendale"),
+        ("North Hollywood","north-hollywood"),
+        ("Long Beach",     "long-beach"),
+        ("Van Nuys",       "van-nuys"),
+    ],
+    "storefront-glass-replacement-los-angeles": [
+        ("Los Angeles",      "los-angeles"),
+        ("Burbank",          "burbank"),
+        ("Glendale",         "glendale"),
+        ("Ontario",          "ontario"),
+        ("Rancho Cucamonga", "rancho-cucamonga"),
+        ("Long Beach",       "long-beach"),
+    ],
+    "commercial-storefront-glass-repair-los-angeles": [
+        ("Los Angeles",    "los-angeles"),
+        ("Glendale",       "glendale"),
+        ("Burbank",        "burbank"),
+        ("Long Beach",     "long-beach"),
+        ("San Bernardino", "san-bernardino"),
+        ("Ontario",        "ontario"),
     ],
 }
 
-def make_service_city_section():
-    """HTML section for service pages listing cities served."""
-    county_html = ""
-    for county, cities in CITIES_BY_COUNTY.items():
-        links = " &nbsp;·&nbsp; ".join(
-            f'<a href="/{slug}" style="color:var(--blue);white-space:nowrap;">{name}</a>'
-            for slug, name in cities
-        )
-        county_html += f"""
-        <div style="margin-bottom:20px;">
-          <strong style="font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-mid);">{county}</strong>
-          <p style="margin-top:8px;font-size:.95rem;line-height:1.9;color:var(--text);">{links}</p>
-        </div>"""
+# ── CITY → BLOG MAPPING ────────────────────────────────────────────────────────
+# Each city gets 2 blog posts based on region/type
 
-    return f"""
-  <section class="content-section reveal" style="background:var(--bg-soft);">
-    <div class="container" style="max-width:900px;">
-      <span class="section-label">Service Area</span>
-      <h2>Cities We Serve Across Southern California</h2>
-      <p style="color:var(--text-mid);margin-bottom:36px;line-height:1.8;">We're based in Reseda and travel throughout Los Angeles, Ventura, San Bernardino, and Riverside Counties. C-17 Licensed · CSLB #1125850 · Free estimates.</p>
-      {county_html}
-      <p style="margin-top:24px;font-size:.9rem;color:var(--text-mid);">Don't see your city? <a href="/service-areas" style="color:var(--blue);">View the full service area list →</a></p>
+LA_SFV = ["arleta","canoga-park","chatsworth","encino","granada-hills","mission-hills",
+           "north-hills","northridge","pacoima","panorama-city","reseda","san-fernando",
+           "sherman-oaks","studio-city","sylmar","tarzana","valley-village","van-nuys",
+           "west-hills","winnetka","woodland-hills","north-hollywood","burbank","glendale",
+           "calabasas","hidden-hills","santa-clarita"]
+
+LA_WEST = ["los-angeles","culver-city","inglewood","hawthorne","gardena","compton","carson",
+           "torrance","el-segundo","santa-monica","malibu","pacific-palisades","topanga-canyon",
+           "long-beach","lakewood","downey","pico-rivera","montebello","monterey-park"]
+
+LA_SGV = ["pasadena","south-pasadena","san-marino","alhambra","san-gabriel","temple-city",
+          "monrovia","duarte","azusa","el-monte","la-puente","west-covina","covina","glendora",
+          "diamond-bar","pomona","la-verne","san-dimas","walnut","claremont","whittier","baldwin-park"]
+
+VENTURA = ["agoura-hills","bell-canyon","camarillo","fillmore","moorpark","newbury-park",
+           "oak-park","oxnard","port-hueneme","santa-paula","simi-valley","thousand-oaks",
+           "ventura","westlake-village"]
+
+SB = ["adelanto","apple-valley","big-bear-lake","calimesa","chino","chino-hills","colton",
+      "fontana","grand-terrace","hesperia","loma-linda","montclair","ontario","rancho-cucamonga",
+      "redlands","rialto","san-bernardino","upland","victorville","yucaipa"]
+
+RIVERSIDE = ["banning","beaumont","canyon-lake","corona","eastvale","hemet","jurupa-valley",
+             "lake-elsinore","menifee","moreno-valley","murrieta","norco","perris","riverside",
+             "rubidoux","san-jacinto","sun-city","temecula","wildomar","winchester"]
+
+DESERT = ["cathedral-city","coachella","desert-hot-springs","indian-wells","indio","la-quinta",
+          "palm-desert","palm-springs","rancho-mirage"]
+
+def get_city_blogs(slug):
+    if slug in LA_WEST:
+        return ["storefront-glass-replacement-los-angeles",
+                "frameless-shower-door-cost-los-angeles"]
+    elif slug in LA_SGV:
+        return ["frameless-shower-door-cost-los-angeles",
+                "foggy-window-repair-los-angeles"]
+    elif slug in VENTURA:
+        return ["frameless-shower-door-cost-los-angeles",
+                "foggy-window-repair-los-angeles"]
+    elif slug in SB:
+        return ["frameless-shower-door-cost-los-angeles",
+                "storefront-glass-replacement-los-angeles"]
+    elif slug in RIVERSIDE:
+        return ["frameless-shower-door-cost-los-angeles",
+                "emergency-glass-repair-los-angeles"]
+    elif slug in DESERT:
+        return ["frameless-shower-door-cost-los-angeles",
+                "glass-shower-door-installation-los-angeles"]
+    else:  # SFV default
+        return ["frameless-shower-door-cost-los-angeles",
+                "foggy-window-repair-los-angeles"]
+
+
+# ── HTML BUILDERS ─────────────────────────────────────────────────────────────
+
+def blog_city_section(blog_slug):
+    cities = BLOG_CITIES[blog_slug]
+    pills = "\n      ".join(
+        f'<a href="/{slug}" style="display:inline-block;padding:8px 18px;background:var(--bg-card);'
+        f'border:1.5px solid var(--border-md);border-radius:20px;font-size:.83rem;font-weight:500;'
+        f'color:var(--text);transition:all .2s;" '
+        f'onmouseover="this.style.borderColor=\'var(--blue)\';this.style.color=\'var(--blue)\'" '
+        f'onmouseout="this.style.borderColor=\'var(--border-md)\';this.style.color=\'var(--text)\'">'
+        f'{name}</a>'
+        for name, slug in cities
+    )
+    return f'''
+<section style="background:var(--bg-soft);border-top:1px solid var(--border);padding:56px 0;">
+  <div class="container" style="max-width:820px;margin:0 auto;">
+    <span class="section-label">Service Areas</span>
+    <h2 style="font-size:clamp(1.3rem,2vw,1.6rem);margin-bottom:10px;">We Serve <em>Southern California</em></h2>
+    <p style="color:var(--text-mid);font-size:.92rem;margin-bottom:24px;">Based in Reseda — serving Los Angeles, Ventura, San Bernardino, and Riverside Counties. Free on-site estimates.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+      {pills}
     </div>
-  </section>
-"""
+    <p style="font-size:.85rem;color:var(--text-mid);">Don\'t see your city? <a href="/service-areas" style="color:var(--blue);font-weight:500;">View all 131 service areas →</a></p>
+  </div>
+</section>'''
 
-def make_city_service_section(city_name):
-    """HTML section for city pages listing service links."""
-    service_cards = ""
-    for slug, info in SERVICE_PAGES.items():
-        service_cards += f"""
-        <a href="/{slug}" style="display:block;padding:20px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);text-decoration:none;transition:box-shadow var(--t),border-color var(--t);" onmouseover="this.style.boxShadow='var(--sh-md)';this.style.borderColor='var(--blue-lt)'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--border)'">
-          <strong style="color:var(--coal);font-size:1rem;">{info["name"]}</strong>
-          <p style="color:var(--text-mid);font-size:.88rem;margin-top:6px;line-height:1.6;">{info["desc"]}</p>
-          <span style="color:var(--blue);font-size:.85rem;margin-top:8px;display:inline-block;">Learn more →</span>
-        </a>"""
 
-    return f"""
-  <section style="background:var(--bg-soft);padding:64px 0;" class="reveal">
-    <div class="container" style="max-width:900px;">
-      <span class="section-label">What We Offer</span>
-      <h2>Glass Services Available in <em>{city_name}</em></h2>
-      <p style="color:var(--text-mid);margin-bottom:36px;line-height:1.8;">Every service we provide is available in {city_name}. Click a service to learn more about pricing, process, and what to expect.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
-        {service_cards}
+def city_blog_section(city_display, city_slug, blog_slugs):
+    cards = ""
+    for b in blog_slugs:
+        info = BLOGS[b]
+        cards += (
+            f'<a href="/blog/{b}" style="display:block;padding:20px 24px;background:var(--bg-card);'
+            f'border:1.5px solid var(--border);border-radius:var(--r-lg);transition:all .2s;text-decoration:none;" '
+            f'onmouseover="this.style.borderColor=\'var(--blue)\';this.style.transform=\'translateY(-2px)\'" '
+            f'onmouseout="this.style.borderColor=\'var(--border)\';this.style.transform=\'translateY(0)\'">'
+            f'<div style="font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;'
+            f'color:var(--blue);margin-bottom:8px;">{info["label"]}</div>'
+            f'<div style="font-size:.95rem;font-weight:600;color:var(--charcoal);line-height:1.4;">{info["title"]}</div>'
+            f'<div style="font-size:.82rem;color:var(--blue);margin-top:10px;font-weight:500;">Read the guide →</div>'
+            f'</a>'
+        )
+    return f'''
+  <!-- RELATED GUIDES -->
+  <section style="padding:64px 0;background:var(--bg-soft);border-top:1px solid var(--border);">
+    <div class="container">
+      <span class="section-label">Related Reading</span>
+      <h2 style="font-size:clamp(1.3rem,2vw,1.6rem);margin-bottom:24px;">Glass Guides for <em>{city_display}</em> Homeowners</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:720px;">
+        {cards}
       </div>
     </div>
   </section>
-"""
+'''
 
-# ── Process service pages ──────────────────────────────────────────
-CTA_BAND_PATTERN = re.compile(r'(\s*<section class="cta-band")')
-CITY_SECTION_HTML = make_service_city_section()
 
-fixed_service = 0
-for slug in SERVICE_PAGES:
-    path = f"{slug}.html"
+# ── APPLY ─────────────────────────────────────────────────────────────────────
+
+blog_updated = 0
+city_updated = 0
+
+# 1. Blog → city links
+for blog_slug, cities in BLOG_CITIES.items():
+    path = os.path.join(ROOT, "blog", f"{blog_slug}.html")
     if not os.path.exists(path):
-        print(f"  MISSING {path}")
+        print(f"SKIP (not found): {path}")
         continue
     with open(path) as f:
         content = f.read()
-    if 'Cities We Serve Across Southern California' in content:
-        print(f"  SKIP {path} — already has city section")
+    if "Service Areas" in content and "View all 131 service areas" in content:
+        print(f"SKIP (already has section): {blog_slug}")
         continue
-    # Insert before cta-band
-    new_content = CTA_BAND_PATTERN.sub(CITY_SECTION_HTML + r'\1', content, count=1)
-    if new_content == content:
-        print(f"  WARN {path} — cta-band not found, check manually")
+    section = blog_city_section(blog_slug)
+    new_content = content.replace("</main>\n<!-- FOOTER -->", f"{section}\n</main>\n<!-- FOOTER -->", 1)
+    if new_content != content:
+        with open(path, "w") as f:
+            f.write(new_content)
+        blog_updated += 1
+        print(f"  ✓ blog: {blog_slug}")
+
+# 2. City → blog links
+all_city_slugs = list(set(LA_SFV + LA_WEST + LA_SGV + VENTURA + SB + RIVERSIDE + DESERT))
+
+# Also grab display names from meta title
+for slug in all_city_slugs:
+    path = os.path.join(ROOT, f"{slug}.html")
+    if not os.path.exists(path):
         continue
-    with open(path, "w") as f:
-        f.write(new_content)
-    print(f"  FIXED service page: {path}")
-    fixed_service += 1
-
-print(f"\nService pages: {fixed_service} updated")
-
-# ── Process city pages ─────────────────────────────────────────────
-# All .html files that are city pages (exclude non-city pages)
-NON_CITY = {
-    'index.html','about.html','contact.html','services.html',
-    'service-areas.html','blog.html','gallery.html','review.html',
-    'privacy-policy.html','shower-enclosures.html','window-repair.html',
-    'storefront-glass.html','custom-mirrors.html','emergency-glass.html',
-}
-
-# City slug → display name (derive from slug)
-def slug_to_name(slug):
-    return slug.replace('-', ' ').title()
-
-FAQ_SECTION_PATTERN = re.compile(r'(\s*<!-- FAQ -->)')
-
-fixed_city = 0
-skipped_city = 0
-for fname in sorted(os.listdir('.')):
-    if not fname.endswith('.html') or fname in NON_CITY:
-        continue
-    slug = fname[:-5]
-    city_name = slug_to_name(slug)
-
-    with open(fname) as f:
+    with open(path) as f:
         content = f.read()
-
-    if 'Glass Services Available in' in content:
-        skipped_city += 1
+    if "Related Guides" in content or "Related Reading" in content:
         continue
 
-    # Get actual city name from H1 if possible
-    h1_match = re.search(r'<h1[^>]*>.*?in\s+<em>([^<]+)</em>', content)
-    if h1_match:
-        city_name = h1_match.group(1).replace(', CA', '')
+    # Get display name from page title
+    m = re.search(r'<title>([^|<]+)', content)
+    city_display = slug.replace("-", " ").title()
+    if m:
+        raw = m.group(1).strip()
+        # "Glass Repair in Burbank, CA" → "Burbank"
+        cm = re.search(r'in ([^,<]+),', raw)
+        if cm:
+            city_display = cm.group(1).strip()
 
-    section_html = make_city_service_section(city_name)
+    blog_slugs = get_city_blogs(slug)
+    section = city_blog_section(city_display, slug, blog_slugs)
 
-    # Insert before <!-- FAQ --> comment
-    new_content = FAQ_SECTION_PATTERN.sub(section_html + r'\1', content, count=1)
-    if new_content == content:
-        print(f"  WARN {fname} — FAQ comment not found")
-        skipped_city += 1
-        continue
+    new_content = content.replace("  <!-- FOOTER -->\n  <footer", f"{section}\n  <!-- FOOTER -->\n  <footer", 1)
+    if new_content != content:
+        with open(path, "w") as f:
+            f.write(new_content)
+        city_updated += 1
 
-    with open(fname, "w") as f:
-        f.write(new_content)
-    fixed_city += 1
-
-print(f"City pages: {fixed_city} updated, {skipped_city} skipped")
-print("Done.")
+print(f"\nBlog posts updated: {blog_updated}/6")
+print(f"City pages updated: {city_updated}/{len(all_city_slugs)}")
