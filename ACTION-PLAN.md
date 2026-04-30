@@ -1,259 +1,223 @@
-# SEO Action Plan — American Glass Experts
-**Generated:** 2026-04-23  
-**Overall Score:** 61/100  
-**Goal:** 80/100 in 90 days
+# SEO Action Plan — American Glass Experts Inc.
+**Generated:** 2026-04-30
+**Overall Score:** 65/100
+**Target:** 80/100 in 90 days
 
 ---
 
 ## CRITICAL — Fix Immediately (This Week)
 
-### 1. Fix BBB Citation Conflict
-**Impact:** Local SEO | **Effort:** 30 min
-- BBB shows: 1112 Richardson Ave, Simi Valley, (818) 426-4649, category "Landscape Contractors"
-- Go to bbb.org → claim/find listing → correct address to 6853 Reseda Blvd, Reseda CA 91335
-- Correct phone to (805) 750-6471
-- Correct category to "Glass & Mirror Shop" or "Glazing Contractor"
-- If not claimable, submit a business dispute
+### 1. Fix BBB Citation NAP Conflict
+**Impact:** High | **Effort:** 30 min | **Category:** Local SEO
 
-### 2. Add `image` to Homepage LocalBusiness Schema
-**Impact:** Schema rich results | **Effort:** 15 min
-In `index.html`, inside the `HomeAndConstructionBusiness` JSON-LD block, add:
-```json
-"image": {
-  "@type": "ImageObject",
-  "url": "https://www.americanglassexperts.us/logo.avif",
-  "width": 512,
-  "height": 512
-}
-```
+BBB lists wrong address (Simi Valley) and wrong phone ((818) 426-4649). This is a DA 91 citation actively harming local authority.
 
-### 3. Fix Blog Article Schema (unblocks rich results for all 6 posts)
-**Impact:** Article rich results | **Effort:** 1–2 hours
-For each blog post HTML file, update the `Article` JSON-LD block:
+**Action:** Go to bbb.org → find "American Glass Experts" → claim listing → update to:
+- Name: American Glass Experts Inc.
+- Address: 6853 Reseda Blvd, Reseda, CA 91335
+- Phone: (805) 750-6471
+- Category: Glass & Glazing Contractors
+
+### 2. Fix Blog Author Schema — All 6 Posts
+**Impact:** High | **Effort:** 30 min | **Category:** Schema + E-E-A-T
+
+All 6 blog posts have `"author": {"@type": "Person", "name": "American Glass Experts Team"}`. This mismatches the visible byline and hurts AI citation E-E-A-T signals.
+
+**Action:** In all 6 blog HTML files, change author block to:
 ```json
-"image": {
-  "@type": "ImageObject",
-  "url": "https://www.americanglassexperts.us/blog/[post-slug]/og.jpg",
-  "width": 1200,
-  "height": 630
-},
-"dateModified": "2026-04-23",
-"mainEntityOfPage": {
-  "@type": "WebPage",
-  "@id": "https://www.americanglassexperts.us/blog/[post-slug]"
-},
 "author": {
-  "@type": "Organization",
-  "@id": "https://www.americanglassexperts.us/#business",
-  "name": "American Glass Experts Inc."
-},
-"publisher": {
-  "@type": "Organization",
-  "@id": "https://www.americanglassexperts.us/#business",
-  "name": "American Glass Experts Inc.",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://www.americanglassexperts.us/logo-icon-dark.png"
-  }
+  "@type": "Person",
+  "name": "Frank Salinas",
+  "jobTitle": "Lead Glazier",
+  "url": "https://www.americanglassexperts.us/about#frank"
 }
 ```
-Affects: foggy-window-repair-los-angeles, frameless-shower-door-cost-los-angeles, storefront-glass-replacement-los-angeles, emergency-glass-repair-los-angeles, glass-shower-door-installation-los-angeles, commercial-storefront-glass-repair-los-angeles
+Then add an `id="frank"` anchor section on the About page with a 2–3 sentence bio and CSLB credential mention.
 
-### 4. Fix robots.txt — Enforce Training Exclusion
-**Impact:** IP compliance + AI hygiene | **Effort:** 5 min
-Add to `robots.txt`:
-```
-User-agent: CCBot
-Disallow: /
+### 3. Boost Google Review Velocity
+**Impact:** High | **Effort:** Ongoing | **Category:** Local SEO
 
-User-agent: anthropic-ai
-Disallow: /
+17 reviews is critically low for a 4-county market. Most recent in schema is Sept 2024 — a 7-month drought. Sterling Sky 18-day rule means rankings penalize stale velocity.
 
-User-agent: cohere-ai
-Disallow: /
-```
+**Action:**
+- After every completed job, text the customer a direct link to the Google review page (use review.html shortlink)
+- Target: 2–3 new Google reviews per month minimum
+- Respond to all existing reviews on GBP (if not done)
+- Prioritize Google over Yelp — Google reviews carry far more GBP ranking weight
 
-### 5. Continue GSC URL Inspection — 10/day
-**Impact:** Indexing | **Effort:** 10 min/day
-Keep doing what you're doing. Prioritize in this order:
-1. Service pages (shower-enclosures, window-repair, storefront-glass, custom-mirrors, emergency-glass)
-2. High-volume city pages (los-angeles, glendale, burbank, pasadena, long-beach, torrance)
-3. Blog posts (all 6)
-4. Remaining city pages alphabetically
+### 4. Verify GBP Primary Category
+**Impact:** High | **Effort:** 15 min | **Category:** Local SEO
+
+Primary GBP category is the #1 local ranking factor (Whitespark 2026).
+
+**Action:** Log into GBP → verify primary category is "Glass repair service" (not a generic contractor category) → add secondary categories:
+- Mirror shop
+- Shower door shop
+- Glass & mirror shop
 
 ---
 
 ## HIGH — Fix Within 1 Week
 
-### 6. Update llms.txt with License, Pricing, FAQ blocks
-**Impact:** AI Overview citations | **Effort:** 20 min
-Add to `llms.txt`:
-```
-# License
-Content may be cited for search grounding and informational AI responses. Not licensed for AI training datasets.
+### 5. Fix Identical Meta Descriptions on 131 City Pages
+**Impact:** High | **Effort:** 2–3 hrs (scripted) | **Category:** On-Page SEO
 
-# Pricing (approximate, 2026)
-- Frameless shower door: $1,200–$4,500
-- Foggy window / IGU replacement: $250–$850 per unit  
-- Emergency board-up: $100–$300
-- Custom mirrors: custom quote
+All 131 city pages use: `"Professional glass repair and installation in [CITY], CA — shower enclosures, windows, storefronts, mirrors. Licensed C-17 contractor. Free estimates. Call (805) 750-6471."`
 
-# FAQ
-Q: Are you licensed to do glass work in California?
-A: Yes. American Glass Experts holds CSLB C-17 Glazing Contractor License #1125850, verifiable at cslb.ca.gov.
+GSC flags this as 131 duplicate meta descriptions.
 
-Q: Do you serve all of Los Angeles County?
-A: Yes. We serve 130+ cities across Los Angeles, Ventura, San Bernardino, and Riverside Counties from our base in Reseda, CA.
+**Action:** Write a script to generate city-specific meta descriptions. Suggested variants by region:
+- SFV cities: `"Glass repair & installation in [CITY] — we're based nearby in Reseda. Shower enclosures, windows, storefronts, mirrors. C-17 Licensed. Free estimates."`
+- IE/Desert cities: `"Licensed glass contractor serving [CITY], [COUNTY]. [X]-minute response. Shower doors, windows, storefronts. Free estimates. Call (805) 750-6471."`
+- Coastal/LA: `"Custom glass in [CITY] — frameless showers, dual-pane windows, storefronts. C-17 glazing contractor. Free estimate. Serving [CITY] and [COUNTY]."`
 
-Q: How fast can you respond to emergency glass repair?
-A: We typically dispatch within 1–2 hours for emergency board-up in the San Fernando Valley, Mon–Sat 7am–10pm.
-```
+### 6. Add Google Maps Embed to Homepage
+**Impact:** High | **Effort:** 15 min | **Category:** Local SEO
 
-### 7. Confirm GBP Exists + Add On-Site Signals
-**Impact:** Local pack #1 factor | **Effort:** 1–3 hours
-- Verify GBP at business.google.com — confirm it exists and is verified
-- Add Maps embed to `/contact` page (use iframe embed from Google Maps)
-- Add a "Leave us a Google Review" link in footer using the GBP Place ID URL
-- Add GBP profile URL to `llms.txt`
-- Primary GBP category: "Glass & Mirror Shop" or "Window Installation Service"
+No Maps embed on homepage. Missing trust signal and proximity cue.
 
-### 8. Update City Page LocalBusiness Schema
-**Impact:** Local entity graph | **Effort:** 1–2 hours (scripted change)
-Currently 145 city pages have bare `LocalBusiness` with no `@id`, `geo`, `aggregateRating`, or `sameAs`.
+**Action:** Embed the business's GBP listing map in the contact section of index.html. Also add to the top 10 highest-traffic city pages (Los Angeles, Burbank, Glendale, North Hollywood, Pasadena).
 
-Run a script to update all city page templates. Add to each city's `LocalBusiness` JSON-LD:
+### 7. Fix Copyright Footer Across All Pages
+**Impact:** Low | **Effort:** 5 min (global find-replace) | **Category:** Technical
+
+Footer says `© 2025` but blog posts are dated April 2026 — contradiction visible to AI crawlers.
+
+**Action:** Global find-replace `© 2025 American Glass Experts` → `© 2026 American Glass Experts` across all HTML files.
+
+---
+
+## HIGH — Fix Within 2 Weeks
+
+### 8. Build Missing Tier 1–2 Citations
+**Impact:** High | **Effort:** 3–4 hrs total | **Category:** Local SEO / Backlinks
+
+None of these directories appear in current citations. All use exact NAP: "American Glass Experts Inc." / "6853 Reseda Blvd, Reseda, CA 91335" / "(805) 750-6471"
+
+| Directory | Action |
+|---|---|
+| Angi (HomeAdvisor) | Create contractor profile |
+| Houzz | Create profile + add gallery photos |
+| Thumbtack | Create profile |
+| Bing Places | Claim business listing |
+| Apple Maps Connect | Claim listing |
+| Nextdoor Business | Claim business page |
+| BuildZoom | Verify auto-indexed CSLB entry is correct |
+
+### 9. Add `logo`, `foundingDate`, `makesOffer` to Homepage Schema
+**Impact:** Medium | **Effort:** 30 min | **Category:** Schema
+
+Quick schema improvements to homepage `HomeAndConstructionBusiness` block:
+
 ```json
-"@id": "https://www.americanglassexperts.us/[city-slug]#business",
-"geo": {
-  "@type": "GeoCoordinates",
-  "latitude": 34.2003,
-  "longitude": -118.5359
-},
-"aggregateRating": {
-  "@type": "AggregateRating",
-  "ratingValue": "4.8",
-  "reviewCount": "17",
-  "bestRating": "5"
-},
-"sameAs": [
-  "https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4",
-  "https://share.google/bjUDf31y962SkEPvv"
-],
-"image": {
+"logo": {
   "@type": "ImageObject",
-  "url": "https://www.americanglassexperts.us/logo.avif"
+  "url": "https://www.americanglassexperts.us/logo.avif",
+  "width": 200,
+  "height": 60
 },
-"parentOrganization": {
-  "@type": "HomeAndConstructionBusiness",
-  "@id": "https://www.americanglassexperts.us/#business"
+"foundingDate": "2003",
+"hasOfferCatalog": {
+  "@type": "OfferCatalog",
+  "name": "Glass Repair & Installation Services",
+  "itemListElement": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Shower Enclosures", "url": "https://www.americanglassexperts.us/shower-enclosures"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Window Repair", "url": "https://www.americanglassexperts.us/window-repair"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Storefront Glass", "url": "https://www.americanglassexperts.us/storefront-glass"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Mirrors", "url": "https://www.americanglassexperts.us/custom-mirrors"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency Glass", "url": "https://www.americanglassexperts.us/emergency-glass"}}
+  ]
 }
 ```
 
-### 9. Add FAQ Sections to Top 2 Blog Posts
-**Impact:** AI Overviews direct answers | **Effort:** 1–2 hours
-Target posts (highest-volume queries):
-- `frameless-shower-door-cost-los-angeles` → add FAQ: "How much does a frameless shower door cost?", "What factors affect shower door price?", "Do you offer financing?"
-- `foggy-window-repair-los-angeles` → add FAQ: "Can a foggy window be fixed without full replacement?", "How much does IGU replacement cost in LA?", "How long does it take?"
+### 10. Fix Placeholder Phone in Contact Forms
+**Impact:** Medium | **Effort:** 15 min | **Category:** On-Page
 
-Add FAQPage JSON-LD to each post. The FAQ content you already have on service pages can be adapted.
+133 pages have `placeholder="(818) 555-0000"` in contact forms. Should be the business number.
 
-### 10. Fix BreadcrumbList Trailing Slash Consistency
-**Impact:** Schema validation | **Effort:** 30 min (scripted)
-City page breadcrumbs have inconsistent trailing slashes. The `item` URL in the city ListItem should end in `/` to match canonical format.
-Change: `"item": "https://www.americanglassexperts.us/los-angeles"`  
-To: `"item": "https://www.americanglassexperts.us/los-angeles/"`
+**Action:** Global find-replace `(818) 555-0000` → `(805) 750-6471` across all HTML files.
+
+### 11. Add `#frank` Section to About Page
+**Impact:** Medium | **Effort:** 1 hr | **Category:** E-E-A-T
+
+Blog posts reference "Frank, Lead Glazier" but About page has no named team members or `id="frank"` anchor. AI systems can't build a credentialed person entity without a linkable page.
+
+**Action:** Add to about.html:
+```html
+<section id="frank">
+  <h2>Frank Salinas — Lead Glazier</h2>
+  <p>[2-3 sentence bio: years of experience, specialties, C-17 license context]</p>
+  <p>C-17 Licensed under CSLB #1125850. Verifiable at <a href="https://www.cslb.ca.gov">cslb.ca.gov</a>.</p>
+</section>
+```
 
 ---
 
 ## MEDIUM — Fix Within 1 Month
 
-### 11. Expand Reseda Page as Flagship Location
-**Impact:** Local SEO + proximity rankings | **Effort:** 2–3 hours
-Reseda is the business address — should be the highest-authority city page but is identical to every other. Add:
-- 600+ words of unique Reseda-specific content
-- Maps embed tied to 6853 Reseda Blvd
-- Photo gallery of local Reseda/Valley jobs
-- Testimonials block with reviews from Reseda/nearby customers
-- Full `HomeAndConstructionBusiness` schema with precise geo coords
+### 12. Add Blog ↔ City Page Cross-Links
+**Impact:** Medium | **Effort:** 2 hrs | **Category:** On-Page / Internal Linking
 
-### 12. Build Out 8 High-Value City Pages
-**Impact:** Competitive city rankings | **Effort:** 4–8 hours**
-These markets have the highest search volume. Each needs 400+ words of unique content:
-- Los Angeles, Glendale, Burbank, Pasadena (LA County)
-- Thousand Oaks, Simi Valley, Ventura (Ventura County)  
-- Riverside, Corona, Rancho Cucamonga (IE)
+Blog posts don't link to city pages. City pages don't link to relevant blog posts.
 
-Content to add: local housing stock, common job types, specific neighborhood references (3–5), local permit context, 1 specific project scenario or case study.
+**Action:**
+- Add "See our Los Angeles cost guide →" contextual links from relevant city pages to the shower door cost blog post
+- Add 2–3 city page links (highest traffic cities) within blog post body content
 
-### 13. Add Author Bylines to All Blog Posts
-**Impact:** E-E-A-T | **Effort:** 30 min
-Add to each blog post near the top:
-`Written by Frank, Lead Glazier — C-17 Licensed, 15+ years in Southern California`
+### 13. Expand Blog Body Paragraphs to 134–167 Words
+**Impact:** Medium | **Effort:** 2–3 hrs across 6 posts | **Category:** AI Search
 
-Also update Article schema `author` to reference a named person:
+Body paragraphs run 80–130 words — below AI citation optimal range. Adding one concrete detail per paragraph (specific example, measurement spec, local code reference) hits the target range.
+
+### 14. Add `HowTo` Schema to Process Blog Posts
+**Impact:** Medium | **Effort:** 2 hrs | **Category:** Schema
+
+Posts like the installation guide are natural fits for `HowTo` markup that AI systems use for step-by-step answer cards.
+
+### 15. Add `dateModified` to All Blog Posts
+**Impact:** Low | **Effort:** 30 min | **Category:** Schema / Content Freshness
+
+Only 1 of 6 posts has `dateModified`. Add to all and update it whenever content is revised.
+
+### 16. Upgrade `areaServed` on City Pages
+**Impact:** Low | **Effort:** Scripted | **Category:** Schema
+
+Change flat string `"areaServed": "Burbank"` → typed City object:
 ```json
-"author": {
-  "@type": "Person",
-  "name": "Frank [Last Name]",
-  "jobTitle": "Lead Glazier",
-  "worksFor": { "@id": "https://www.americanglassexperts.us/#business" }
-}
+"areaServed": {"@type": "City", "name": "Burbank", "containedInPlace": {"@type": "AdministrativeArea", "name": "Los Angeles County"}}
 ```
-
-### 14. Add Meta Descriptions to All City Pages
-**Impact:** CTR | **Effort:** 2–3 hours (scripted)
-Template: `Licensed C-17 glass repair in [City], CA. Shower enclosures, window repair, emergency board-up. Free estimates. Call (805) 750-6471.`
-
-### 15. Cross-Link City Pages ↔ Service Pages
-**Impact:** Internal link graph + crawl depth | **Effort:** 2–3 hours
-- Each city page should link to: /shower-enclosures, /window-repair, /emergency-glass
-- Each service page should link to top 5–8 nearest cities
-- Add breadcrumb: Home → Service Areas → [County] → [City]
-
-### 16. Add `offers` to 4 Service Objects (Services page schema)
-**Impact:** Schema completeness | **Effort:** 30 min
-Window repair, storefront glass, emergency glass, custom mirrors are missing `offers` in their Service JSON-LD.
-
-### 17. Verify Yelp for Duplicate Listings
-**Impact:** Local citation hygiene | **Effort:** 30 min
-Yelp slug ends in `-4` which indicates possible auto-created duplicates. Log into Yelp business account, search for "American Glass Experts" to find and merge/suppress any duplicates. Ensure primary listing shows Reseda address.
-
-### 18. Investigate 2 Redirect Errors + 3 Alternate Canonical Pages in GSC
-**Impact:** Indexing | **Effort:** 30 min
-Go to GSC → Pages → click "Redirect error" row → find exact URLs → use URL Inspection to diagnose.
-Same for "Alternate page with proper canonical tag" row.
 
 ---
 
 ## LOW — Backlog
 
-### 19. Create YouTube Channel with 3–5 Videos
-**Impact:** AI citation (0.737 correlation) | **Effort:** 2–3 days filming
-Highest-ROI off-site action for ChatGPT/Perplexity visibility. Video ideas:
-- "How we install a frameless shower door in LA" (timelapse/process)
-- "How to tell if your window seal is broken (and when to repair vs replace)"
-- "What happens during emergency glass board-up"
-- "Foggy window IGU replacement — before and after"
+### 17. Start YouTube Channel
+**Impact:** Very High long-term | **Effort:** High | **Category:** AI Search / Backlinks
 
-### 20. Reddit Presence
-**Impact:** AI brand signals | **Effort:** Ongoing
-Answer genuine questions in r/LosAngeles, r/HomeImprovement, r/sanfernandovalley about glass repair, window seals, shower doors. No promotional spam — authentic expert answers only.
+0.737 AI citation correlation. 2 anchor videos with immediate ROI:
+- "How Much Does a Frameless Shower Door Cost in Los Angeles? (2026)"
+- "Foggy Window Repair vs Replacement — Los Angeles Homeowners Guide"
 
-### 21. EmergencyService Schema on /emergency-glass
-**Impact:** Emergency query rich results | **Effort:** 30 min
-Add `"@type": ["HomeAndConstructionBusiness", "EmergencyService"]` and 24/7 `openingHoursSpecification` to the emergency glass page schema.
+Both should: include business name, CSLB #, phone in description. Blog posts should embed the corresponding videos.
 
-### 22. `image` + `offers` on All 5 Service Objects
-**Impact:** Schema richness | **Effort:** 1 hour
-Add service photos to each Service JSON-LD block.
+### 18. Add Explicit ClaudeBot / PerplexityBot to robots.txt
+**Action:** Add before wildcard rule:
+```
+User-agent: ClaudeBot
+Allow: /
 
-### 23. OG Images for City Pages and Blog Posts
-**Impact:** Social sharing CTR | **Effort:** Template-based
-Ensure all pages have `og:image` meta tags pointing to valid 1200×630 images.
+User-agent: PerplexityBot
+Allow: /
+```
 
-### 24. noindex Low-Value Distant City Pages
-**Impact:** Crawl budget | **Effort:** 1–2 hours
-Cities 50+ miles from Reseda (Palm Springs, Big Bear, Temecula, Adelanto, Banning) have near-zero local pack potential due to proximity bias. Consider noindexing the weakest ones to focus crawl budget on pages with ranking potential.
+### 19. Add ImageObject Schema to Blog Post Images
+Add `caption`, `description`, and `keywords` to the `ImageObject` within Article schema on all blog posts.
+
+### 20. Verify Yelp Listing NAP
+Manually visit `yelp.com/biz/american-glass-experts-san-fernando-valley-4` — confirm address and phone match exactly. The `-4` slug suffix may indicate duplicate listings; if so, consolidate.
+
+### 21. Monitor GSC for "Crawled - currently not indexed" Recovery
+City page content diversification was deployed 2026-04-30. Check GSC in 2–4 weeks to confirm hemet, wildomar, lake-elsinore, and baldwin-park have moved to "Indexed" status.
 
 ---
 
@@ -261,24 +225,10 @@ Cities 50+ miles from Reseda (Palm Springs, Big Bear, Temecula, Adelanto, Bannin
 
 | Week | Actions |
 |---|---|
-| 1 | Fix BBB, add `image` to homepage schema, fix blog Article schema, fix robots.txt, continue GSC 10/day |
-| 2 | Update llms.txt, confirm GBP + add Maps embed, update city page LocalBusiness schema (scripted), fix breadcrumb slashes |
-| 3 | Add FAQ to top 2 blog posts, add author bylines, meta descriptions for all city pages |
-| 4 | Cross-link city ↔ service pages, expand Reseda page |
-| 5–8 | Build out 8 high-value city pages (400+ words each), fix GSC redirect errors |
-| 9–12 | YouTube channel first 3 videos, Reddit presence, EmergencyService schema, remaining schema cleanup |
+| Week 1 | Fix BBB · Fix blog author schema · Fix copyright footer · Verify GBP category · Start review velocity campaign |
+| Week 2 | Unique meta descriptions on all city pages · Add Maps embed to homepage + top 5 cities · Fix contact form placeholder phone |
+| Week 3–4 | Build Angi, Houzz, Bing Places, Thumbtack, Nextdoor citations · Add `#frank` section to About · Schema quick-wins (logo, foundingDate, makesOffer) |
+| Month 2 | Add blog ↔ city cross-links · Expand blog paragraphs · HowTo schema · dateModified on all posts |
+| Month 3 | YouTube channel first 2 videos · Apple Maps · Wikidata entity · Monitor GSC indexing recovery |
 
----
-
-## Score Projection
-
-| Category | Current | Target (90 days) |
-|---|---|---|
-| Technical SEO | 68 | 80 |
-| Content Quality | 52 | 68 |
-| On-Page SEO | 60 | 74 |
-| Schema | 58 | 85 |
-| Performance | 72 | 75 |
-| AI Search Readiness | 64 | 80 |
-| Images | 55 | 70 |
-| **Overall** | **61** | **78** |
+**Expected score at 90 days if all High/Critical items resolved:** ~79–82/100

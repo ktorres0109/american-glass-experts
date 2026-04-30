@@ -8,6 +8,13 @@ Allow: /
 
 Sitemap: https://www.americanglassexperts.us/sitemap.xml
 
+# Explicitly allow AI search/grounding crawlers
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 # Block AI training crawlers (search grounding still allowed via above rules)
 User-agent: CCBot
 Disallow: /

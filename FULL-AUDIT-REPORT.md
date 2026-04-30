@@ -1,297 +1,335 @@
-# Full SEO Audit — American Glass Experts
-**URL:** https://www.americanglassexperts.us  
-**Audit Date:** 2026-04-23  
-**Business Type:** Service Area Business (SAB) — C-17 Glazing Contractor  
-**Market:** Southern California (LA, Ventura, San Bernardino, Riverside Counties)
+# Full SEO Audit — American Glass Experts Inc.
+**Domain:** americanglassexperts.us
+**Audit Date:** 2026-04-30
+**Business Type:** Hybrid SAB (Service-Area Business) — Glass Repair & Installation Contractor
+**License:** C-17 Glazing Contractor, CSLB #1125850
+**Location:** 6853 Reseda Blvd, Reseda, CA 91335
 
 ---
 
-## Overall SEO Health Score: 61 / 100
+## SEO Health Score: 65 / 100
 
 | Category | Weight | Score | Weighted |
 |---|---|---|---|
 | Technical SEO | 22% | 68 | 15.0 |
-| Content Quality | 23% | 52 | 12.0 |
-| On-Page SEO | 20% | 60 | 12.0 |
-| Schema / Structured Data | 10% | 58 | 5.8 |
+| Content Quality | 23% | 62 | 14.3 |
+| On-Page SEO | 20% | 55 | 11.0 |
+| Schema / Structured Data | 10% | 74 | 7.4 |
 | Performance (CWV) | 10% | 72 | 7.2 |
-| AI Search Readiness | 10% | 64 | 6.4 |
-| Images | 5% | 55 | 2.8 |
-| **Total** | | | **61.2 / 100** |
+| AI Search Readiness | 10% | 74 | 7.4 |
+| Images | 5% | 58 | 2.9 |
+| **TOTAL** | | | **65.2** |
+
+> The site is technically sound and above average for a local contractor. Static HTML on Cloudflare is a real performance/crawlability advantage. Primary gaps: 131 identical meta descriptions, a critical BBB NAP conflict, only 17 Google reviews (likely stale), generic author entity in blog schema, and no YouTube presence.
 
 ---
 
 ## Top 5 Critical Issues
 
-1. **BBB citation conflict** — Tier 1 directory (DA 91) lists wrong address (Simi Valley vs Reseda), wrong phone (818 vs 805), wrong category (Landscaping). Actively suppresses local authority.
-2. **Blog Article schema blocks rich results** — All 6 blog posts missing required `image` (ImageObject) and `dateModified`. Google will not show Article rich results for any post until fixed.
-3. **City page LocalBusiness schema is disconnected** — 145 city pages have bare `LocalBusiness` with no `@id`, no `geo`, no `aggregateRating`, no `sameAs`. These entities float disconnected from the homepage entity graph.
-4. **No GBP signals on-site** — No Maps embed, no Place ID link, no "Leave a Google review" CTA anywhere on site. GBP is the #1 local pack ranking factor per Whitespark 2026.
-5. **126 pages discovered-not-indexed** — Google has found but not crawled most city pages. Sitemap duplication (now fixed) was contributing. Continue 10/day manual URL inspection in GSC.
+1. **BBB listing has wrong address + wrong phone** — DA 91 citation actively suppressing local authority
+2. **131 city pages share identical meta description template** — GSC duplicate meta flag on every city page
+3. **17 Google reviews, most recent in schema dated Sept 2024** — review velocity cliff risk
+4. **Blog author schema says "American Glass Experts Team"** but byline says "Frank, Lead Glazier" — E-E-A-T mismatch on all 6 posts
+5. **No YouTube presence** — highest single unaddressed AI citation signal gap (0.737 correlation)
 
 ## Top 5 Quick Wins
 
-1. Add `image` (ImageObject) + `dateModified` to all 6 blog Article schemas → unblocks Article rich results immediately
-2. Add `image` to homepage `HomeAndConstructionBusiness` schema → unblocks Knowledge Panel photo
-3. Fix robots.txt to technically block training crawlers (10 min change)
-4. Update `llms.txt` with `# License`, `# Pricing`, `# FAQ` blocks → increases AI Overview citation probability
-5. Claim/correct BBB listing (wrong address, category, phone)
+1. Fix copyright footer: `© 2025` → `© 2026` — 1-line edit across all pages
+2. Fix blog author schema: change `"name": "American Glass Experts Team"` → `{"@type": "Person", "name": "Frank Salinas", "jobTitle": "Lead Glazier", "url": "/about#frank"}` on all 6 posts
+3. Add `"logo"` property to homepage schema (rename `"image"` key) — 2-line edit
+4. Add `"foundingDate": "2003"` to homepage LocalBusiness schema — 1-line edit
+5. Add Google Maps embed to homepage — 15 mins
 
 ---
 
-## Technical SEO
+## 1. Technical SEO
 
-### Crawlability
-- **robots.txt**: `Allow: /` wildcard — all pages crawlable. Sitemap declared correctly.
-- **Sitemap**: Fixed today. 151 unique URLs, zero duplicates (was 180 with 30 cities tripled). All `lastmod` updated to 2026-04-23.
-- **Redirects**: `/*.html → /:splat 301` via Netlify `_redirects`. Clean URLs working correctly.
-- **HTTPS**: Active, Cloudflare-managed. ✓
+**Score: 68/100**
 
-### Indexability Issues (from GSC)
-| Issue | Count | Severity |
+### Canonical & URL Structure
+- Service pages use self-referential canonicals (no trailing slash). ✓
+- City pages use extensionless canonical `/hemet` — consistent with Cloudflare Pages `.html` stripping. ✓
+- GSC "Page with redirect" entries (temecula.html → /temecula) are **expected behavior**, not errors.
+- No canonical/breadcrumb trailing slash conflicts detected.
+
+### robots.txt
+- Blocks training crawlers (CCBot, anthropic-ai, cohere-ai). Allows GPTBot, Google-Extended, Googlebot. ✓
+- Sitemap declared. ✓
+- **Low:** ClaudeBot and PerplexityBot not explicitly listed — covered by wildcard but Cloudflare bot management may challenge independently. Add explicit `Allow: /` entries.
+
+### Sitemap
+- 262 URLs, single file. Blog posts and service pages included. ✓
+- Priority values set appropriately. ✓
+
+### HTTPS & Security
+- HTTP→HTTPS and non-www→www both operational via Cloudflare. ✓
+- No custom CSP/X-Frame-Options in HTML — relies on Cloudflare defaults (acceptable for static site).
+
+### Indexability Issues
+- **4 pages "Crawled - currently not indexed"** (hemet, wildomar, lake-elsinore, baldwin-park): near-duplicate content root cause. Content diversification deployed 2026-04-30 — monitor GSC over next 2–4 weeks.
+
+| Issue | Severity | Effort |
 |---|---|---|
-| Discovered – currently not indexed | 126 | High |
-| Redirect error | 2 | High |
-| Alternate page with proper canonical tag | 3 | Medium |
-| Page with redirect | 1 | Low |
-
-The 2 redirect errors and 3 alternate canonical pages need individual URL Inspection in GSC to identify exact URLs.
-
-### Canonical Tags
-- All pages use clean canonical URLs (no `.html`). ✓
-- City page BreadcrumbList has trailing slash inconsistency: home item has `/` but city items don't. Should match canonical format.
-
-### robots.txt Training Exclusion — NOT ENFORCED
-Comments (`ai-train=no`) are not parsed by crawlers. CCBot, anthropic-ai, cohere-ai are currently allowed.
-
-```
-# Add these blocks to robots.txt:
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: cohere-ai
-Disallow: /
-```
+| 4 city pages not indexed (fix deployed) | High | Done |
+| No Maps embed on homepage / city pages | High | 1 hr |
+| ClaudeBot/PerplexityBot not explicit in robots.txt | Low | 15 min |
+| Copyright footer © 2025 (stale) | Low | 5 min |
 
 ---
 
-## Content Quality
+## 2. Content Quality & E-E-A-T
 
-### E-E-A-T Assessment
-**Positive signals:**
-- CSLB License #1125850 visible on multiple pages with verifier link to cslb.ca.gov — strong trust signal
-- Named individuals (Frank, Bryant) on About page — experience signal
-- Founding year 2003 on About page
-- 4.8 star rating with Yelp/Google claims
+**Score: 62/100**
 
-**Gaps:**
-- Blog posts have no named author bylines — only "American Glass Experts Inc." Google's E-E-A-T prefers named expert authors with credentials for service content
-- No author bio pages linked from posts
-- Review count not disclosed ("4.8 stars" with no number = unverifiable)
+### Service Pages
+- 2,200–3,200 words each. Comprehensive. Unique meta descriptions. Not thin. ✓
+- Strong topical depth: process steps, FAQ, pricing context, service area listings.
 
-### City Pages — Doorway Page Risk: MEDIUM-HIGH
-**145 city pages, 65–70% identical boilerplate content.**
+### City Pages (131 pages)
+- Deep content diversification deployed 2026-04-30 (unique hero, neighborhoods, about-city card, FAQ Q7 per city). ✓
+- Approx 1,800–2,200 words per page after diversification. ✓
+- **Critical:** All 131 share identical meta description template.
+- **Medium:** Contact form placeholder phone is `(818) 555-0000` on all 133 pages — should be `(805) 750-6471`.
 
-Structure per page:
-- 1 unique paragraph (~150 words): drive time, zip code, 2-3 neighborhood names, demographic sentence
-- Same 6 service cards (identical copy)
-- Same licensing block
-- Same FAQ block (5 questions, same answers)
-- Same contact form
+### Blog (6 posts)
+- Visible byline: "By Frank, Lead Glazier · April 2026 · C-17 Licensed · CSLB #1125850" ✓
+- Topical clustering (shower, window, storefront, emergency). ✓
+- **Critical:** All 6 posts dated April 2026 — no content freshness diversity.
+- **Critical:** Author in JSON-LD schema = `"American Glass Experts Team"` — mismatches byline "Frank, Lead Glazier".
+- **Medium:** Body paragraphs 80–130 words vs 134–167 AI citation optimal range.
+- **Medium:** No internal links from blog posts to city pages, or city pages to blog posts.
 
-At this level of template ratio, Google's Helpful Content system may classify these as doorway pages. Pages for competitive cities (Los Angeles, Riverside, Glendale, Corona) need substantially more unique content — minimum 400+ words covering local building types, permit context, common job scenarios.
+### About Page
+- License, 20+ years experience, 1000+ jobs, CSLB verification. ✓
+- "Frank, Lead Glazier" referenced in blog but not on About page — no `#frank` anchor or bio.
+- ~1,100 words — adequate but not deep.
 
-**The Reseda home-base page is the weakest link.** It should be the strongest page (proximity guaranteed) but is structurally identical to a page for a city 55 miles away.
+### E-E-A-T
 
-### Blog Posts
-6 posts, range 850–1,950 words. Content quality is good. Issues:
-- No FAQ sections on 4 of 6 posts (foggy window + shower door cost are the highest-value targets)
-- No named author bylines
-- No `dateModified` in schema
-- Missing `image` in Article schema (blocks rich results)
-- Pricing tables exist but not wrapped in structured data
-
-### Meta Descriptions
-Not confirmed on city pages. Service pages have them. All city pages need unique meta descriptions with city name + primary service + differentiator (C-17 licensed, same-day, free estimate).
+| Signal | Status |
+|---|---|
+| License number displayed + verifiable | ✓ Strong |
+| Named expert with credentials | Partial — "Frank" in blog only |
+| Years of experience | ✓ "20+ years" |
+| Project count | ✓ "1,000+ jobs" |
+| Author schema matches byline | ✗ Mismatch |
+| Team bios/photos | ✗ Missing |
+| Case studies / portfolio | Partial — gallery, no case study format |
 
 ---
 
-## On-Page SEO
+## 3. On-Page SEO
+
+**Score: 55/100**
 
 ### Title Tags
-- Homepage: ✓
-- Service pages: ✓  
-- City pages: Template "Glass Repair & Installation in [City], CA" — functional but doesn't include the brand differentiator (licensed C-17)
-- Blog posts: ✓
+- All page types: keyword-forward, include location. ✓
+- Blog posts: conversational natural-language questions with year. ✓
+
+### Meta Descriptions
+
+| Page Type | Status |
+|---|---|
+| Homepage | ✓ Present (156 chars) |
+| Service pages | ✓ Present, unique per page |
+| Blog posts | ✓ Present, unique |
+| **City pages (131)** | ✗ All identical template |
 
 ### Heading Structure
-- H1 present and unique per page ✓
-- Heading hierarchy appears consistent ✓
+- Service pages: logical H1→H2→H3 hierarchy. ✓
+- City pages: multiple H2s with near-duplicate text ("What We Do in X" + "Glass Services Available in X") — redundant, consider consolidating.
+- Blog: H1 is natural-language question — strong for AI query matching. ✓
 
 ### Internal Linking
-- City pages link to 3–4 adjacent cities only
-- City pages do NOT link to relevant service pages
-- Service pages do NOT link to relevant city pages
-- This creates an isolated crawl graph — service pages and city pages are not cross-linked
+- Hub-and-spoke: service-areas → city pages → adjacent cities → service-areas. ✓
+- Service pages ↔ city pages. ✓
+- **Medium:** Blog posts do not link to city pages. City pages do not link to blog posts.
 
-### Phone Number
-- Uses 805 area code (Ventura County) with a Reseda (LA County) address
-- Creates geographic signal confusion for LA County local pack
-- Consider adding an 818/747 tracking number as primary for LA County searches
+| Issue | Severity | Pages Affected |
+|---|---|---|
+| Identical meta descriptions | Critical | 131 city pages |
+| Placeholder phone `(818) 555-0000` in forms | Medium | 133 pages |
+| Blog ↔ city page cross-links missing | Medium | 137 pages |
+| Redundant H2 headings on city pages | Low | 131 city pages |
 
 ---
 
-## Schema / Structured Data
+## 4. Schema / Structured Data
 
-### What's Implemented (from source files — confirmed live)
-| Page Type | Schema Present |
+**Score: 74/100**
+
+### Homepage (HomeAndConstructionBusiness)
+| Property | Status |
 |---|---|
-| Homepage | `HomeAndConstructionBusiness`, `FAQPage`, `WebSite` |
-| City pages (145) | `LocalBusiness`, `BreadcrumbList`, `FAQPage` |
-| Services page | `WebPage`, `BreadcrumbList`, `FAQPage`, 5x `Service` |
-| Blog posts (6) | `Article` (bare minimum) |
+| @type: HomeAndConstructionBusiness | ✓ |
+| hasCredential (C-17 CSLB) | ✓ Advanced — rare for contractors |
+| aggregateRating (4.8/17) | ✓ |
+| sameAs (Yelp + Google) | ✓ |
+| geo (GeoCoordinates) | ✓ |
+| FAQPage block | ✓ |
+| **logo** (currently uses `image` key) | ✗ Rename to `logo` |
+| **foundingDate** | ✗ Missing — add `"2003"` |
+| **makesOffer / hasOfferCatalog** | ✗ Missing |
 
-### Critical Schema Issues
+### Blog Post Schema
+| Property | Status |
+|---|---|
+| Article @type | ✓ |
+| datePublished | ✓ |
+| FAQPage on cost guide | ✓ |
+| **author: Person (not Org)** | ✗ Critical — all 6 posts wrong |
+| dateModified | ✗ Only on 1 of 6 posts |
+| ImageObject with caption | ✗ Missing |
+| HowTo schema | ✗ Missing on process posts |
 
-**1. Homepage: Missing `image` on `HomeAndConstructionBusiness`**
-Without `image`, Google cannot display business photo in Knowledge Panel or local pack.
-```json
-"image": {
-  "@type": "ImageObject",
-  "url": "https://www.americanglassexperts.us/og-image.jpg",
-  "width": 1200,
-  "height": 630
-}
-```
+### City Pages
+| Property | Status |
+|---|---|
+| Unique @id per page | ✓ |
+| parentOrganization link | ✓ |
+| City-specific geo | ✓ |
+| FAQPage | ✓ |
+| BreadcrumbList | ✓ |
+| areaServed typed City objects | ✗ Flat string — upgrade |
 
-**2. Blog posts: Missing `image` + `dateModified` (blocks Article rich results)**
-All 6 posts are currently ineligible for Article rich results.
-```json
-"image": { "@type": "ImageObject", "url": "...", "width": 1200, "height": 630 },
-"dateModified": "2026-04-XX"
-```
-
-**3. City pages: Disconnected LocalBusiness entities**
-145 pages each have a `LocalBusiness` with no `@id`, no `geo`, no `aggregateRating`. They don't link back to the homepage entity.
-Add: `@id`, `geo`, `aggregateRating`, `sameAs`, `image`, `parentOrganization` pointing to `/#business`.
-
-**4. Services page: 4 of 5 Service objects missing `offers`**
-Only shower enclosures has price range. Window, storefront, emergency, mirrors missing it.
-
-**5. BreadcrumbList trailing slash inconsistency**
-Home item: `https://www.americanglassexperts.us/` (with slash)
-City item: `https://www.americanglassexperts.us/los-angeles` (no slash)
-Should be consistent with canonical.
-
----
-
-## Performance
-
-- **Hosting**: Netlify with Cloudflare CDN — strong baseline
-- **Rendering**: Server-side rendered static HTML — fully crawlable without JS ✓
-- **Images**: Logo uses `.avif` format ✓
-- **Estimated CWV**: Good for a static Netlify site. Specific LCP/CLS/INP measurements require Lighthouse run (Chrome not installed in this environment)
-- **TTFB**: Cloudflare edge caching — expected <200ms
-
-No specific bottlenecks identified from source inspection. Run PageSpeed Insights for exact CWV scores.
+| Fix | Severity | Effort |
+|---|---|---|
+| Blog author: Person entity on all 6 posts | Critical | 30 min |
+| Add `logo` property to homepage schema | Low | 5 min |
+| Add `foundingDate: "2003"` | Low | 5 min |
+| Add `makesOffer` catalog to homepage | Medium | 1 hr |
+| `HowTo` schema on process blog posts | Medium | 2 hrs |
+| Upgrade `areaServed` to typed City objects | Low | 2 hrs |
 
 ---
 
-## AI Search Readiness (GEO)
+## 5. Performance (CWV)
 
-**Score: 64 / 100**
+**Score: 72/100**
 
+*Lab estimates only — CrUX field data not available.*
+
+Static `.html` served via Cloudflare CDN is a **significant advantage** — full content in initial HTTP response, no hydration delay, no JS-blocking render path.
+
+| Metric | Estimate | Basis |
+|---|---|---|
+| LCP | Good (<2.5s) | Static HTML + CDN + no JS blocking |
+| CLS | Good (<0.1) | No late-loading layout elements |
+| INP | Good (<200ms) | Minimal JS interactions |
+
+- AVIF logo format. ✓
+- FAQ accordion answers present in source HTML (not JS-injected) — crawlable. ✓
+- Dark-mode localStorage script above body — negligible render impact.
+
+**Recommendations:** Verify `loading="lazy"` on below-fold images; confirm Brotli compression on Cloudflare; consider hero image `<link rel="preload">`.
+
+---
+
+## 6. AI Search Readiness (GEO)
+
+**Score: 74/100**
+
+### Strengths
+- **llms.txt present** with pricing data, FAQ pairs, business identity, page index. Above average for local contractor. ✓
+- Static HTML — AI crawlers receive full content without JS. ✓
+- FAQPage schema on service, city, and blog pages. ✓
+- CSLB credential in structured data — machine-verifiable. ✓
+- Specific pricing consistent across llms.txt and blog posts. ✓
+
+### Gaps
+| Gap | Priority |
+|---|---|
+| No YouTube channel (0.737 AI citation correlation) | High |
+| Blog author schema mismatch — weakens E-E-A-T for AI | High |
+| Blog body paragraphs short for AI citation (80–130 vs 134–167 words) | Medium |
+| No Reddit presence | Medium |
+| No Wikidata entity | Low |
+| Copyright © 2025 contradicts 2026 blog dates | Low |
+
+### Platform Scores
 | Platform | Score |
 |---|---|
-| Google AI Overviews | 52/100 |
-| ChatGPT | 61/100 |
-| Perplexity | 68/100 |
-| Bing Copilot | 55/100 |
-
-### llms.txt: Present — Score 7/10
-Strengths: CSLB license with verifier, service taxonomy, full service area, page index, contact block.
-
-**Missing:**
-```
-# License
-Content may be cited for search grounding and informational AI responses. Not licensed for AI training datasets.
-
-# Pricing (approximate, 2026)
-- Frameless shower door: $1,200–$4,500
-- Foggy window / IGU replacement: $250–$850 per unit
-- Emergency board-up: $100–$300
-- Custom mirrors: custom quote
-
-# FAQ
-Q: Are you licensed to do glass work in California?
-A: Yes. American Glass Experts holds CSLB C-17 Glazing Contractor License #1125850, verifiable at cslb.ca.gov.
-
-Q: Do you serve all of Los Angeles County?
-A: Yes. We serve 130+ cities across Los Angeles, Ventura, San Bernardino, and Riverside Counties.
-
-Q: How fast can you respond to emergency glass repair?
-A: We typically dispatch within 1–2 hours for emergency board-up in the San Fernando Valley area, Mon–Sat 7am–10pm.
-```
-
-### Off-Site Brand Signals
-| Signal | Status | AI Citation Correlation |
-|---|---|---|
-| YouTube channel | **MISSING** | 0.737 (highest) |
-| Reddit presence | **MISSING** | High |
-| Wikipedia/Wikidata | **MISSING** | High |
-| GBP (Google Business Profile) | Unconfirmed | Critical |
-| Yelp | Present (4.8★) | Moderate |
-| CSLB verifier link | Present | Strong |
-
-**YouTube is the single highest-ROI off-site action.** 3–5 short videos (shower door install, foggy window diagnosis, emergency board-up) would directly increase brand mentions in ChatGPT and Perplexity responses.
+| Google AIO | 72/100 |
+| ChatGPT | 76/100 |
+| Perplexity | 78/100 |
+| Bing Copilot | 70/100 |
+| Claude | 74/100 |
 
 ---
 
-## Local SEO
+## 7. Local SEO
 
-**Score: 44 / 100**
+**Score: 61/100**
 
 ### NAP Consistency
-| Source | Name | Address | Phone |
+
+| Source | Address | Phone | Status |
 |---|---|---|---|
-| All site pages | American Glass Experts Inc. | 6853 Reseda Blvd, Reseda CA | (805) 750-6471 |
-| **BBB listing** | **American Glass Experts INC** | **1112 Richardson AVE, Simi Valley CA** | **(818) 426-4649** |
+| Website (all pages) | 6853 Reseda Blvd, Reseda CA 91335 | (805) 750-6471 | ✓ |
+| Homepage JSON-LD | 6853 Reseda Blvd, Reseda, CA 91335 | +1-805-750-6471 | ✓ |
+| **BBB** | **1112 Richardson Ave, Simi Valley CA 93065** | **(818) 426-4649** | ✗ CRITICAL |
 
-**BBB is a Tier 1 citation (DA 91) with completely wrong data. This is the highest-priority local SEO fix.**
+### Reviews
+- 17 reviews, 4.8★ (schema data)
+- Most recent review in schema: September 2024 (7+ months ago)
+- 17 reviews is critically low for 4-county market — competitors likely 50–200+
+- Review funnel page exists (review.html, noindexed) ✓ — needs active promotion
 
-### GBP On-Site Signals: 0/6
-No Maps embed, no Place ID link, no Google review CTA, no GBP badge anywhere on site.
+### GBP
+| Signal | Status |
+|---|---|
+| Profile exists | Detected via sameAs |
+| Maps embed — homepage | ✗ Missing |
+| Maps embed — city pages | ✗ Missing on all 130+ |
+| Primary category | Unknown — verify "Glass repair service" |
+| Secondary categories | Unknown — add Mirror shop, Shower door shop |
 
-### Review Health
-- 4.8 stars claimed (Google & Yelp) — no review count disclosed
-- `/review` page exists and returns 200 ✓
-- No `aggregateRating` schema → Google cannot surface stars in rich results
-- Yelp slug ends in `-4` → possible duplicate Yelp listings, needs manual check
-
-### City Page Quality
-- 145 city pages at 65–70% boilerplate
-- Doorway page risk: MEDIUM-HIGH for competitive cities
-- Focus: cities within 25 miles of Reseda for local pack (proximity = 55.2% of ranking variance)
-- Palm Springs, Big Bear, Temecula (50–70 mi) — local pack ranking unlikely regardless of optimization
+### Citation Presence
+| Directory | DA | Status |
+|---|---|---|
+| Google Business Profile | 100 | Detected — verify live |
+| Yelp | 94 | Present — verify NAP (403 blocked) |
+| BBB | 91 | ✗ Wrong NAP |
+| Angi, HomeAdvisor, Houzz, Thumbtack | 68–79 | Not detected |
+| Bing Places, Apple Maps, Nextdoor | 58–62 | Not detected |
 
 ---
 
-## Images
+## 8. Images
 
-- Logo: `.avif` format ✓
-- OG images: Not confirmed on city pages or blog posts
-- Alt text: Not audited at scale (check with automated scan)
-- Blog post images: Missing from Article schema (blocks rich results)
+**Score: 58/100**
+
+- Logo: AVIF format. ✓
+- OG image on blog post: correct 1200×630 dimensions. ✓
+- Alt text present on key images. ✓
+- **Gap:** No `ImageObject` schema with `caption`/`description` on blog images.
+- **Gap:** Gallery page image alt text not verified.
+- **Gap:** No WebP/AVIF confirmed on city page body images.
 
 ---
 
-## Limitations
+## 9. Backlinks
 
-- Performance: Exact CWV numbers require Lighthouse (Chrome not available in this environment). Run manually at pagespeed.web.dev.
-- GBP live status: Cannot verify profile existence, completeness, review count without API access or dashboard
-- Backlink profile: Not audited (no Moz/Ahrefs credentials)
-- Yelp duplicate investigation: 403 blocked
-- GSC click/impression data: Not available without API auth
+*No API credentials — no measured data.*
+
+| Source | DA | Status |
+|---|---|---|
+| Google Business Profile | 100 | sameAs declared |
+| Yelp | 94 | sameAs declared |
+| BBB | 91 | ✗ Wrong NAP |
+
+Estimated DA range: **10–18** (typical for local contractor at this stage).
+
+Top link building priorities: Fix BBB → Angi → Houzz → Bing Places → Thumbtack → YouTube channel → local chamber.
+
+---
+
+## Data Gaps
+
+| Gap | How to Fill |
+|---|---|
+| CrUX field CWV data | Configure Google API (GSC + CrUX) |
+| Live GBP data (reviews, category, photos) | Manual GBP dashboard review |
+| DA, referring domains, anchor text | Moz API or Ahrefs |
+| Yelp NAP verification | Manual visit to Yelp listing |
+| Live SERP rank tracking | DataForSEO or Semrush |
