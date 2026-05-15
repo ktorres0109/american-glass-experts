@@ -15,6 +15,12 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    // Redirect .html → clean URL (301 permanent)
+    if (url.pathname.endsWith('.html')) {
+      url.pathname = url.pathname.slice(0, -5);
+      return Response.redirect(url.toString(), 301);
+    }
+
     // Redirect trailing slash → no slash (301 permanent, not 307)
     if (url.pathname !== '/' && url.pathname.endsWith('/')) {
       url.pathname = url.pathname.slice(0, -1);
