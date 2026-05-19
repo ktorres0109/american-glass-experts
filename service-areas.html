@@ -133,19 +133,6 @@
 #cookie-accept { background: var(--blue); color: #fff; }
 #cookie-decline { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border) !important; }
 
-/* Location prompt */
-#loc-prompt {
-  display: none; align-items: center; gap: 12px; flex-wrap: wrap;
-  background: var(--blue-dim); border: 1px solid rgba(37,99,235,.2);
-  border-radius: var(--r-lg); padding: 14px 20px; margin-bottom: 32px;
-}
-#loc-prompt.show { display: flex; }
-#loc-prompt p { font-size: .88rem; color: var(--text); margin: 0; flex: 1; }
-#loc-prompt strong { color: var(--blue); }
-.loc-btns { display: flex; gap: 8px; }
-#loc-yes { background: var(--blue); color: #fff; border: none; padding: 8px 16px; border-radius: var(--r); font-size: .83rem; font-weight: 600; cursor: pointer; }
-#loc-no  { background: transparent; color: var(--text-dim); border: 1px solid var(--border); padding: 8px 14px; border-radius: var(--r); font-size: .83rem; cursor: pointer; }
-
 /* Personalized badge */
 #loc-badge {
   display: none; align-items: center; gap: 8px;
@@ -1106,14 +1093,6 @@ section { padding: 100px 0; }
       <p style="font-size:.9rem;">That doesn't mean we can't help — <a href="tel:+18057506471" style="color:var(--blue);font-weight:600;">call us</a> to confirm coverage.</p>
     </div>
 
-    <!-- Location personalization prompt -->
-    <div id="loc-prompt">
-      <p>📍 <strong>See cities near you first</strong> — allow location access for a tailored experience.</p>
-      <div class="loc-btns">
-        <button id="loc-yes">Use My Location</button>
-        <button id="loc-no">No thanks</button>
-      </div>
-    </div>
     <div id="loc-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Sorted by proximity to you
@@ -1941,41 +1920,34 @@ function requestLocation() {
     const { latitude: lat, longitude: lon } = pos.coords;
     localStorage.setItem('age-user-lat', lat);
     localStorage.setItem('age-user-lon', lon);
+    localStorage.setItem('age-loc-declined', '0');
     applyLocationSort(lat, lon);
   }, () => {
-    document.getElementById('loc-prompt').classList.remove('show');
+    // User denied — save so we never ask again
+    localStorage.setItem('age-loc-declined', '1');
   });
 }
 
 function initLocationPersonalization() {
-  const consent = localStorage.getItem('age-cookie-consent');
   const storedLat = parseFloat(localStorage.getItem('age-user-lat'));
   const storedLon = parseFloat(localStorage.getItem('age-user-lon'));
+  const declined  = localStorage.getItem('age-loc-declined');
 
-  // If we already have location, sort silently
-  if (consent === 'accepted' && storedLat && storedLon) {
+  // Already have coords — sort silently
+  if (storedLat && storedLon && declined !== '1') {
     applyLocationSort(storedLat, storedLon);
     return;
   }
 
-  // Show prompt only if consent given (or not yet asked)
-  const locDeclined = localStorage.getItem('age-loc-declined');
-  if (!locDeclined && consent !== 'declined') {
-    document.getElementById('loc-prompt').classList.add('show');
-  }
-
-  document.getElementById('loc-yes').addEventListener('click', () => {
+  // Never asked before — auto-trigger browser prompt
+  if (!declined) {
     requestLocation();
-  });
-  document.getElementById('loc-no').addEventListener('click', () => {
-    localStorage.setItem('age-loc-declined', '1');
-    document.getElementById('loc-prompt').classList.remove('show');
-  });
+  }
 }
 
 function initCookieConsent() {
   const consent = localStorage.getItem('age-cookie-consent');
-  if (consent) return; // already decided
+  if (consent) return;
 
   const banner = document.getElementById('cookie-banner');
   setTimeout(() => banner.classList.add('show'), 800);
@@ -1983,15 +1955,10 @@ function initCookieConsent() {
   document.getElementById('cookie-accept').addEventListener('click', () => {
     localStorage.setItem('age-cookie-consent', 'accepted');
     banner.classList.remove('show');
-    // Trigger location prompt if not declined
-    if (!localStorage.getItem('age-loc-declined')) {
-      document.getElementById('loc-prompt').classList.add('show');
-    }
   });
   document.getElementById('cookie-decline').addEventListener('click', () => {
     localStorage.setItem('age-cookie-consent', 'declined');
     banner.classList.remove('show');
-    document.getElementById('loc-prompt').classList.remove('show');
   });
 }
 </script>
