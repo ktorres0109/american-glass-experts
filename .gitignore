@@ -4,3 +4,10 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# generation scripts (contain API keys / not part of site)
+generate_all_new_pages.py
+fix_template_errors.py
+generated_meta_descriptions.json
+new_pages_for_gsc*.txt
+*\ 2.html
