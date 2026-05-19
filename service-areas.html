@@ -115,6 +115,45 @@
 
 @media(max-width:900px) { .city-grid { grid-template-columns: repeat(2,1fr); } .coverage-stats { grid-template-columns: repeat(2,1fr); } }
 @media(max-width:600px) { .city-grid { grid-template-columns: 1fr 1fr; } .county-header { flex-direction: column; align-items: flex-start; gap: 8px; } }
+
+/* Cookie consent banner */
+#cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--surface); border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  padding: 16px 24px; display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; justify-content: space-between;
+  transform: translateY(100%); transition: transform .35s ease;
+}
+#cookie-banner.show { transform: translateY(0); }
+#cookie-banner p { font-size: .85rem; color: var(--text-mid); margin: 0; flex: 1; min-width: 220px; }
+#cookie-banner a { color: var(--blue); text-decoration: underline; }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-btns button { padding: 8px 18px; border-radius: var(--r); font-size: .83rem; font-weight: 600; cursor: pointer; border: none; }
+#cookie-accept { background: var(--blue); color: #fff; }
+#cookie-decline { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border) !important; }
+
+/* Location prompt */
+#loc-prompt {
+  display: none; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: var(--blue-dim); border: 1px solid rgba(37,99,235,.2);
+  border-radius: var(--r-lg); padding: 14px 20px; margin-bottom: 32px;
+}
+#loc-prompt.show { display: flex; }
+#loc-prompt p { font-size: .88rem; color: var(--text); margin: 0; flex: 1; }
+#loc-prompt strong { color: var(--blue); }
+.loc-btns { display: flex; gap: 8px; }
+#loc-yes { background: var(--blue); color: #fff; border: none; padding: 8px 16px; border-radius: var(--r); font-size: .83rem; font-weight: 600; cursor: pointer; }
+#loc-no  { background: transparent; color: var(--text-dim); border: 1px solid var(--border); padding: 8px 14px; border-radius: var(--r); font-size: .83rem; cursor: pointer; }
+
+/* Personalized badge */
+#loc-badge {
+  display: none; align-items: center; gap: 8px;
+  font-size: .8rem; color: var(--blue); font-weight: 600;
+  background: var(--blue-dim); border-radius: 100px;
+  padding: 5px 14px; margin-bottom: 28px; width: fit-content;
+}
+#loc-badge.show { display: flex; }
   </style>
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -1067,6 +1106,19 @@ section { padding: 100px 0; }
       <p style="font-size:.9rem;">That doesn't mean we can't help — <a href="tel:+18057506471" style="color:var(--blue);font-weight:600;">call us</a> to confirm coverage.</p>
     </div>
 
+    <!-- Location personalization prompt -->
+    <div id="loc-prompt">
+      <p>📍 <strong>See cities near you first</strong> — allow location access for a tailored experience.</p>
+      <div class="loc-btns">
+        <button id="loc-yes">Use My Location</button>
+        <button id="loc-no">No thanks</button>
+      </div>
+    </div>
+    <div id="loc-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Sorted by proximity to you
+    </div>
+
     <!-- County tabs -->
     <div class="county-tabs" id="county-tabs">
       <button class="ctab active" data-county="all">All Counties</button>
@@ -1686,8 +1738,272 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.theme-toggle').forEach(btn => {
     btn.addEventListener('click', toggleTheme);
   });
+
+  initCookieConsent();
+  initLocationPersonalization();
 });
 
 </script>
+
+<!-- ── COOKIE CONSENT + LOCATION JS ──────────── -->
+<script>
+// ── CITY COORDINATES (lat, lon) ───────────────
+const CITY_COORDS = {
+  'reseda':            [34.200,-118.535],
+  'tarzana':           [34.168,-118.553],
+  'northridge':        [34.228,-118.534],
+  'winnetka':          [34.208,-118.572],
+  'canoga park':       [34.205,-118.597],
+  'van nuys':          [34.189,-118.449],
+  'encino':            [34.152,-118.501],
+  'granada hills':     [34.259,-118.499],
+  'west hills':        [34.200,-118.644],
+  'chatsworth':        [34.257,-118.601],
+  'mission hills':     [34.263,-118.481],
+  'sylmar':            [34.293,-118.444],
+  'north hills':       [34.236,-118.476],
+  'arleta':            [34.241,-118.429],
+  'pacoima':           [34.269,-118.412],
+  'panorama city':     [34.224,-118.447],
+  'north hollywood':   [34.187,-118.378],
+  'valley village':    [34.171,-118.390],
+  'sherman oaks':      [34.151,-118.449],
+  'studio city':       [34.139,-118.388],
+  'san fernando':      [34.282,-118.438],
+  'burbank':           [34.181,-118.309],
+  'glendale':          [34.142,-118.255],
+  'woodland hills':    [34.168,-118.609],
+  'calabasas':         [34.158,-118.663],
+  'hidden hills':      [34.170,-118.684],
+  'bell canyon':       [34.188,-118.745],
+  'west covina':       [34.069,-117.939],
+  'los angeles':       [34.052,-118.244],
+  'santa clarita':     [34.392,-118.542],
+  'pasadena':          [34.148,-118.144],
+  'inglewood':         [33.962,-118.353],
+  'beverly hills':     [34.073,-118.400],
+  'west hollywood':    [34.090,-118.362],
+  'culver city':       [34.021,-118.397],
+  'torrance':          [33.836,-118.341],
+  'long beach':        [33.770,-118.194],
+  'compton':           [33.896,-118.220],
+  'carson':            [33.831,-118.282],
+  'gardena':           [33.889,-118.309],
+  'hawthorne':         [33.917,-118.352],
+  'el segundo':        [33.919,-118.416],
+  'lakewood':          [33.847,-118.121],
+  'bellflower':        [33.888,-118.117],
+  'cerritos':          [33.858,-118.065],
+  'norwalk':           [33.902,-118.082],
+  'downey':            [33.940,-118.132],
+  'whittier':          [33.979,-118.033],
+  'la habra':          [33.932,-117.946],
+  'pico rivera':       [33.983,-118.097],
+  'montebello':        [34.016,-118.113],
+  'monterey park':     [34.062,-118.123],
+  'san gabriel':       [34.096,-118.106],
+  'san marino':        [34.121,-118.107],
+  'south pasadena':    [34.116,-118.130],
+  'temple city':       [34.107,-118.057],
+  'arcadia':           [34.140,-118.035],
+  'alhambra':          [34.095,-118.127],
+  'monrovia':          [34.145,-117.999],
+  'duarte':            [34.139,-117.977],
+  'azusa':             [34.134,-117.907],
+  'glendora':          [34.136,-117.865],
+  'covina':            [34.090,-117.890],
+  'baldwin park':      [34.085,-117.961],
+  'la puente':         [34.033,-117.949],
+  'diamond bar':       [34.029,-117.810],
+  'walnut':            [34.022,-117.861],
+  'san dimas':         [34.107,-117.806],
+  'la verne':          [34.100,-117.768],
+  'santa monica':      [34.019,-118.492],
+  'pacific palisades': [34.044,-118.525],
+  'malibu':            [34.036,-118.780],
+  'el monte':          [34.069,-118.027],
+  'topanga':           [34.094,-118.602],
+  // Ventura
+  'agoura hills':      [34.153,-118.762],
+  'thousand oaks':     [34.171,-118.838],
+  'simi valley':       [34.270,-118.782],
+  'ventura':           [34.274,-119.229],
+  'newbury park':      [34.185,-118.913],
+  'moorpark':          [34.285,-118.882],
+  'camarillo':         [34.216,-119.038],
+  'westlake village':  [34.149,-118.811],
+  'oak park':          [34.182,-118.757],
+  'port hueneme':      [34.148,-119.194],
+  'santa paula':       [34.354,-119.059],
+  'fillmore':          [34.400,-118.920],
+  'oxnard':            [34.197,-119.177],
+  // Inland Empire
+  'rancho cucamonga':  [34.106,-117.593],
+  'ontario':           [34.065,-117.648],
+  'fontana':           [34.092,-117.435],
+  'rialto':            [34.107,-117.370],
+  'san bernardino':    [34.108,-117.289],
+  'corona':            [33.875,-117.566],
+  'riverside':         [33.980,-117.376],
+  'jurupa valley':     [34.000,-117.486],
+  'moreno valley':     [33.942,-117.228],
+  'chino':             [34.013,-117.689],
+  'chino hills':       [33.995,-117.729],
+  'upland':            [34.097,-117.648],
+  'claremont':         [34.099,-117.720],
+  'pomona':            [34.055,-117.750],
+  'redlands':          [34.056,-117.183],
+  'loma linda':        [34.048,-117.261],
+  'victorville':       [34.537,-117.292],
+  'hesperia':          [34.426,-117.301],
+  'apple valley':      [34.501,-117.186],
+  'temecula':          [33.494,-117.148],
+  'murrieta':          [33.554,-117.213],
+  'perris':            [33.782,-117.228],
+  'hemet':             [33.748,-116.972],
+  'lake elsinore':     [33.668,-117.328],
+  'menifee':           [33.670,-117.185],
+  'wildomar':          [33.597,-117.279],
+  'canyon lake':       [33.685,-117.275],
+  'eastvale':          [33.963,-117.584],
+  'rubidoux':          [33.996,-117.404],
+  'colton':            [34.074,-117.313],
+  'grand terrace':     [34.033,-117.314],
+  'montclair':         [34.077,-117.690],
+  'yucaipa':           [34.034,-117.043],
+  'big bear lake':     [34.244,-116.911],
+  'adelanto':          [34.581,-117.433],
+  'san jacinto':       [33.785,-116.960],
+  'banning':           [33.925,-116.876],
+  'beaumont':          [33.929,-116.977],
+  'calimesa':          [34.000,-117.061],
+  'sun city':          [33.710,-117.196],
+  'winchester':        [33.705,-117.090],
+  'palm springs':      [33.831,-116.546],
+  'cathedral city':    [33.780,-116.464],
+  'rancho mirage':     [33.740,-116.414],
+  'palm desert':       [33.722,-116.375],
+  'indian wells':      [33.718,-116.342],
+  'la quinta':         [33.664,-116.311],
+  'indio':             [33.720,-116.215],
+  'coachella':         [33.681,-116.174],
+  'desert hot springs':[33.961,-116.501],
+  'norco':             [33.930,-117.549],
+};
+
+const COUNTY_CENTROIDS = {
+  'la':      [34.05, -118.25],
+  'ventura': [34.30, -119.10],
+  'ie':      [34.00, -117.30],
+};
+
+function haversine(lat1, lon1, lat2, lon2) {
+  const R = 3958.8, r = Math.PI / 180;
+  const dLat = (lat2 - lat1) * r, dLon = (lon2 - lon1) * r;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*r) * Math.cos(lat2*r) * Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function applyLocationSort(lat, lon) {
+  // Sort cards within each grid
+  document.querySelectorAll('.city-grid').forEach(grid => {
+    const homeCard = grid.querySelector('.city-home');
+    const cards = Array.from(grid.querySelectorAll('.city-card:not(.city-home)'));
+    cards.sort((a, b) => {
+      const cA = CITY_COORDS[a.dataset.city], cB = CITY_COORDS[b.dataset.city];
+      if (!cA) return 1; if (!cB) return -1;
+      return haversine(lat, lon, cA[0], cA[1]) - haversine(lat, lon, cB[0], cB[1]);
+    });
+    if (homeCard) grid.insertBefore(homeCard, grid.firstChild);
+    cards.forEach(c => grid.appendChild(c));
+  });
+
+  // Reorder county sections by nearest centroid
+  const sections = Array.from(document.querySelectorAll('.county-section'));
+  const parent = sections[0]?.parentNode;
+  if (!parent) return;
+  sections.sort((a, b) => {
+    const cA = COUNTY_CENTROIDS[a.dataset.countyBlock], cB = COUNTY_CENTROIDS[b.dataset.countyBlock];
+    if (!cA) return 1; if (!cB) return -1;
+    return haversine(lat, lon, cA[0], cA[1]) - haversine(lat, lon, cB[0], cB[1]);
+  });
+  // Append sections in sorted order (moves them in the DOM)
+  sections.forEach(s => parent.appendChild(s));
+
+  // Show badge
+  document.getElementById('loc-badge').classList.add('show');
+  document.getElementById('loc-prompt').classList.remove('show');
+}
+
+function requestLocation() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude: lat, longitude: lon } = pos.coords;
+    localStorage.setItem('age-user-lat', lat);
+    localStorage.setItem('age-user-lon', lon);
+    applyLocationSort(lat, lon);
+  }, () => {
+    document.getElementById('loc-prompt').classList.remove('show');
+  });
+}
+
+function initLocationPersonalization() {
+  const consent = localStorage.getItem('age-cookie-consent');
+  const storedLat = parseFloat(localStorage.getItem('age-user-lat'));
+  const storedLon = parseFloat(localStorage.getItem('age-user-lon'));
+
+  // If we already have location, sort silently
+  if (consent === 'accepted' && storedLat && storedLon) {
+    applyLocationSort(storedLat, storedLon);
+    return;
+  }
+
+  // Show prompt only if consent given (or not yet asked)
+  const locDeclined = localStorage.getItem('age-loc-declined');
+  if (!locDeclined && consent !== 'declined') {
+    document.getElementById('loc-prompt').classList.add('show');
+  }
+
+  document.getElementById('loc-yes').addEventListener('click', () => {
+    requestLocation();
+  });
+  document.getElementById('loc-no').addEventListener('click', () => {
+    localStorage.setItem('age-loc-declined', '1');
+    document.getElementById('loc-prompt').classList.remove('show');
+  });
+}
+
+function initCookieConsent() {
+  const consent = localStorage.getItem('age-cookie-consent');
+  if (consent) return; // already decided
+
+  const banner = document.getElementById('cookie-banner');
+  setTimeout(() => banner.classList.add('show'), 800);
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('age-cookie-consent', 'accepted');
+    banner.classList.remove('show');
+    // Trigger location prompt if not declined
+    if (!localStorage.getItem('age-loc-declined')) {
+      document.getElementById('loc-prompt').classList.add('show');
+    }
+  });
+  document.getElementById('cookie-decline').addEventListener('click', () => {
+    localStorage.setItem('age-cookie-consent', 'declined');
+    banner.classList.remove('show');
+    document.getElementById('loc-prompt').classList.remove('show');
+  });
+}
+</script>
+
+<!-- Cookie consent banner -->
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+  <p>🍪 We use cookies to personalize your experience and remember your preferences. <a href="/privacy-policy">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button id="cookie-accept">Accept All</button>
+    <button id="cookie-decline">Decline</button>
+  </div>
+</div>
+
 </body>
 </html>
