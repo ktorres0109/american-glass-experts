@@ -4,113 +4,101 @@
 
 - **URL:** https://www.americanglassexperts.us
 - **Repo:** https://github.com/ktorres0109/american-glass-experts (Cloudflare Pages auto-deploys on push to `main`)
-- **Stack:** Static HTML (336 files), no framework. All CSS inline per file. Clean URLs via Cloudflare Worker (strips `.html`).
-- **CSS design tokens:** `--blue: #2563eb`, `--charcoal: #1e293b`, `--head: Playfair Display`, `--body: DM Sans`
-- **Business:** Licensed glass contractor (C-17, CSLB #1125850), Southern California. Residential + Commercial.
+- **Stack:** Static HTML (336+ files), no framework. All CSS inline per file. Clean URLs via Cloudflare Worker (strips `.html`).
+- **CSS design tokens:** `--blue: #2563eb`, `--charcoal: #1e293b`, `--bg: #ffffff`, `--bg-soft: #f7f8fa`, `--coal: #0f172a`
+- **Dark mode warning:** `[data-theme="dark"]` flips `--charcoal` to `#e2eaf4` (near-white). Never use `var(--charcoal)` as a background for text — use hardcoded values like `#475569` or `#1e293b` directly.
+- **Business:** Licensed glass contractor (C-17, CSLB #1125850), Southern California. Residential + Commercial. Founded 2003.
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
 
-## What Was Done (Previous Sessions)
+## What Was Done (This + Prior Sessions)
 
-1. Full nav updated across all 336 pages: split into **Residential ▾** / **Commercial ▾** dropdowns.
-2. New `/commercial` landing page (`commercial.html`) created — hero, services, industries, county-based city links.
+1. Full nav updated across all 336+ pages: split into **Residential ▾** / **Commercial ▾** dropdowns.
+2. `/commercial` landing page created — hero, services, industries, county-based city links.
 3. `service-areas.html` updated with Residential/Commercial audience toggle.
 4. `index.html` updated with commercial highlight strip and footer commercial column.
-5. Footer across all pages now has: Residential col, Commercial col, Company col.
-6. Footer-bottom row: `© 2026 American Glass Experts Inc. · C-17 Licensed · CSLB #1125850` + Sitemap + Service Areas links.
-7. All 138 commercial city pages (`/commercial-glass-[city]`) were in the repo before this session; they now have the updated nav/footer.
-8. `privacy-policy.html` already exists in the repo (content unknown — read it before editing).
-9. **No `terms-of-service.html` exists yet.**
+5. `privacy-policy.html` exists and is complete.
+6. `terms-of-service.html` created (noindex).
+7. Footer across all pages: `Terms | Privacy | Sitemap | Service Areas` in footer-bottom row.
+8. **Case studies** created (`case-studies.html` hub + 5 individual pages in `case-studies/`) but **soft taken down** (noindex + removed from nav) until real photos are ready.
+9. **Residential nav dropdown** now starts with: `<li><a href="/services" style="font-weight:600;color:var(--blue);">All Residential →</a></li>`
+10. **Commercial nav dropdown** has `All Commercial →` link at top.
+11. **`commercial.html`** — county badge fix (hardcoded `#475569`), full commercial services list (19 tiles + "...and more"), scrolling gallery strip (images: 71, 7, 15, 8, 20, 35, 56).
+12. **`services.html`** — full residential services list (23 tiles + "...and more"), shuffled full gallery (all 74 images, seed=42, 90s/cycle).
+13. Gallery strips use R2 CDN: `https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/{n}.jpg` (74 images, 1–74).
 
-## Tasks for This Session
+## Current State / Pending Tasks
 
-### 1. Terms of Service + Privacy Policy Pages
+### 1. Add Testimonials Section Before CTA (HIGH PRIORITY)
 
-**Goal:** Create `terms-of-service.html` and ensure `privacy-policy.html` is complete and accurate. Then add both links to the footer of every page.
+**Decision:** Add a testimonials/reviews section **before the "Get Your Free Estimate" CTA strip** on key pages (services.html, commercial.html, index.html at minimum). This is the highest-conversion placement — social proof answers "can I trust them?" right before asking users to act.
 
-**Details:**
-- Business name: **American Glass Experts Inc.**
-- License: C-17 Glazing Contractor, CSLB #1125850
-- Service area: Southern California (Los Angeles, Ventura, San Bernardino, Riverside counties + Coachella Valley)
-- Services: Residential glass (shower enclosures, window repair, mirrors, emergency glass), Commercial glass (storefronts, partitions, entry systems)
-- Contact email: use whatever is in the existing pages (check `about.html` or `index.html`)
-- Terms should cover: scope of services, quote/estimate process, payment terms, warranty/workmanship, limitation of liability, governing law (California)
-- Privacy Policy should cover: what info is collected (name, phone, email via quote form), how it's used, no sale of data, California privacy rights (CCPA), contact info
+**5 real reviews already in index.html schema (use these):**
+1. **Erendira N.** — "The glass completely transformed our shower. Their pricing was very competitive and what set them apart was their product knowledge and clear communication."
+2. **Kevin F.** — "Perfect experience from beginning to end. The technician was very knowledgeable and gave great advice. Absolutely thrilled with our new shower glass."
+3. **Jaquelyn S.** — "Frameless enclosure with starphire glass and brass hardware — love it. The glass is super clear, the brass looks elegant, and installation was done perfectly."
+4. **Jesus R.** — "As a contractor I am very particular and American Glass Experts delivered. They measured for our glass partitions, recommended the right glass, showed up on time, and the office turned out spectacular."
+5. **Salinas R.** — "Frank and Bryant took the time to show me how the design would look and I decided to move forward. The space now feels bright and spacious. Their work is solid and incredible."
 
-**Footer change needed (all 336 files):**
-Current footer-bottom row:
-```html
-<div style="display:flex;gap:20px;"><a href="sitemap.xml">Sitemap</a><a href="/service-areas">Service Areas</a></div>
+**Design spec:**
+- Dark background (`#0C1117` or `--coal`) — this makes it a dark section
+- Section title: "What Our Customers Say" (Playfair Display)
+- 5 cards in a responsive horizontal scroll or 3+2 grid
+- Each card: reviewer name, ★★★★★, quote text, optional service type label
+- Platform badge (Yelp / Google — check which platform these are from, or just show stars)
+- Fits the light → dark alternating pattern as the section right before the gradient CTA
+
+**Pages to add it to (start here):**
+- `services.html` — before CTA strip
+- `commercial.html` — before CTA strip
+- `index.html` — check if already has reviews section; if so, make sure it matches the dark bg pattern
+
+### 2. Light/Dark Alternating Section Pattern (ONGOING)
+
+User wants: light → dark → light → dark → [dark testimonials] → [gradient CTA] → footer (dark)
+
+Key pages to audit and fix section ordering:
+- `services.html`
+- `commercial.html`
+- `index.html`
+- Service-specific pages (shower-glass, window-repair, storefront-glass, etc.)
+
+### 3. Case Studies Re-launch (WHEN READY)
+
+When user has real project photos:
+1. Remove `<meta name="robots" content="noindex, follow" />` from `case-studies.html` and all 5 `case-studies/*.html`
+2. Add back nav link: `<li><a href="/case-studies">Case Studies</a></li>` to Commercial dropdown in all files
+3. Replace placeholder content/images with real photos
+
+### 4. .gitignore Cleanup
+
+Batch scripts and NEXT-SESSION-PROMPT.md were accidentally committed. Add to `.gitignore`:
 ```
-Change to:
-```html
-<div style="display:flex;gap:20px;"><a href="/terms-of-service">Terms</a><a href="/privacy-policy">Privacy</a><a href="sitemap.xml">Sitemap</a><a href="/service-areas">Service Areas</a></div>
+batch_*.py
+generate_*.py
+fix_*.py
+NEXT-SESSION-PROMPT.md
+*.py
 ```
+Or at minimum the specific script names. This is minor but clean.
 
-Use Python batch script to make this replacement across all 336 files reliably (not sed — previous sessions showed Python handles the variants better). Check how many files match before and after.
+### 5. Other Ideas (Lower Priority)
 
-**Style for new legal pages:** Match existing site aesthetic. Use `storefront-glass.html` or `about.html` as CSS/nav template. Simple single-column layout, readable line-length (~70ch), section headings in Playfair Display, body in DM Sans. Nav should have neither Residential nor Commercial as active. No modal/quote widget needed on these pages.
+- **Stats/trust bar** — "Since 2003 · 1,000+ Projects · 4.8★ Yelp · C-17 Licensed · Same-Day Available" — good as a thin strip between hero and first content section
+- **FAQ accordion** on services pages — common questions (How long does installation take? Do you offer warranties? Are you licensed and insured?)
+- **Process steps section** — already exists on some pages; ensure it's on all main service pages
 
----
+## Gallery Technical Details
 
-### 2. Case Studies Section (New Feature)
-
-**Reference:** Competitor site LA Glass Company (laglass.com) has a "Case Studies" dropdown under "Project Gallery" in nav. Examples observed:
-- Storefront Glass Repair for specific client types (restaurants, offices, retail)
-- Interior Business Glass Services
-- Emergency Board-Ups
-
-**Goal:** Create a `/case-studies` hub page + 3–5 individual case study pages that showcase real project types American Glass Experts handles.
-
-**Proposed case studies (fabricate realistic but truthful-sounding examples — no fake client names, just project descriptions):**
-1. `case-studies/restaurant-storefront-glass-los-angeles.html` — Replace shattered storefront for a San Fernando Valley restaurant, same-day emergency response
-2. `case-studies/office-glass-partitions-burbank.html` — Open-plan office in Burbank converted with frameless glass partitions
-3. `case-studies/custom-shower-enclosure-calabasas.html` — Frameless custom shower for residential remodel in Calabasas
-4. `case-studies/retail-storefront-upgrade-glendale.html` — Retail storefront glass upgrade in Glendale, improved curb appeal + security
-5. `case-studies/emergency-board-up-los-angeles.html` — Emergency glass board-up after break-in, overnight response
-
-**Case study page structure (per page):**
-- Hero: Project title + location + 1-line summary
-- Meta strip: Service type | Location | Timeline | Outcome
-- Problem / Solution / Result sections (3-paragraph narrative)
-- Trust signals: C-17 Licensed badge, "Same-Day Available" if applicable
-- Related services links
-- CTA strip: "Have a Similar Project? Get a Free Quote"
-
-**Hub page `/case-studies`:**
-- Grid of case study cards (title, service type badge, 1-sentence summary, "Read More" link)
-- Intro: "Real projects. Real results. Serving Southern California since [year from about.html]."
-- Link from nav: Add "Case Studies" to the Commercial ▾ dropdown (makes sense — commercial buyers want proof of work)
-  - Also link from the main nav "Projects" or as a sub-item if there's already a gallery link
-
-**Nav addition needed:** In the Commercial ▾ dropdown (currently has: Commercial Overview, Storefront Glass, Commercial Areas), add:
-```html
-<li><a href="/case-studies">Case Studies</a></li>
-```
-This needs to be added to all 336 files via batch script.
-
----
+- Commercial page: `#gs-gallery-strip` + `#gs-lightbox`, images 71,7,15,8,20,35,56 (duplicated for loop), 30s/cycle
+- Services page: `#svc-gallery-strip` + `#svc-lightbox`, all 74 images shuffled [66,19,37,9,8,59,71,60,44,40,16,65,57,31,53,30,49,52,67,20,21,41,51,3,56,64,54,50,24,58,26,17,34,23,48,25,63,7,43,62,10,47,22,28,11,1,69,38,70,61,27,35,45,42,46,13,72,2,39,33,74,68,6,73,5,55,12,14,18,29,32,36,4,15], 90s/cycle
+- Hover pauses animation (`animation-play-state: paused`)
+- Seamless loop via `translateX(-50%)` with duplicated image set
 
 ## Technical Notes
 
-- Always use **Python batch scripts** for changes that touch many files — sed/awk missed variants in previous sessions
-- Always run a dry-run count (how many files matched) before writing changes
-- **Do not commit** `generate_all_new_pages.py`, `fix_template_errors.py`, `generated_meta_descriptions.json`, or any `* 2.html` files — they're in `.gitignore` now
-- After all changes: `git add` specific files/dirs, commit, `git push origin main`
-- Cloudflare Pages deploys automatically on push — no manual deploy needed
-- Clean URLs: `terms-of-service.html` → `/terms-of-service`, `privacy-policy.html` → `/privacy-policy`, `case-studies/index.html` OR `case-studies.html` → `/case-studies`
-
-## File Reading Priority
-
-Before starting, read these files to understand current state:
-1. `index.html` — for nav/footer exact HTML patterns (find footer-bottom div and all nav dropdown HTML)
-2. `privacy-policy.html` — check what content already exists
-3. `about.html` — find contact email, founding year, any other business details to use in legal pages
-4. `commercial.html` — use as CSS/structure reference for new pages (it was just created and is the most up-to-date template)
-
-## Commit Message Style
-
-```
-Add Terms of Service, Privacy Policy, case studies; footer legal links across all pages
-
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
-```
+- Always use **Python batch scripts** for changes touching many files
+- Run dry-run count before writing changes
+- Batch scripts go in `/Users/kel/Documents/projects/american-glass-experts/` (add to .gitignore)
+- After all changes: `git add` specific files, commit, `git push origin main`
+- Cloudflare Pages deploys automatically — no manual step needed
+- Clean URLs: `.html` stripped by Cloudflare Worker

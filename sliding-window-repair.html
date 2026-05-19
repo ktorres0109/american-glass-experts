@@ -1170,6 +1170,50 @@ section { padding: 100px 0; }
     </div>
   </section>
 
+  <!-- REVIEWS -->
+  <div class="divider"></div>
+  <section class="reviews-section">
+    <div class="container">
+      <div class="reviews-header reveal">
+        <div>
+          <span class="section-label">Client Reviews</span>
+          <h2>5-Star Reviews on <em>Yelp</em></h2>
+        </div>
+        <a href="https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4" target="_blank" rel="noopener" class="yelp-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#d9534f"><circle cx="12" cy="12" r="10"/></svg>
+          Read All on Yelp
+        </a>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal d1">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="review-text">The glass completely transformed our shower. After collecting several estimates, their pricing was very competitive. What set them apart was their product knowledge and clear communication — always happy to answer questions and kept us updated throughout.</p>
+          <div class="review-footer"><div class="review-author"><strong>Erendira N.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="review-text">Perfect experience from beginning to end. My wife found a beautiful design online and the team brought that vision to life. The technician who came to measure was very knowledgeable and gave great advice. Absolutely thrilled with our new shower glass.</p>
+          <div class="review-footer"><div class="review-author"><strong>Kevin F.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+        </div>
+        <div class="review-card reveal d3">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="review-text">Had a frameless enclosure with starphire glass and brass hardware — love it. The glass is super clear, the brass looks elegant, and installation was done perfectly. Our bathroom feels brighter and more open. The guys did a great job!</p>
+          <div class="review-footer"><div class="review-author"><strong>Jaquelyn S.</strong><span>Frameless Shower</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="review-text">As a contractor, I'm very particular — and American Glass Experts delivered. They measured for our glass partitions, recommended ½" glass, showed up on time, and the office turned out spectacular. Feels open and spacious. Great job all around.</p>
+          <div class="review-footer"><div class="review-author"><strong>Jesus R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+        </div>
+        <div class="review-card review-wide reveal d3">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="review-text">I was unsure about frameless partitions at first. Frank and Bryant took the time to show me how the design would look and I decided to move forward. The space now feels bright and spacious. Their work is solid and incredible — committed to making sure everything was done right.</p>
+          <div class="review-footer"><div class="review-author"><strong>Salinas R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-band">
     <div class="container" style="position:relative;z-index:1;">
       <span class="section-label" style="display:flex;justify-content:center;color:rgba(255,255,255,0.4);margin-bottom:16px;">Get In Touch</span>
@@ -1628,15 +1672,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 </body>
-</html>
-<script>
-// Theme toggle
-const btn=document.querySelector('.theme-toggle');
-if(btn)btn.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('age-theme',t);});
-// Mobile nav
-const hb=document.getElementById('nav-hamburger'),mn=document.getElementById('nav-mobile');
-if(hb&&mn)hb.addEventListener('click',()=>mn.classList.toggle('open'));
-// Scroll nav
-window.addEventListener('scroll',()=>{const n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>40);});
-</script>
 </html>

@@ -1556,14 +1556,80 @@ document.querySelectorAll('#svc-gallery-strip .gs-item').forEach(function(item){
 });
 </script>
 
+<!-- REVIEWS -->
+<div class="divider"></div>
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <span class="section-label">Client Reviews</span>
+        <h2>5-Star Reviews on <em>Yelp</em></h2>
+      </div>
+      <a href="https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4" target="_blank" rel="noopener" class="yelp-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#d9534f"><circle cx="12" cy="12" r="10"/></svg>
+        Read All on Yelp
+      </a>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal d1">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">The glass completely transformed our shower. After collecting several estimates, their pricing was very competitive. What set them apart was their product knowledge and clear communication — always happy to answer questions and kept us updated throughout.</p>
+        <div class="review-footer"><div class="review-author"><strong>Erendira N.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">Perfect experience from beginning to end. My wife found a beautiful design online and the team brought that vision to life. The technician who came to measure was very knowledgeable and gave great advice. Absolutely thrilled with our new shower glass.</p>
+        <div class="review-footer"><div class="review-author"><strong>Kevin F.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d3">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">Had a frameless enclosure with starphire glass and brass hardware — love it. The glass is super clear, the brass looks elegant, and installation was done perfectly. Our bathroom feels brighter and more open. The guys did a great job!</p>
+        <div class="review-footer"><div class="review-author"><strong>Jaquelyn S.</strong><span>Frameless Shower</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">As a contractor, I'm very particular — and American Glass Experts delivered. They measured for our glass partitions, recommended ½" glass, showed up on time, and the office turned out spectacular. Feels open and spacious. Great job all around.</p>
+        <div class="review-footer"><div class="review-author"><strong>Jesus R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card review-wide reveal d3">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">I was unsure about frameless partitions at first. Frank and Bryant took the time to show me how the design would look and I decided to move forward. The space now feels bright and spacious. Their work is solid and incredible — committed to making sure everything was done right.</p>
+        <div class="review-footer"><div class="review-author"><strong>Salinas R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="contact-strip">
   <div class="container" style="position:relative;z-index:1;">
+    <span class="section-label" style="display:flex;justify-content:center;color:rgba(255,255,255,0.4);margin-bottom:16px;">Get In Touch</span>
     <h2>Get Your Free Estimate Today</h2>
-    <p class="contact-strip-sub">Most jobs quoted same-day.</p>
+    <p class="contact-strip-sub">Most jobs quoted same-day. Call us or send a message — we respond fast.</p>
     <div class="contact-actions">
       <div class="contact-actions-main">
         <a href="tel:+18057506471" class="btn-call"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l1.68-1.68a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call (805) 750-6471</a>
-        <a href="/contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff;">Send a Message</a>
+      </div>
+      <button class="contact-form-toggle" id="form-toggle">↓ Prefer to write? Send a message instead</button>
+      <div class="inline-form-wrap" id="inline-form-wrap">
+        <form id="contact-strip-form" class="form-grid" style="background:rgba(255,255,255,0.06);padding:28px;border-radius:12px;margin-top:8px;border:1px solid rgba(255,255,255,0.1);">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" style="color:rgba(255,255,255,.55);" for="cs-name">Your Name</label><input class="form-input" id="cs-name" type="text" placeholder="Jane Smith" required /></div>
+            <div class="form-group"><label class="form-label" style="color:rgba(255,255,255,.55);" for="cs-phone">Phone</label><input class="form-input" id="cs-phone" type="tel" placeholder="(805) 750-6471" /></div>
+          </div>
+          <div class="form-group"><label class="form-label" style="color:rgba(255,255,255,.55);" for="cs-service">Service Needed</label>
+            <select class="form-select" id="cs-service">
+              <option value="Not sure yet">Not sure yet — just want an estimate</option>
+              <option value="Shower Enclosure">Shower Enclosure</option>
+              <option value="Window Repair/Replacement">Window Repair / Replacement</option>
+              <option value="Storefront / Commercial">Storefront / Commercial Glass</option>
+              <option value="Mirror">Mirror</option>
+              <option value="Glass Partitions">Glass Partitions</option>
+              <option value="Emergency Repair">Emergency Repair</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label" style="color:rgba(255,255,255,.55);" for="cs-notes">Quick Note (optional)</label><textarea class="form-textarea" id="cs-notes" placeholder="Size, style, timeline..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">Send Message</button>
+        </form>
       </div>
     </div>
   </div>

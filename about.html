@@ -164,6 +164,24 @@ section{padding:100px 0;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+.reviews-section{background:var(--bg-soft);padding:80px 0;}
+.reviews-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:48px;}
+.yelp-link{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#d9534f;border:1.5px solid rgba(217,83,79,0.3);padding:10px 20px;border-radius:var(--r);transition:background var(--t),border-color var(--t);}
+.yelp-link:hover{background:rgba(217,83,79,.06);border-color:#d9534f;}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.review-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg,12px);padding:32px 28px;display:flex;flex-direction:column;gap:16px;transition:box-shadow var(--t),transform var(--t);position:relative;overflow:hidden;}
+.review-card::before{content:'\201C';position:absolute;top:-10px;left:20px;font-size:8rem;font-weight:900;color:var(--blue);opacity:.06;line-height:1;pointer-events:none;}
+.review-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.12);transform:translateY(-3px);}
+.review-stars{display:flex;gap:2px;}.review-stars span{color:#f59e0b;font-size:1rem;}
+.review-text{font-size:.92rem;color:var(--text);line-height:1.72;flex:1;}
+.review-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:16px;}
+.review-author strong{display:block;font-size:.9rem;font-weight:700;color:var(--charcoal);}
+[data-theme="dark"] .review-author strong{color:var(--white);}
+.review-author span{font-size:.73rem;color:var(--text-dim);}
+.yelp-badge{display:flex;align-items:center;gap:4px;font-size:.65rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;}
+.yelp-badge svg{fill:#d9534f;width:12px;height:12px;}
+.review-wide{grid-column:span 2;}
+@media(max-width:768px){.reviews-grid{grid-template-columns:1fr;}.review-wide{grid-column:span 1;}}
 .skip-link{position:absolute;top:-100px;left:16px;background:var(--blue);color:#fff;padding:10px 20px;border-radius:0 0 var(--r) var(--r);font-size:.85rem;font-weight:700;z-index:9999;transition:top 0.2s;}
 .skip-link:focus{top:0;}
 @media(max-width:768px){.container{padding:0 20px;}section{padding:72px 0;}.top-bar{padding:8px 20px;}.top-bar-right{display:none;}.nav-inner{padding:0 20px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
@@ -362,6 +380,49 @@ section{padding:100px 0;}
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <a href="/contact" class="btn btn-primary">Request a Quote from Frank</a>
         <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx?LicNum=1125850" target="_blank" rel="noopener" class="btn btn-outline">Verify CSLB #1125850 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <span class="section-label">Client Reviews</span>
+        <h2>5-Star Reviews on <em>Yelp</em></h2>
+      </div>
+      <a href="https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4" target="_blank" rel="noopener" class="yelp-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#d9534f"><circle cx="12" cy="12" r="10"/></svg>
+        Read All on Yelp
+      </a>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal d1">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">The glass completely transformed our shower. After collecting several estimates, their pricing was very competitive. What set them apart was their product knowledge and clear communication — always happy to answer questions and kept us updated throughout.</p>
+        <div class="review-footer"><div class="review-author"><strong>Erendira N.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">Perfect experience from beginning to end. My wife found a beautiful design online and the team brought that vision to life. The technician who came to measure was very knowledgeable and gave great advice. Absolutely thrilled with our new shower glass.</p>
+        <div class="review-footer"><div class="review-author"><strong>Kevin F.</strong><span>Shower Enclosure</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d3">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">Had a frameless enclosure with starphire glass and brass hardware — love it. The glass is super clear, the brass looks elegant, and installation was done perfectly. Our bathroom feels brighter and more open. The guys did a great job!</p>
+        <div class="review-footer"><div class="review-author"><strong>Jaquelyn S.</strong><span>Frameless Shower</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card reveal d2">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">As a contractor, I'm very particular — and American Glass Experts delivered. They measured for our glass partitions, recommended ½" glass, showed up on time, and the office turned out spectacular. Feels open and spacious. Great job all around.</p>
+        <div class="review-footer"><div class="review-author"><strong>Jesus R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
+      </div>
+      <div class="review-card review-wide reveal d3">
+        <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="review-text">I was unsure about frameless partitions at first. Frank and Bryant took the time to show me how the design would look and I decided to move forward. The space now feels bright and spacious. Their work is solid and incredible — committed to making sure everything was done right.</p>
+        <div class="review-footer"><div class="review-author"><strong>Salinas R.</strong><span>Glass Partitions</span></div><div class="yelp-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Yelp</div></div>
       </div>
     </div>
   </div>
