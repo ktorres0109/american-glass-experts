@@ -22,37 +22,32 @@
 8. Reviews section (5 cards, `.reviews-section` > `.reviews-grid`) added to all 148+ pages before CTA. CSS already embedded in all pages.
 9. **Dark mode toggle fixed on 189 pages** — rogue `<script>` block after `</body></html>` was binding a second click listener causing double-toggle (net no change). Removed from all.
 10. `services.html` contact-strip upgraded to collapsible inline form.
-11. Always push to GitHub after changes.
+11. **Map sections removed from all pages** (except `contact.html`) — covered `<!-- MAP -->`, `<!-- MAP EMBED -->`, `<!-- OUR LOCATION MAP -->` variants across 150 pages.
+12. **Reviews updated to 6 cards (2×3 grid)** across all 149 pages — replaced Erendira N./Kevin F./Jaquelyn S./Jesus R./Salinas R. with Alexis M./Jesus S./Joshua B./Mercy R./Dylan N./Lisandro O. All 5★ real Yelp reviews. Removed `review-wide` class.
+13. Always push to GitHub after changes.
 
 ## Tasks for Next Session
 
-### 1. REMOVE "Our Location" / Map section from ALL pages
-- Look for `<!-- MAP -->` comment or section containing `"Visit Our Showroom"` / Google Maps `<iframe>`
-- Remove from every page that has it — check services.html, index.html, city pages, service pages
-- Keep footer address text — only remove the embedded map section
+### 1. ~~REMOVE Map sections~~ ✅ DONE
+### 2. ~~Reviews 5→6 cards~~ ✅ DONE
 
-### 2. Change reviews grid: 5 cards → 6 cards (2×3 grid)
-- Current layout: 3 cards row 1 + 1 card + 1 `.review-wide` (span 2 cols) = asymmetric
-- New layout: 6 equal cards, `grid-template-columns: repeat(3,1fr)`, 2 rows × 3 cols
-- Remove `review-wide` class from all review sections — all cards equal width
-- Apply across ALL pages
-
-### 3. Add more diverse reviews per page (USER WILL PASTE REVIEWS AT SESSION START)
-- User will paste raw Yelp reviews from: https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4
-- Goal: different pages show different subsets — not the same 5 curated ones everywhere
-- Include negative/mixed reviews too, not just best ones
-- Strategy: rotate by page type (city pages get local-feeling reviews, service pages get service-specific ones)
+### 3. Diversify reviews per page type (OPTIONAL FOLLOW-UP)
+- Currently: same 6 reviews on every page
+- Goal: city pages show local-feeling reviews, service pages show service-specific ones
+- Yelp source: https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4
+- 17 total reviews available (see NEXT-SESSION-PROMPT for full list when ready)
 
 ### 4. Homepage: move stats/trust bar above CTA
 - On `index.html`, identify stats/trust strip and move it to appear directly above the contact-strip CTA
 - Confirm exact element with user
 
 ## Current Reviews (in all pages right now)
-1. Erendira N. — Shower Enclosure — 5★
-2. Kevin F. — Shower Enclosure — 5★
-3. Jaquelyn S. — Frameless Shower — 5★
-4. Jesus R. — Glass Partitions — 5★
-5. Salinas R. — Glass Partitions — 5★
+1. Alexis M. — Shower Enclosure — 5★
+2. Jesus S. — Shower Enclosure — 5★
+3. Joshua B. — Shower Glass — 5★
+4. Mercy R. — Window Replacement — 5★
+5. Dylan N. — Glass Services — 5★
+6. Lisandro O. — Glass Panel — 5★
 
 ## Technical Notes
 - Always use **Python batch scripts** for changes touching many files
