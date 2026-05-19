@@ -978,6 +978,7 @@ section { padding: 100px 0; }
       </a>
       <a href="sms:+18057506471" class="btn btn-outline" style="font-size:.8rem;padding:10px 22px;white-space:nowrap;">Text Us</a>
       <img src="flag-us.svg" alt="American Owned" style="height:18px;width:auto;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.25);flex-shrink:0;" title="American Owned &amp; Operated">
+      <a href="/contact" class="btn" style="font-size:.8rem;padding:10px 22px;white-space:nowrap;background:#16a34a;color:#fff;border-radius:6px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;box-shadow:0 2px 12px rgba(22,163,74,0.3);">Get a Free Quote</a>
       <button class="nav-hamburger" aria-label="Menu" id="nav-hamburger"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -1078,17 +1079,12 @@ section { padding: 100px 0; }
             </div>
             <div class="form-group"><label class="form-label" for="cf-email">Email Address *</label><input class="form-input" id="cf-email" type="email" placeholder="jane@example.com" required /></div>
             <div class="form-group">
-              <label class="form-label" for="cf-service">Service Needed</label>
-              <select class="form-select" id="cf-service">
-                <option value="Not sure yet">Not sure yet — just want an estimate</option>
-                <option value="Shower Enclosure">Shower Enclosure</option>
-                <option value="Window Repair/Replacement">Window Repair / Replacement</option>
-                <option value="Storefront / Commercial">Storefront / Commercial Glass</option>
-                <option value="Mirror">Mirror</option>
-                <option value="Glass Partitions">Glass Partitions</option>
-                <option value="Glass Partitions">Glass Partitions</option>
-                <option value="Emergency Repair">Emergency Repair</option>
-              </select>
+              <label class="form-label">Project Type</label>
+              <div style="display:flex;gap:10px;">
+                <button type="button" id="btn-residential" onclick="selectProjectType('Residential')" class="btn btn-outline" style="flex:1;justify-content:center;padding:12px;font-size:.9rem;font-weight:600;transition:all .2s;">🏠 Residential</button>
+                <button type="button" id="btn-commercial" onclick="selectProjectType('Commercial')" class="btn btn-outline" style="flex:1;justify-content:center;padding:12px;font-size:.9rem;font-weight:600;transition:all .2s;">🏢 Commercial</button>
+              </div>
+              <input type="hidden" id="cf-service" value="Not specified" />
             </div>
             <div class="form-group"><label class="form-label" for="cf-city">Your City</label><input class="form-input" id="cf-city" type="text" placeholder="e.g. Woodland Hills, Sherman Oaks..." /></div>
             <div class="form-group"><label class="form-label" for="cf-message">Tell Us About Your Project</label><textarea class="form-textarea" id="cf-message" style="min-height:120px;" placeholder="Size, style preferences, timeline, any photos to describe what you need..."></textarea></div>
@@ -1171,6 +1167,19 @@ section { padding: 100px 0; }
   </div>
 </footer>
 <script>
+function selectProjectType(type) {
+  document.getElementById('cf-service').value = type;
+  const resBtn = document.getElementById('btn-residential');
+  const comBtn = document.getElementById('btn-commercial');
+  if (type === 'Residential') {
+    resBtn.style.background = 'var(--blue)'; resBtn.style.color = '#fff'; resBtn.style.borderColor = 'var(--blue)';
+    comBtn.style.background = ''; comBtn.style.color = ''; comBtn.style.borderColor = '';
+  } else {
+    comBtn.style.background = 'var(--blue)'; comBtn.style.color = '#fff'; comBtn.style.borderColor = 'var(--blue)';
+    resBtn.style.background = ''; resBtn.style.color = ''; resBtn.style.borderColor = '';
+  }
+}
+
 document.getElementById('contact-main-form').addEventListener('submit', async e => {
   e.preventDefault();
   const name    = document.getElementById('cf-name').value.trim();
