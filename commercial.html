@@ -1430,6 +1430,96 @@ section { padding: 100px 0; }
   </div>
 </section>
 
+<!-- ── SCROLLING GALLERY STRIP ── -->
+<section style="padding:64px 0;overflow:hidden;background:var(--bg);border-top:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto 32px;padding:0 48px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;"><span style="display:block;width:20px;height:2px;background:var(--blue);border-radius:1px;"></span>Our Work</div>
+        <h2 style="font-size:clamp(1.4rem,2.5vw,2rem);margin:0;">Real Projects. Across Southern California.</h2>
+      </div>
+      <a href="/gallery" style="display:inline-flex;align-items:center;gap:7px;font-size:.84rem;font-weight:600;color:var(--blue);white-space:nowrap;">View Full Gallery <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+  <!-- Scroll track — images duplicated for seamless loop -->
+  <div style="position:relative;overflow:hidden;">
+    <div id="gallery-strip" style="display:flex;gap:16px;width:max-content;animation:galleryScroll 38s linear infinite;cursor:pointer;">
+      <!-- Set 1 -->
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/71.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/71.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/7.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/7.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/15.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/15.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/8.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/8.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/20.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/20.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/35.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/35.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/56.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/56.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/71.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/71.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/7.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/7.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/15.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/15.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/8.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/8.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/20.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/20.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/35.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/35.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div class="gs-item" data-src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/56.jpg" style="flex-shrink:0;width:320px;height:220px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-sm);">
+        <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/56.jpg" loading="lazy" alt="Commercial glass project by American Glass Experts" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+    </div>
+    <!-- Fade edges -->
+    <div style="position:absolute;top:0;left:0;width:80px;height:100%;background:linear-gradient(to right,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
+    <div style="position:absolute;top:0;right:0;width:80px;height:100%;background:linear-gradient(to left,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
+  </div>
+</section>
+
+<!-- Lightbox overlay -->
+<div id="gs-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;" onclick="document.getElementById('gs-lightbox').style.display='none'">
+  <img id="gs-lightbox-img" src="" alt="" style="max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,0.6);object-fit:contain;">
+  <button onclick="document.getElementById('gs-lightbox').style.display='none'" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+</div>
+
+<style>
+@keyframes galleryScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+#gallery-strip:hover { animation-play-state: paused; }
+.gs-item { cursor: zoom-in; }
+</style>
+<script>
+document.querySelectorAll('.gs-item').forEach(function(item){
+  item.addEventListener('click', function(){
+    var lb = document.getElementById('gs-lightbox');
+    var img = document.getElementById('gs-lightbox-img');
+    img.src = item.getAttribute('data-src');
+    lb.style.display = 'flex';
+  });
+});
+</script>
+
 <!-- ── FULL COMMERCIAL SERVICES LIST ── -->
 <section style="padding:88px 0;background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
@@ -1443,10 +1533,6 @@ section { padding: 100px 0; }
       <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;font-size:.88rem;font-weight:500;color:var(--text);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         Storefronts — New &amp; Existing
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;font-size:.88rem;font-weight:500;color:var(--text);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Storefront Repair
       </div>
       <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;font-size:.88rem;font-weight:500;color:var(--text);">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
