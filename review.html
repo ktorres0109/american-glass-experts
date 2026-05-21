@@ -89,7 +89,40 @@
       color: #9ca3af;
     }
     .footer a { color: #9ca3af; }
-  </style>
+  
+/* ── CONTACT STRIP ── */
+.contact-strip {
+  background: linear-gradient(180deg, #1a2535 0%, #0d1117 100%);
+  padding: 96px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+[data-theme="dark"] .contact-strip {
+  background: linear-gradient(180deg, #1a2535 0%, #0d1117 100%);
+}
+.contact-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(74,144,217,0.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-strip h2 { color: #fff; margin-bottom: 12px; }
+[data-theme="dark"] .contact-strip h2 { color: var(--white); }
+.contact-strip-sub { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 44px; }
+[data-theme="dark"] .contact-strip-sub { color: var(--text-mid); }
+.contact-actions { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.contact-actions-main { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn-call {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--blue); color: #fff;
+  font-size: 1rem; font-weight: 700;
+  padding: 17px 40px; border-radius: var(--r); letter-spacing: 0.01em;
+  border: none; cursor: pointer; text-decoration: none;
+  box-shadow: 0 4px 20px var(--blue-glow), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transition: all var(--t);
+}
+.btn-call:hover { background: var(--blue-dk); transform: translateY(-2px); }
+
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0N1LQ71T8T"></script>
 <script>
