@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Generate 5 individual case study pages."""
+import os
+
+BASE = "/Users/kel/Documents/projects/american-glass-experts/case-studies"
+os.makedirs(BASE, exist_ok=True)
+
+NAV = """<div class="top-bar">
+  <a href="tel:+18057506471" class="top-bar-phone"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l1.68-1.68a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (805) 750-6471 — Call or Text Anytime</a>
+  <div class="top-bar-right"><a href="mailto:info@americanglassexperts.us">info@americanglassexperts.us</a><span>Mon–Sat 7am–10pm</span></div>
+</div>
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="../logo-icon-dark.webp" class="logo-light" alt="American Glass Experts" /><img src="../logo-icon.webp" class="logo-dark" alt="American Glass Experts" /></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li><li class="nav-dropdown"><a href="/services">Residential ▾</a><ul class="nav-sub"><li><a href="/shower-enclosures">Shower Enclosures</a></li><li><a href="/window-repair">Window Repair</a></li><li><a href="/custom-mirrors">Custom Mirrors</a></li><li><a href="/emergency-glass">Emergency Glass</a></li></ul></li><li class="nav-dropdown"><a href="/commercial">Commercial ▾</a><ul class="nav-sub"><li><a href="/commercial">Commercial Overview</a></li><li><a href="/storefront-glass">Storefront Glass</a></li><li><a href="/service-areas">Commercial Areas</a></li><li><a href="/case-studies" class="active">Case Studies</a></li></ul></li><li><a href="/gallery">Gallery</a></li><li><a href="/service-areas">Service Areas</a></li><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" aria-label="Toggle dark mode"><svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+      <a href="tel:+18057506471" class="btn btn-primary" style="font-size:.8rem;padding:10px 22px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l1.68-1.68a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Now</a>
+      <a href="/contact" class="btn" style="font-size:.8rem;padding:10px 22px;white-space:nowrap;background:#1E78D7;color:#fff;border-radius:6px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;box-shadow:0 2px 12px rgba(30,120,215,0.3);" onmouseover="this.style.background='#1664B5'" onmouseout="this.style.background='#1E78D7'">Get a Free Quote</a>
+      <img src="../flag-us.svg" alt="American Owned" style="height:18px;width:auto;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.25);flex-shrink:0;" title="American Owned &amp; Operated">
+      <button class="nav-hamburger" aria-label="Menu" id="nav-hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="/">Home <span>→</span></a>
+  <a href="/services">Residential <span>→</span></a>
+  <a href="/shower-enclosures" style="padding-left:28px;font-size:.85rem;opacity:.85;">Shower Enclosures <span>→</span></a>
+  <a href="/window-repair" style="padding-left:28px;font-size:.85rem;opacity:.85;">Window Repair <span>→</span></a>
+  <a href="/custom-mirrors" style="padding-left:28px;font-size:.85rem;opacity:.85;">Custom Mirrors <span>→</span></a>
+  <a href="/emergency-glass" style="padding-left:28px;font-size:.85rem;opacity:.85;">Emergency Glass <span>→</span></a>
+  <a href="/commercial">Commercial Glass <span>→</span></a>
+  <a href="/storefront-glass" style="padding-left:28px;font-size:.85rem;opacity:.85;">Storefront Glass <span>→</span></a>
+  <a href="/service-areas" style="padding-left:28px;font-size:.85rem;opacity:.85;">Commercial Areas <span>→</span></a>
+  <a href="/case-studies" style="padding-left:28px;font-size:.85rem;opacity:.85;">Case Studies <span>→</span></a>
+  <a href="/gallery">Gallery <span>→</span></a>
+  <a href="/service-areas">Service Areas <span>→</span></a>
+  <a href="/about">About <span>→</span></a>
+  <a href="/blog">Blog <span>→</span></a>
+  <a href="/contact">Contact <span>→</span></a>
+  <a href="tel:+18057506471" style="color:var(--blue);font-weight:700;margin-top:12px;">📞 (805) 750-6471</a>
+</div>"""
+
+FOOTER = """<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">American <span>Glass</span> Experts Inc.</div><p class="footer-desc">Licensed glass repair and installation across Southern California.</p>
+      <div style="display:flex;gap:14px;margin-top:14px;">
+        <a href="https://www.tiktok.com/@american.glass.experts" target="_blank" rel="noopener" aria-label="TikTok" style="color:var(--text-mid);display:flex;align-items:center;transition:color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--text-mid)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
+        <a href="https://www.instagram.com/americanglassexperts" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--text-mid);display:flex;align-items:center;transition:color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--text-mid)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4" target="_blank" rel="noopener" aria-label="Yelp Reviews" style="color:var(--text-mid);display:flex;align-items:center;transition:color 0.2s;" onmouseover="this.style.color='#d32323'" onmouseout="this.style.color='var(--text-mid)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.56 11.09l-2.19.71a.56.56 0 0 1-.71-.36l-1.93-5.95a.56.56 0 0 1 .36-.71c.58-.19 4.97-1.34 6.22.57 1.34 2.03-1.38 5.56-1.76 5.75zm-5.7 3.57l1.93-1.93a.56.56 0 0 1 .79 0c.46.46.44 1.05-.04 1.53l-3.46 3.46a.56.56 0 0 1-.8-.04c-.89-1.02-.94-4.63 1.58-3.02zm-.36-5.35l-2.42-.43a.56.56 0 0 1-.46-.65C3.47 7.56 4.68 4.2 6.88 4.66c2.12.44 2.44 4.25 2.36 4.76-.08.51-.51.78-.74.89zm9.11 7.44l-2.12-1.24a.56.56 0 0 1-.19-.77c.3-.51.82-.64 1.43-.29l3.84 2.25c.56.33.47 1.15-.09 1.48-1.31.76-4.85.63-2.87-1.43zm2.17-5.42l-2.37.59a.56.56 0 0 1-.68-.4c-.14-.56.12-1.04.71-1.19l4.28-1.07c.63-.16 1.08.49.87 1.11-.47 1.41-3.27 4.14-2.81.96z"/></svg></a>
+      </div></div>
+      <div class="footer-col"><h5>Residential</h5><a href="/shower-enclosures">Shower Enclosures</a><a href="/window-repair">Window Repair</a><a href="/custom-mirrors">Custom Mirrors</a><a href="/emergency-glass">Emergency Glass</a><a href="/services">All Services</a></div>
+      <div class="footer-col"><h5>Commercial</h5><a href="/commercial">Commercial Overview</a><a href="/storefront-glass">Storefront Glass</a><a href="/case-studies">Case Studies</a></div>
+      <div class="footer-col"><h5>Company</h5><a href="/">Home</a><a href="/about">About</a><a href="/gallery">Gallery</a><a href="/service-areas">Service Areas</a><a href="tel:+18057506471">(805) 750-6471</a><a href="mailto:info@americanglassexperts.us">info@americanglassexperts.us</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 American Glass Experts Inc. · C-17 Licensed · CSLB #1125850</p><div style="display:flex;gap:20px;"><a href="/terms-of-service">Terms</a><a href="/privacy-policy">Privacy</a><a href="../sitemap.xml">Sitemap</a><a href="/service-areas">Service Areas</a></div></div>
+  </div>
+</footer>
+<script>
+const THEME_KEY='age-theme';
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem(THEME_KEY,t);}
+function initTheme(){const c=document.documentElement.getAttribute('data-theme')||'light';applyTheme(c);}
+function toggleTheme(){const c=document.documentElement.getAttribute('data-theme');applyTheme(c==='dark'?'light':'dark');}
+function initNav(){const nav=document.getElementById('main-nav');if(!nav)return;window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40);},{passive:true});const hamburger=document.getElementById('nav-hamburger');const mobileMenu=document.getElementById('nav-mobile');if(hamburger&&mobileMenu){hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileMenu.classList.toggle('open');document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';});mobileMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');mobileMenu.classList.remove('open');document.body.style.overflow='';});});}}
+document.addEventListener('DOMContentLoaded',()=>{initTheme();initNav();document.querySelectorAll('.theme-toggle').forEach(btn=>{btn.addEventListener('click',toggleTheme);});});
+</script>"""
+
+CSS = """<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;}
+ul{list-style:none;}
+:root{--bg:#ffffff;--bg-soft:#f7f8fa;--bg-card:#ffffff;--bg-nav:rgba(255,255,255,0.97);--surface:#eef0f4;--border:#e2e6ea;--border-md:#c8cdd4;--blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#3b82f6;--blue-dim:rgba(37,99,235,0.08);--blue-glow:rgba(37,99,235,0.22);--coal:#0f172a;--charcoal:#1e293b;--text:#374151;--text-mid:#6b7280;--text-dim:#9ca3af;--white:#ffffff;--sh-sm:0 1px 4px rgba(0,0,0,0.07);--sh-md:0 4px 20px rgba(0,0,0,0.09);--sh-lg:0 16px 48px rgba(0,0,0,0.13);--sh-xl:0 32px 80px rgba(0,0,0,0.18);--head:'Playfair Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--r:6px;--r-lg:16px;--t:0.22s ease;}
+[data-theme="dark"]{--bg:#0d1117;--bg-soft:#131a24;--bg-card:#1a2332;--bg-nav:rgba(13,17,23,0.97);--surface:#1e2d42;--border:rgba(74,144,217,0.14);--border-md:rgba(74,144,217,0.32);--blue:#4a90d9;--blue-dk:#3a7bc8;--blue-lt:#6aaee8;--blue-dim:rgba(74,144,217,0.12);--blue-glow:rgba(74,144,217,0.28);--coal:#f0f4f8;--charcoal:#e2eaf4;--text:#a8b8cc;--text-mid:#7a8fa3;--text-dim:#4a6070;--white:#f0f4f8;--sh-sm:0 1px 4px rgba(0,0,0,0.3);--sh-md:0 4px 20px rgba(0,0,0,0.4);--sh-lg:0 16px 48px rgba(0,0,0,0.5);--sh-xl:0 32px 80px rgba(0,0,0,0.6);}
+body{font-family:var(--body);font-weight:400;color:var(--text);background:var(--bg);transition:background var(--t),color var(--t);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border-md);border-radius:2px;}::-webkit-scrollbar-thumb:hover{background:var(--blue);}
+h1,h2,h3,h4{font-family:var(--head);font-weight:700;line-height:1.12;color:var(--charcoal);}
+[data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3,[data-theme="dark"] h4{color:var(--white);}
+h1{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-0.02em;font-weight:900;}
+h2{font-size:clamp(1.4rem,2.5vw,2rem);}
+em{font-style:italic;color:var(--blue);}
+p{line-height:1.75;}
+.container{max-width:1200px;margin:0 auto;padding:0 48px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:.83rem;font-weight:600;letter-spacing:.04em;padding:13px 28px;border-radius:var(--r);border:none;cursor:pointer;transition:all var(--t);white-space:nowrap;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 12px var(--blue-glow);}
+.btn-primary:hover{background:var(--blue-dk);box-shadow:0 6px 24px var(--blue-glow);}
+.top-bar{background:var(--charcoal);padding:10px 48px;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;font-weight:500;color:rgba(255,255,255,0.7);}
+[data-theme="dark"] .top-bar{background:var(--bg-soft);border-bottom:1px solid var(--border);}
+.top-bar a{color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:7px;transition:color var(--t);}
+.top-bar a:hover{color:#fff;}
+.top-bar-phone{font-size:.88rem;font-weight:700;color:#fff;}
+.top-bar-right{display:flex;gap:24px;align-items:center;}
+.nav{position:sticky;top:0;z-index:300;height:70px;background:var(--bg-nav);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);display:flex;align-items:center;transition:box-shadow var(--t),background var(--t);}
+.nav.scrolled{box-shadow:var(--sh-md);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 48px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:40px;width:auto;}
+.nav-logo .logo-light{display:block;}
+.nav-logo .logo-dark{display:none;}
+[data-theme="dark"] .nav-logo .logo-light{display:none;}
+[data-theme="dark"] .nav-logo .logo-dark{display:block;}
+.nav-links{display:flex;gap:2px;align-items:center;}
+.nav-links a{color:var(--text-mid);font-size:.84rem;font-weight:500;padding:6px 8px;border-radius:var(--r);white-space:nowrap;transition:color var(--t),background var(--t);}
+.nav-links a:hover{color:var(--charcoal);background:var(--bg-soft);}
+[data-theme="dark"] .nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--blue);font-weight:600;}
+.nav-dropdown{position:relative;}
+.nav-sub{display:none;position:absolute;top:100%;left:0;min-width:210px;background:var(--bg-nav);border:1px solid var(--border);border-radius:8px;padding:6px;box-shadow:var(--sh-md);z-index:1000;list-style:none;margin:0;}
+.nav-dropdown:hover .nav-sub{display:block;}
+.nav-sub li{margin:0;padding:0;}
+.nav-sub li a{display:block;padding:8px 12px;border-radius:6px;font-size:.82rem;color:var(--text);white-space:nowrap;font-weight:400;}
+.nav-sub li a:hover,.nav-sub li a.active{background:var(--bg-soft);color:var(--blue);}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.theme-toggle{width:38px;height:38px;border-radius:50%;background:var(--bg-soft);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-mid);transition:all var(--t);}
+.theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+.theme-toggle .icon-sun{display:none;}
+.theme-toggle .icon-moon{display:block;}
+[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+[data-theme="dark"] .theme-toggle .icon-moon{display:none;}
+.nav-hamburger{display:none;flex-direction:column;gap:4px;width:38px;height:38px;justify-content:center;align-items:center;background:none;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;padding:8px;}
+.nav-hamburger span{display:block;width:16px;height:2px;background:var(--text);border-radius:1px;transition:transform 0.3s,opacity 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.nav-mobile{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--bg);z-index:299;padding:24px;flex-direction:column;gap:6px;border-top:1px solid var(--border);overflow-y:auto;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{color:var(--text);font-size:1rem;font-weight:500;padding:14px 16px;border-radius:var(--r);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;transition:color var(--t),background var(--t);}
+.nav-mobile a:hover{color:var(--blue);background:var(--blue-dim);}
+.page-hero{background:var(--bg-soft);border-bottom:1px solid var(--border);padding:64px 0 48px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--text-dim);margin-bottom:20px;}
+.breadcrumb a{color:var(--text-mid);transition:color var(--t);}
+.breadcrumb a:hover{color:var(--blue);}
+.meta-strip{display:flex;flex-wrap:wrap;gap:24px;margin-top:28px;}
+.meta-item{display:flex;flex-direction:column;gap:4px;}
+.meta-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);}
+.meta-value{font-size:.92rem;font-weight:600;color:var(--charcoal);}
+[data-theme="dark"] .meta-value{color:var(--white);}
+.case-body{max-width:760px;margin:0 auto;}
+.case-body h2{font-size:clamp(1.25rem,2.2vw,1.65rem);margin:48px 0 16px;}
+.case-body p{font-size:.97rem;color:var(--text-mid);line-height:1.9;margin-bottom:18px;}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;}
+.badge-blue{background:var(--blue-dim);border:1px solid rgba(37,99,235,.15);color:var(--blue);}
+.badge-green{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#059669;}
+.trust-strip{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0;}
+.related-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
+.related-links a{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:500;color:var(--blue);background:var(--blue-dim);border:1px solid rgba(37,99,235,.15);padding:8px 16px;border-radius:100px;transition:all var(--t);}
+.related-links a:hover{background:var(--blue);color:#fff;}
+.footer{background:var(--coal);color:rgba(255,255,255,0.55);padding:72px 0 36px;}
+[data-theme="dark"] .footer{background:#060a10;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+.footer-brand-name{font-family:var(--head);font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.footer-brand-name span{color:var(--blue);}
+.footer-desc{font-size:.85rem;line-height:1.7;max-width:280px;margin-bottom:20px;}
+.footer-col h5{font-family:var(--body);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:16px;}
+.footer-col a{display:block;color:rgba(255,255,255,0.55);font-size:.88rem;padding:4px 0;transition:color var(--t);}
+.footer-col a:hover{color:var(--blue);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:rgba(255,255,255,0.28);}
+.footer-bottom a{color:rgba(255,255,255,0.35);transition:color var(--t);}
+.footer-bottom a:hover{color:var(--blue);}
+.skip-link{position:absolute;top:-100px;left:16px;background:var(--blue);color:#fff;padding:10px 20px;border-radius:0 0 var(--r) var(--r);font-size:.85rem;font-weight:700;z-index:9999;transition:top 0.2s;}
+.skip-link:focus{top:0;}
+@media(max-width:768px){.container{padding:0 20px;}.top-bar{padding:8px 20px;}.top-bar-right{display:none;}.nav-inner{padding:0 20px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.footer-grid{grid-template-columns:1fr;gap:28px;}.meta-strip{gap:16px;}}
+</style>"""
+
+HEAD_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>!function(){{var t=localStorage.getItem("age-theme");document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}}();</script>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="{description}" />
+  <link rel="canonical" href="https://www.americanglassexperts.us/case-studies/{slug}" />
+  {ld}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  {css}
+  <link rel="icon" type="image/png" href="../logo-icon-dark.png">
+  <link rel="apple-touch-icon" href="../logo-icon-dark.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N1LQ71T8T"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-0N1LQ71T8T');</script>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>"""
+
+CASES = [
+    {
+        "slug": "restaurant-storefront-glass-los-angeles",
+        "title": "Restaurant Storefront Glass Replacement — San Fernando Valley | American Glass Experts",
+        "description": "Same-day storefront glass replacement for a San Fernando Valley restaurant after a vehicle impact. C-17 Licensed. Back open before dinner service.",
+        "hero_title": "Restaurant Storefront Glass Replacement",
+        "hero_subtitle": "San Fernando Valley — Emergency Same-Day Response",
+        "badge": "Commercial · Storefront Glass",
+        "service_type": "Storefront Glass Repair & Replacement",
+        "location": "San Fernando Valley, Los Angeles County",
+        "timeline": "Same Day",
+        "outcome": "Fully operational before dinner service",
+        "same_day": True,
+        "problem": """A vehicle jumped the curb and struck the front storefront of a family-owned restaurant in the San Fernando Valley, shattering approximately 12 feet of tempered storefront glass. The impact happened at 10:30 a.m. on a Tuesday — the lunch rush was in two hours and the dinner reservation book was full. The restaurant's general manager called American Glass Experts immediately after calling the police.""",
+        "solution": """Our crew was on-site within 90 minutes. We assessed the damage, confirmed tempered safety glass specifications, and dispatched a second vehicle to our supplier to pull the right glass in the correct thickness and dimensions. The shattered glass was removed, the aluminum frame inspected for damage (minor — one section required re-squaring), and the new tempered panels were cut, fitted, and sealed on-site. We swept and cleaned the immediate area before leaving.""",
+        "result": """The restaurant opened for lunch with a boarded temporary panel in one corner while the second frame section cured, and was fully glass by 4:00 p.m. — two hours before the first dinner reservation. The job was complete in under six hours from first call to finished installation. The general manager noted that their previous contractor had quoted a 3-day lead time for a similar repair.""",
+        "related_service": "/storefront-glass",
+        "related_text": "Storefront Glass",
+        "related_service2": "/emergency-glass",
+        "related_text2": "Emergency Glass",
+        "ld": """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Restaurant Storefront Glass Replacement — San Fernando Valley","description":"Same-day storefront glass replacement for a San Fernando Valley restaurant after vehicle impact.","author":{"@type":"Organization","name":"American Glass Experts Inc."},"publisher":{"@type":"Organization","name":"American Glass Experts Inc.","logo":{"@type":"ImageObject","url":"https://www.americanglassexperts.us/logo.avif"}},"url":"https://www.americanglassexperts.us/case-studies/restaurant-storefront-glass-los-angeles"}</script>"""
+    },
+    {
+        "slug": "office-glass-partitions-burbank",
+        "title": "Frameless Glass Partitions for Burbank Office Build-Out | American Glass Experts",
+        "description": "Open-plan Burbank office converted to private offices with floor-to-ceiling frameless glass partitions. C-17 Licensed. Installed over a single weekend.",
+        "hero_title": "Frameless Glass Partitions — Office Build-Out",
+        "hero_subtitle": "Burbank, Los Angeles County",
+        "badge": "Commercial · Glass Partitions",
+        "service_type": "Frameless Glass Partition Installation",
+        "location": "Burbank, Los Angeles County",
+        "timeline": "2 Days (Weekend Installation)",
+        "outcome": "6 private offices, zero productivity loss",
+        "same_day": False,
+        "problem": """A marketing agency in Burbank had expanded to 22 employees in a 3,400 sq ft open-plan floor. Leadership wanted six enclosed private offices for client calls and focused work — without blocking natural light or making the space feel smaller. Previous bids from drywall contractors required 4-week timelines and would eliminate the floor's natural light entirely. The office manager wanted a solution that could be completed over a single weekend to avoid disrupting the team.""",
+        "solution": """We proposed floor-to-ceiling frameless glass partitions using 3/8-inch tempered clear glass with a silver aluminum track system. Six partition runs were measured and templated on a Friday afternoon after hours. Glass was cut and prepared the following morning; installation began Saturday at 7 a.m. All track anchoring was done into the concrete slab and structural ceiling — no drywall penetrations required. Door openings were framed with pivot hinges and full-height frameless glass doors with brushed chrome hardware.""",
+        "result": """The installation was complete by Sunday at 3 p.m. Monday morning, employees arrived to six fully enclosed private offices with floor-to-ceiling glass on all interior walls. Natural light still travels through the entire floor. The conference room adjacent to the new offices also received a glass sliding door as an add-on discovered during the walkthrough. The office manager reported that a competing firm in the building was interested in a similar install after seeing the results.""",
+        "related_service": "/storefront-glass",
+        "related_text": "Commercial Glass",
+        "related_service2": "/commercial",
+        "related_text2": "Commercial Overview",
+        "ld": """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Frameless Glass Partitions for Burbank Office Build-Out","description":"Open-plan Burbank office converted to private offices with frameless glass partitions over a single weekend.","author":{"@type":"Organization","name":"American Glass Experts Inc."},"publisher":{"@type":"Organization","name":"American Glass Experts Inc.","logo":{"@type":"ImageObject","url":"https://www.americanglassexperts.us/logo.avif"}},"url":"https://www.americanglassexperts.us/case-studies/office-glass-partitions-burbank"}</script>"""
+    },
+    {
+        "slug": "custom-shower-enclosure-calabasas",
+        "title": "Custom Frameless Shower Enclosure — Calabasas Remodel | American Glass Experts",
+        "description": "Custom frameless shower enclosure in Starphire ultra-clear glass for a Calabasas master bath remodel. C-17 Licensed. Brushed nickel hardware, precise templating.",
+        "hero_title": "Custom Frameless Shower Enclosure",
+        "hero_subtitle": "Calabasas, Los Angeles County — Master Bath Remodel",
+        "badge": "Residential · Shower Enclosure",
+        "service_type": "Custom Frameless Shower Enclosure",
+        "location": "Calabasas, Los Angeles County",
+        "timeline": "1 Week (Measure to Install)",
+        "outcome": "Custom-fitted Starphire enclosure, no revisions needed",
+        "same_day": False,
+        "problem": """A homeowner in Calabasas was in the final phase of a master bath remodel and needed a shower enclosure that could work around a non-standard niche: an angled ceiling on one side, a custom-tiled niche cut into the back wall, and a diagonal entry opening. Standard prefab enclosures wouldn't fit. The contractor on the job had tried two other glass companies — one quoted an 8-week lead time, the other refused the job due to the angled ceiling.""",
+        "solution": """We sent a technician to template the space in detail, accounting for the sloped ceiling angle (17 degrees from plumb), the tile niche depth, and the diagonal entry. The enclosure was designed with Starphire ultra-clear glass — a low-iron glass that eliminates the standard green tint, critical on a light-toned marble tile surround. Panel dimensions were custom-cut to fit the angle precisely. The door panel uses a pivot hinge system anchored into the tile wall with a sealed penetration to prevent moisture ingress. All hardware was matched to the homeowner's existing brushed nickel fixtures.""",
+        "result": """Glass was delivered and installed in a single visit, seven days after templating. The angled ceiling panel fit to within 1/8 inch — no field trimming required. The homeowner described the finished enclosure as looking like it was designed into the original architecture of the bathroom. The contractor on the project subsequently referred us to two additional clients on the same street.""",
+        "related_service": "/shower-enclosures",
+        "related_text": "Shower Enclosures",
+        "related_service2": "/custom-mirrors",
+        "related_text2": "Custom Mirrors",
+        "ld": """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Custom Frameless Shower Enclosure — Calabasas Remodel","description":"Custom frameless shower enclosure in Starphire glass for a non-standard Calabasas master bath.","author":{"@type":"Organization","name":"American Glass Experts Inc."},"publisher":{"@type":"Organization","name":"American Glass Experts Inc.","logo":{"@type":"ImageObject","url":"https://www.americanglassexperts.us/logo.avif"}},"url":"https://www.americanglassexperts.us/case-studies/custom-shower-enclosure-calabasas"}</script>"""
+    },
+    {
+        "slug": "retail-storefront-upgrade-glendale",
+        "title": "Retail Storefront Glass Upgrade — Glendale | American Glass Experts",
+        "description": "Aging single-pane storefront glass replaced with insulated dual-pane units on a Glendale retail strip. C-17 Licensed. Improved security, curb appeal, and energy efficiency.",
+        "hero_title": "Retail Storefront Glass Upgrade",
+        "hero_subtitle": "Glendale, Los Angeles County",
+        "badge": "Commercial · Storefront Upgrade",
+        "service_type": "Storefront Glass Replacement — Insulated Units",
+        "location": "Glendale, Los Angeles County",
+        "timeline": "3 Days",
+        "outcome": "Updated storefront, reduced heat gain, improved security rating",
+        "same_day": False,
+        "problem": """A retail clothing boutique in Glendale had operated with the building's original single-pane plate glass storefront for over a decade. The aging glass had developed a stress crack that spanned the full height of one panel, and the store's interior temperature near the windows was uncomfortably warm during summer afternoons — affecting both merchandise display and customer comfort. The landlord authorized the tenant to upgrade the glass at the tenant's cost, so the business owner was looking for maximum value: better appearance, better comfort, and better security.""",
+        "solution": """We proposed replacing the existing single-pane panels with dual-pane insulated glass units (IGUs) with a low-E coating on the interior surface. The low-E coating reduces solar heat gain by approximately 40% while maintaining high visible light transmission — the store's displays would remain visible from the street without the greenhouse effect. The aluminum storefront frame was in good condition and was retained; only the glass was replaced. We also upgraded the door glass to laminated safety glass for improved break-in resistance. Work was scheduled for Tuesday through Thursday to avoid the weekend retail peak.""",
+        "result": """Three days later, the boutique had a fully upgraded storefront. The owner noted a visible improvement in the street-facing appearance — the old glass had a visible yellow tint from age that the new low-E glass does not have. Staff reported the area near the windows was noticeably cooler within the first week. The store's insurance agent subsequently reviewed the laminated door glass and confirmed a reduced premium adjustment at the next renewal.""",
+        "related_service": "/storefront-glass",
+        "related_text": "Storefront Glass",
+        "related_service2": "/commercial",
+        "related_text2": "Commercial Overview",
+        "ld": """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Retail Storefront Glass Upgrade — Glendale","description":"Single-pane storefront replaced with insulated low-E units for a Glendale retail boutique.","author":{"@type":"Organization","name":"American Glass Experts Inc."},"publisher":{"@type":"Organization","name":"American Glass Experts Inc.","logo":{"@type":"ImageObject","url":"https://www.americanglassexperts.us/logo.avif"}},"url":"https://www.americanglassexperts.us/case-studies/retail-storefront-upgrade-glendale"}</script>"""
+    },
+    {
+        "slug": "emergency-board-up-los-angeles",
+        "title": "Emergency Glass Board-Up After Break-In — Los Angeles | American Glass Experts",
+        "description": "Overnight emergency board-up and same-day glass replacement after a break-in at a Los Angeles property. C-17 Licensed. Secured before business hours.",
+        "hero_title": "Emergency Board-Up After Break-In",
+        "hero_subtitle": "Los Angeles — Overnight Response",
+        "badge": "Emergency · Board-Up",
+        "service_type": "Emergency Glass Board-Up & Replacement",
+        "location": "Los Angeles",
+        "timeline": "Boarded overnight · Replaced by 9 a.m.",
+        "outcome": "Property secured and fully glazed before opening",
+        "same_day": True,
+        "problem": """At 12:47 a.m., a property manager received an alarm notification for a commercial suite in the Koreatown neighborhood of Los Angeles. A smash-and-grab break-in had shattered the front entry door glass and one adjacent sidelight panel — approximately 60 square feet of glass total. The police had cleared the scene but the property was wide open. The business inside could not operate with an open entry. The property manager needed the opening secured immediately and the glass replaced before the tenant's 9 a.m. opening.""",
+        "solution": """Our emergency line connected within three rings. A two-person crew was on-site by 2:15 a.m. with plywood board-up materials. The entry was secured with a reinforced plywood panel anchored to the existing aluminum frame — no drilling into the facade required. All glass debris was cleared from both inside and outside the entry. By 6:00 a.m. the property manager had confirmed the suite was secure. At 7:00 a.m. a second crew arrived with replacement tempered glass cut to the original door and sidelight specifications. The door glass and sidelight were reinstalled, the hardware was reattached, and the door was operational by 8:45 a.m.""",
+        "result": """The tenant opened on time. Total time from first call to completed glass replacement: approximately eight hours. The property manager noted that a previous emergency glass call with a different company had taken 18 hours just for the board-up. They added American Glass Experts to their preferred vendor list for the building portfolio. The installed glass meets California safety glazing requirements for entry door applications.""",
+        "related_service": "/emergency-glass",
+        "related_text": "Emergency Glass",
+        "related_service2": "/storefront-glass",
+        "related_text2": "Storefront Glass",
+        "ld": """<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Emergency Glass Board-Up After Break-In — Los Angeles","description":"Overnight board-up and same-day glass replacement after a break-in at a Los Angeles commercial property.","author":{"@type":"Organization","name":"American Glass Experts Inc."},"publisher":{"@type":"Organization","name":"American Glass Experts Inc.","logo":{"@type":"ImageObject","url":"https://www.americanglassexperts.us/logo.avif"}},"url":"https://www.americanglassexperts.us/case-studies/emergency-board-up-los-angeles"}</script>"""
+    },
+]
+
+for case in CASES:
+    slug = case["slug"]
+    out_path = os.path.join(BASE, f"{slug}.html")
+
+    trust_badges = ['<span class="badge badge-blue">C-17 Licensed · CSLB #1125850</span>']
+    if case["same_day"]:
+        trust_badges.append('<span class="badge badge-green">Same-Day Available</span>')
+
+    html = HEAD_TEMPLATE.format(
+        title=case["title"],
+        description=case["description"],
+        slug=slug,
+        css=CSS,
+        ld=case["ld"]
+    )
+    html += "\n" + NAV + "\n"
+    html += f"""
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/case-studies">Case Studies</a><span>›</span><span style="color:var(--text);">{case["hero_title"]}</span></div>
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-dim);border:1px solid rgba(37,99,235,.15);padding:4px 12px;border-radius:100px;margin-bottom:16px;">{case["badge"]}</span>
+    <h1>{case["hero_title"]}</h1>
+    <p style="color:var(--text-mid);font-size:1.05rem;max-width:560px;margin-top:14px;">{case["hero_subtitle"]}</p>
+    <div class="meta-strip">
+      <div class="meta-item"><span class="meta-label">Service</span><span class="meta-value">{case["service_type"]}</span></div>
+      <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">{case["location"]}</span></div>
+      <div class="meta-item"><span class="meta-label">Timeline</span><span class="meta-value">{case["timeline"]}</span></div>
+      <div class="meta-item"><span class="meta-label">Outcome</span><span class="meta-value">{case["outcome"]}</span></div>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
+<section style="padding:80px 0;">
+  <div class="container">
+    <div class="case-body">
+
+      <h2>The Problem</h2>
+      <p>{case["problem"]}</p>
+
+      <h2>The Solution</h2>
+      <p>{case["solution"]}</p>
+
+      <h2>The Result</h2>
+      <p>{case["result"]}</p>
+
+      <div class="trust-strip">
+        {" ".join(trust_badges)}
+      </div>
+
+      <h2>Related Services</h2>
+      <div class="related-links">
+        <a href="{case["related_service"]}">{case["related_text"]} →</a>
+        <a href="{case["related_service2"]}">{case["related_text2"]} →</a>
+        <a href="/case-studies">All Case Studies →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--blue);padding:72px 0;">
+  <div class="container" style="text-align:center;">
+    <h2 style="color:#fff;margin-bottom:16px;">Have a Similar Project?</h2>
+    <p style="color:rgba(255,255,255,0.85);font-size:1.05rem;max-width:500px;margin:0 auto 32px;">C-17 Licensed · Free Estimates · Serving Los Angeles, Ventura, San Bernardino &amp; Riverside Counties</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/contact" class="btn" style="background:#fff;color:var(--blue);font-size:.95rem;padding:16px 40px;font-weight:700;">Get a Free Quote →</a>
+      <a href="tel:+18057506471" class="btn" style="background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5);font-size:.95rem;padding:16px 40px;font-weight:700;">(805) 750-6471</a>
+    </div>
+  </div>
+</section>
+</main>
+"""
+    html += "\n" + FOOTER + "\n</body>\n</html>\n"
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Created: {out_path}")
+
+print("\nAll case study pages generated.")
