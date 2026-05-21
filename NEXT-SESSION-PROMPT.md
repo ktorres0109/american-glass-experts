@@ -1,67 +1,140 @@
-# Next Session Handoff — American Glass Experts
+# American Glass Experts — Session Handoff Prompt
 
-## Site Context
-
+## Project
 - **URL:** https://www.americanglassexperts.us
-- **Repo:** https://github.com/ktorres0109/american-glass-experts (Cloudflare Pages auto-deploys on push to `main`)
-- **Stack:** Static HTML (336+ files), no framework. All CSS inline per file. Clean URLs via Cloudflare Worker (strips `.html`).
-- **CSS design tokens:** `--blue: #2563eb`, `--charcoal: #1e293b`, `--bg: #ffffff`, `--bg-soft: #f7f8fa`, `--coal: #0f172a`
-- **Dark mode warning:** `[data-theme="dark"]` flips `--charcoal` to `#e2eaf4` (near-white). Never use `var(--charcoal)` as a background for text — use hardcoded values like `#475569` or `#1e293b` directly.
-- **Business:** Licensed glass contractor (C-17, CSLB #1125850), Southern California. Residential + Commercial. Founded 2003.
+- **Repo:** https://github.com/ktorres0109/american-glass-experts (Cloudflare Pages, auto-deploys on push to `main`)
+- **Stack:** 307 static HTML files, no framework. All CSS inline per file.
+- **Clean URLs:** Cloudflare Worker strips `.html`
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
+- **File layout:** Root `.html` + `commercial-glass-{city}.html` (130+) + `{city}.html` (138) + `blog/*.html` + `case-studies/*.html`
+- **Business:** Licensed glass contractor — C-17, CSLB #1125850. Southern California. Founded 2003.
+- **Phone:** (805) 750-6471 | **Address:** 6853 Reseda Blvd, Reseda, CA 91335
 
-## What Was Done (Prior Sessions)
+---
 
-1. Full nav updated across all 336+ pages: split into **Residential ▾** / **Commercial ▾** dropdowns.
-2. `/commercial` landing page created — hero, services, industries, county-based city links.
-3. `service-areas.html` updated with Residential/Commercial audience toggle.
-4. `index.html` updated with commercial highlight strip and footer commercial column.
-5. `privacy-policy.html`, `terms-of-service.html` exist.
-6. Footer: `Terms | Privacy | Sitemap | Service Areas` in footer-bottom row across all pages.
-7. Case studies created but soft taken down (noindex, removed from nav) until real photos ready.
-8. Reviews section (5 cards, `.reviews-section` > `.reviews-grid`) added to all 148+ pages before CTA. CSS already embedded in all pages.
-9. **Dark mode toggle fixed on 189 pages** — rogue `<script>` block after `</body></html>` was binding a second click listener causing double-toggle (net no change). Removed from all.
-10. `services.html` contact-strip upgraded to collapsible inline form.
-11. **Map sections removed from all pages** (except `contact.html`) — covered `<!-- MAP -->`, `<!-- MAP EMBED -->`, `<!-- OUR LOCATION MAP -->` variants across 150 pages.
-12. **Reviews updated to 6 cards (2×3 grid)** across all 149 pages — replaced Erendira N./Kevin F./Jaquelyn S./Jesus R./Salinas R. with Alexis M./Jesus S./Joshua B./Mercy R./Dylan N./Lisandro O. All 5★ real Yelp reviews. Removed `review-wide` class.
-13. Always push to GitHub after changes.
+## EXACT Design Tokens (use these values, never guess)
 
-## Tasks for Next Session
+```css
+/* Light mode (:root) */
+--blue:      #4a90d9;
+--blue-dk:   #3a7bc8;
+--blue-lt:   #6aaee8;
+--blue-dim:  rgba(74,144,217,0.08);
+--blue-glow: rgba(74,144,217,0.22);
+--coal:      #0f172a;
+--charcoal:  #1e293b;
 
-### 1. ~~REMOVE Map sections~~ ✅ DONE
-### 2. ~~Reviews 5→6 cards~~ ✅ DONE
+/* Dark mode ([data-theme="dark"]) */
+--blue:      #4a90d9;   /* same in both modes now */
+--blue-dk:   #3a7bc8;
+--blue-lt:   #6aaee8;
+--coal:      #f0f4f8;   /* flips in dark — do NOT use for backgrounds */
+--charcoal:  #e2eaf4;   /* flips in dark — do NOT use for dark backgrounds */
+```
 
-### 3. Diversify reviews per page type (OPTIONAL FOLLOW-UP)
-- Currently: same 6 reviews on every page
-- Goal: city pages show local-feeling reviews, service pages show service-specific ones
-- Yelp source: https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4
-- 17 total reviews available (see NEXT-SESSION-PROMPT for full list when ready)
+**Dark mode warning:** `--charcoal` flips to near-white in dark mode. Never use `var(--charcoal)` as a section background. Hardcode values instead.
 
-### 4. Homepage: move stats/trust bar above CTA
-- On `index.html`, identify stats/trust strip and move it to appear directly above the contact-strip CTA
-- Confirm exact element with user
+---
 
-## Current Reviews (in all pages right now)
-1. Alexis M. — Shower Enclosure — 5★
-2. Jesus S. — Shower Enclosure — 5★
-3. Joshua B. — Shower Glass — 5★
-4. Mercy R. — Window Replacement — 5★
-5. Dylan N. — Glass Services — 5★
-6. Lisandro O. — Glass Panel — 5★
+## All Changes Made This Session (DO NOT redo)
 
-## Technical Notes
-- Always use **Python batch scripts** for changes touching many files
-- Run dry-run count before writing
-- After all changes: `git add -A`, commit, `git push origin main`
-- Cloudflare Pages deploys automatically
-- Clean URLs: `.html` stripped by Cloudflare Worker
-- `.review-wide { grid-column: span 2; }` — remove this from reviews when switching to 6-card layout
-- Reviews CSS is inside `<style>` blocks per page, not an external file
+### ✅ 1. Footer background — solid `#0c1117` both modes (294 pages)
+```css
+.footer { background: #0c1117; color: rgba(255,255,255,0.55); padding: 72px 0 36px; }
+[data-theme="dark"] .footer { background: #0c1117; }
+```
 
-## Gallery Technical Details
-- Commercial page: `#gs-gallery-strip` + `#gs-lightbox`, images 71,7,15,8,20,35,56
-- Services page: `#svc-gallery-strip` + `#svc-lightbox`, all 74 images shuffled, 90s/cycle
-- R2 CDN: `https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/{n}.jpg`
+### ✅ 2. Contact strip gradient above footer — all 306 pages
+Section: `<section class="contact-strip">` directly before `<footer`.
+**EXACT CSS that must be in every page:**
+```css
+.contact-strip {
+  background: linear-gradient(180deg, #1a2535 0%, #0d1117 100%);
+  padding: 96px 0; text-align: center;
+  position: relative; overflow: hidden;
+}
+[data-theme="dark"] .contact-strip {
+  background: linear-gradient(180deg, #1a2535 0%, #0d1117 100%);
+}
+.contact-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(74,144,217,0.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-strip h2 { color: #fff; margin-bottom: 12px; }
+[data-theme="dark"] .contact-strip h2 { color: var(--white); }
+.contact-strip-sub { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 44px; }
+[data-theme="dark"] .contact-strip-sub { color: var(--text-mid); }
+.contact-actions { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.contact-actions-main { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+```
 
-## Case Studies (On Hold)
-When real photos ready: remove noindex from `case-studies.html` + 5 sub-pages, add back nav link to Commercial dropdown.
+### ✅ 3. Blue accent — `#4a90d9` everywhere (297 pages)
+Old `#2563eb` / `#1d4ed8` / `#3b82f6` fully replaced. Buttons use `var(--blue)`.
+
+### ✅ 4. Nav logo
+- `height: 48px` (was 40px), `gap: 6px` (was 10px)
+- `logo-icon-dark.webp` = dark icon on transparent bg (light mode)
+- `logo-icon.webp` = white icon on transparent bg (dark mode)
+- Favicon: `logo-icon-dark.png` = transparent bg
+
+### ✅ 5. Removed `cta-band` sections (153 pages)
+Old `<section class="cta-band">` was a duplicate CTA. All removed. No page should have `cta-band` anymore.
+
+### ✅ 6. Homepage footer/contact-strip fixed
+Both were light-colored. Now dark and matching all other pages.
+
+---
+
+## Known Remaining Issues — Fix These
+
+### 🔴 `review.html` — missing contact-strip HTML
+Only page (out of 307) that still has no `class="contact-strip"`. Add section before `<footer`.
+
+### 🔴 Verify ALL 307 pages with Python — use `glob` not shell loops
+
+**ALWAYS scan with:**
+```python
+import glob
+all_files = list(set(
+    glob.glob("/Users/kel/Documents/projects/american-glass-experts/*.html") +
+    glob.glob("/Users/kel/Documents/projects/american-glass-experts/**/*.html", recursive=True)
+))
+```
+
+**Run these 7 checks and fix anything found:**
+
+1. **Missing contact-strip HTML** — `class="contact-strip"` not in file
+2. **Old blue color** — `#2563eb` or `#1d4ed8` still present
+3. **Wrong footer bg** — `.footer {` contains `var(--coal)` or `#060a10`
+4. **cta-band remnants** — `class="cta-band"` still present anywhere
+5. **Duplicate contact strips** — `class="contact-strip"` appears more than once
+6. **Wrong contact-strip bg** — `.contact-strip {` has `var(--charcoal)` instead of gradient
+7. **Wrong dark override** — `[data-theme="dark"] .contact-strip {` has `var(--bg-soft)` instead of gradient
+
+---
+
+## Workflow Rules
+- Use Python batch scripts for multi-file changes — print count before writing
+- After changes: `git add -A && git commit -m "..." && git push origin main`
+- Always use absolute paths
+- Cloudflare auto-deploys on push to `main`
+
+---
+
+## Other Site Context
+
+### Nav structure
+Residential ▾ / Commercial ▾ dropdowns. Theme toggle + "Call Now" + "Get a Free Quote" buttons.
+
+### Reviews (same 6 on all pages)
+Alexis M. / Jesus S. / Joshua B. / Mercy R. / Dylan N. / Lisandro O. — all 5★ real Yelp reviews.
+
+### Case studies (on hold)
+noindex on `case-studies.html` + 5 sub-pages. Removed from nav. Re-enable when real photos ready.
+
+### Gallery
+- Commercial: `#gs-gallery-strip` + `#gs-lightbox`, images 71,7,15,8,20,35,56
+- Services: `#svc-gallery-strip` + `#svc-lightbox`, all 74 images shuffled
+- CDN: `https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/{n}.jpg`
