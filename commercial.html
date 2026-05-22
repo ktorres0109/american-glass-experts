@@ -108,7 +108,7 @@ ul { list-style: none; }
 /* ── DARK THEME ── */
 [data-theme="dark"] {
   --bg:          #0d1117;
-  --bg-soft:     #131a24;
+  --bg-soft:     #182035;
   --bg-card:     #1a2332;
   --bg-nav:      rgba(13,17,23,0.97);
   --surface:     #1e2d42;
@@ -317,6 +317,7 @@ section { padding: 100px 0; }
   clip-path: polygon(0 0, 40% 0, 100% 100%, 0 100%);
   z-index: 3;
 }
+[data-theme="dark"] #main-content { background: var(--bg-soft); }
 [data-theme="dark"] .hero-left { background: var(--bg); }
 [data-theme="dark"] .hero-left::after { background: var(--bg); }
 
