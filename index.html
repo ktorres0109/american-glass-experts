@@ -981,7 +981,7 @@ section { padding: 100px 0; }
 .ticker-item::after { content: '·'; margin-left: 28px; color: var(--blue); opacity: .4; }
 
 /* ── FOOTER ── */
-.footer { background: #0c1117; color: rgba(255,255,255,0.55); padding: 72px 0 36px; }
+.footer { background: #0c1117; color: rgba(255,255,255,0.55); padding: 0 0 36px; }
 [data-theme="dark"] .footer { background: #0c1117; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
 .footer-brand-name { font-family: var(--head); font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
@@ -1570,6 +1570,17 @@ section { padding: 100px 0; }
 <!-- FOOTER -->
 <footer class="footer s-dark">
   <div class="container">
+      <div style="text-align:center;padding:72px 0 64px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:56px;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(74,144,217,0.18) 0%,transparent 65%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <span class="section-label" style="display:flex;justify-content:center;color:rgba(255,255,255,0.4);margin-bottom:16px;">Get in Touch</span>
+          <h2 style="margin-bottom:14px;color:#fff;">Get a Free Estimate</h2>
+          <p style="color:rgba(255,255,255,0.55);max-width:520px;margin:0 auto 36px;font-size:.97rem;line-height:1.75;">C-17 Licensed &middot; CSLB #1125850 &middot; Serving Los Angeles &amp; Southern California</p>
+          <div style="display:flex;justify-content:center;">
+            <a href="/contact" class="btn-call" style="width:220px;justify-content:center;">Contact Us</a>
+          </div>
+        </div>
+      </div>
     <div class="footer-grid">
       <div>
         <div class="footer-brand-name">American <span>Glass</span> Experts Inc.</div>
