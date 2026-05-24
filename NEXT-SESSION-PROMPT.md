@@ -7,10 +7,9 @@
 
 Read `SEO-PRIORITY-ACTIONS.md` for full priority queue. Quick summary:
 
-1. **Improve `/emergency-glass`** — position 20 for "24 hour glass repair LA", 30+ impressions, 0 clicks
-2. **Batch: unique meta descriptions** on 131 city pages (all identical = GSC flag)
-3. **Batch: fix placeholder phone** `(818) 555-0000` → `(805) 750-6471` on 133 pages
-4. **Fix BBB NAP** (wrong address/phone, DA 91)
+1. **Fix BBB NAP** (wrong address/phone, DA 91)
+2. **Update nav links** — ~300 residential pages still link to `/commercial-glass-{city}` (redirects handle it, but direct links cleaner)
+3. **Update nav links in commercial pages** — same issue internally
 
 ### Google APIs (all configured)
 Config: `~/.config/claude-seo/google-api.json`
