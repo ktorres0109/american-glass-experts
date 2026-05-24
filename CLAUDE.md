@@ -81,6 +81,11 @@ On hold — noindex on `case-studies.html` + 5 sub-pages, removed from nav. Re-e
 - Boost Google review velocity (text customers direct review link after each job)
 - Verify GBP primary category is "Glass repair service" + add secondary categories
 
+## Optional SEO Improvements (scriptable)
+- Diversify reviews per page — 17 Yelp reviews available, currently same 6 on all 300+ pages
+- Expand blog paragraphs — body paragraphs under optimal AI citation range (~80-130 words, target 134-167)
+- HowTo schema on the installation guide blog post
+
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
 - After changes: `git add -A && git commit -m "..." && git push origin main`
