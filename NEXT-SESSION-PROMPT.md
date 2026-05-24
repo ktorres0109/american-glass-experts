@@ -1,4 +1,44 @@
 # American Glass Experts — Session Handoff Prompt
+*Last updated: 2026-05-23 — SEO session (Google APIs setup + schema fix)*
+
+---
+
+## SEO Next Session — Start Here
+
+Read `SEO-PRIORITY-ACTIONS.md` for full priority queue. Quick summary:
+
+1. **Improve `/emergency-glass`** — position 20 for "24 hour glass repair LA", 30+ impressions, 0 clicks
+2. **Batch: unique meta descriptions** on 131 city pages (all identical = GSC flag)
+3. **Batch: fix placeholder phone** `(818) 555-0000` → `(805) 750-6471` on 133 pages
+4. **Fix BBB NAP** (wrong address/phone, DA 91)
+
+### Google APIs (all configured)
+Config: `~/.config/claude-seo/google-api.json`
+OAuth token: `~/.config/claude-seo/oauth-token.json`
+Client secret: `/Users/kel/client_secret_555656842247-nnqkoqk79m5jdqf2qed14eeg4i2t0o2f.apps.googleusercontent.com.json`
+
+```bash
+# Verify credentials
+cd /Users/kel/.claude/skills/seo && .venv/bin/python scripts/google_auth.py --check
+
+# Full Google SEO run
+# /seo google https://www.americanglassexperts.us
+
+# GSC data
+cd /Users/kel/.claude/skills/seo && .venv/bin/python scripts/gsc_query.py --property "sc-domain:americanglassexperts.us" --json
+
+# GA4 organic traffic
+cd /Users/kel/.claude/skills/seo && .venv/bin/python scripts/ga4_report.py --property "properties/534586830" --json
+```
+
+### What was done 2026-05-23
+- Schema: removed incomplete LocalBusiness inline from provider in all 138 commercial-glass-*.html → pushed
+- Google APIs: fully configured Tier 2 (GSC, Indexing, GA4, Ads)
+- First data pull: 88 organic sessions in 28d, sitemap 297 submitted/0 indexed, homepage indexed + rich results passing
+
+---
+
+# American Glass Experts — Original Design Handoff Prompt
 
 ## Project
 - **URL:** https://www.americanglassexperts.us
