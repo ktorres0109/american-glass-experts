@@ -14,20 +14,23 @@
 
 ## CSS Design Tokens
 ```
---blue: #2563eb
+--blue: #4a90d9
+--blue-dk: #3a7bc8
+--blue-lt: #6aaee8
 --charcoal: #1e293b
 --bg: #ffffff
 --bg-soft: #f7f8fa
 --coal: #0f172a
 ```
-**Dark mode warning:** `[data-theme="dark"]` flips `--charcoal` to `#e2eaf4` (near-white). Never use `var(--charcoal)` as background for text — use hardcoded `#475569` or `#1e293b` directly.
+**Dark mode warning:** `[data-theme="dark"]` flips `--charcoal` to `#e2eaf4` (near-white). Never use `var(--charcoal)` as background for text — hardcode `#475569` or `#1e293b` directly.
 
 Dark/light toggle via `data-theme` on `<html>`, stored in `localStorage('age-theme')`.
 
 ## Structure
 - Root `.html`: `index.html`, `services.html`, `about.html`, `commercial.html`, `contact.html`, `review.html`, `blog.html`, `gallery.html`, city pages (138 total), service pages
-- `commercial-glass-{city}.html` — 130+ commercial location pages
-- Subdirs: `blog/`, `case-studies/`
+- `commercial/{city}.html` — 138 commercial location pages (URLs: `/commercial/{city}`)
+- `_redirects`: `/commercial-glass-* /commercial/:splat 301` handles old URLs
+- Subdirs: `blog/`, `case-studies/`, `commercial/`
 
 ## Design Conventions
 - `.reveal` + IntersectionObserver for scroll animations; stagger with `.d1/.d2/.d3`
@@ -72,18 +75,11 @@ On hold — noindex on `case-studies.html` + 5 sub-pages, removed from nav. Re-e
 11. Map sections removed from all pages except `contact.html`
 12. Reviews updated to 6 cards — Alexis M./Jesus S./Joshua B./Mercy R./Dylan N./Lisandro O. (real Yelp reviews)
 
-## Pending Tasks (from ACTION-PLAN.md)
-- Fix BBB listing NAP (wrong address + phone — DA 91 hurting local authority)
-- Unique meta descriptions on all 131 city pages (all identical = GSC flag)
-- Fix blog author schema: `"American Glass Experts Team"` → `Person: Frank Salinas, Lead Glazier`
-- Add `#frank` bio section to `about.html`
-- Fix contact form placeholder: `(818) 555-0000` → `(805) 750-6471` (133 pages)
-- Fix copyright footer: `© 2025` → `© 2026`
-- Add `logo`, `foundingDate: "2003"`, `hasOfferCatalog` to homepage schema
-- Add Google Maps embed to homepage + top 5 city pages
-- Build citations: Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps
-- Optional: diversify reviews per page type (17 Yelp reviews available)
-- Optional: move stats/trust bar above CTA on homepage
+## Pending Tasks (manual — cannot be scripted)
+- Fix BBB listing NAP (wrong address + phone — DA 91 hurting local authority) → bbb.org
+- Build citations: Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps, BuildZoom
+- Boost Google review velocity (text customers direct review link after each job)
+- Verify GBP primary category is "Glass repair service" + add secondary categories
 
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
