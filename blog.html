@@ -144,8 +144,13 @@ h3 { font-size: clamp(1.3rem,2vw,1.75rem); }
 section { padding: 88px 0; }
 
 .section-label {
-  display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  display: block; width: 20px; height: 2px; background: var(--blue); border-radius: 1px;
 }
 
 .btn {
@@ -270,7 +275,7 @@ section { padding: 88px 0; }
 .blog-card:hover .blog-card-link { gap: 10px; }
 
 /* ── FOOTER ── */
-.footer { background: #0c1117; padding: 72px 0 40px; color: rgba(255,255,255,0.55); }
+.footer { background: #0c1117; padding: 0 0 36px; color: rgba(255,255,255,0.55); }
 [data-theme="dark"] .footer { background: #0c1117; border-top: 1px solid var(--border); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
 .footer-brand-name { font-family: var(--head); font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
