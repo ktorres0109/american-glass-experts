@@ -7,9 +7,7 @@
 
 Read `SEO-PRIORITY-ACTIONS.md` for full priority queue. Quick summary:
 
-1. **Fix BBB NAP** (wrong address/phone, DA 91)
-2. **Update nav links** — ~300 residential pages still link to `/commercial-glass-{city}` (redirects handle it, but direct links cleaner)
-3. **Update nav links in commercial pages** — same issue internally
+1. **Fix BBB NAP** (wrong address/phone, DA 91) — manual task on bbb.org
 
 ### Google APIs (all configured)
 Config: `~/.config/claude-seo/google-api.json`
