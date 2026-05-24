@@ -26,7 +26,7 @@
 
 ## Priority 1 — Fix API Key (PageSpeed + CrUX)
 
-**Problem:** API key `AIzaSyAK7yz-kUW4OdDWZzBxf8S6eGoleZ3zA00` rejected by PSI + CrUX APIs.
+**Problem:** PSI + CrUX APIs were not enabled for the GCP API key.
 
 **Fix:** In Google Cloud Console (project: morning-bot):
 1. APIs & Services → Library → enable **PageSpeed Insights API**
