@@ -9,7 +9,7 @@
 
 ## Business
 - Licensed glass contractor — C-17, CSLB #1125850
-- Southern California, residential + commercial. Founded 2003.
+- Southern California, residential + commercial.
 - Address: 6853 Reseda Blvd, Reseda, CA 91335 | Phone: (805) 750-6471
 
 ## CSS Design Tokens
