@@ -1,5 +1,5 @@
 # American Glass Experts — SEO Session Handoff
-*Last updated: 2026-05-25*
+*Last updated: 2026-05-25 (Session 2)*
 
 ## Site
 - URL: https://www.americanglassexperts.us
@@ -9,88 +9,108 @@
 
 ---
 
-## What Was Fixed This Session
+## What Was Fixed This Session (Session 2 — May 25)
 
-### Ahrefs Issues
-- [x] **Broken images** — `flag-us.svg` → `/flag-us.svg` on all 138 commercial pages (relative path bug)
-- [x] **Orphan page** — `window-installation-alhambra.html` now linked from `window-repair.html` + `services.html` footer
-- [x] **Meta descriptions too long** — trimmed to ≤155 rendered chars on 5 pages: `services`, `reseda`, `gallery`, `custom-mirrors`, `storefront-glass`
+### Blog Content (AI Citation Coverage)
+- [x] **Blog paragraphs expanded** across 5 posts — target 80-130w per paragraph
+  - `commercial-storefront-glass-repair`: avg 53w → 70w
+  - `glass-shower-door-installation`: avg 54w → 74w
+  - `emergency-glass-repair`: avg 65w → 77w
+  - `storefront-glass-replacement`: avg 62w → 75w
+  - `frameless-shower-door-cost`: closing paragraph expanded
+- [x] **llms.txt updated** — added `/commercial` hub + 10 sample commercial city URLs
 
-### Semrush / Structured Data
-- [x] **LocalBusiness missing address** — added `PostalAddress` (6853 Reseda Blvd, Reseda CA 91335) to 6 service pages: `custom-mirrors`, `shower-enclosures`, `storefront-glass`, `window-repair`, `gallery`, `emergency-glass`
-- [x] **Duplicate H1/title** — fixed `blog/commercial-storefront-glass-repair-los-angeles.html` title → "LA Commercial Storefront Glass Repair | American Glass Experts" (62 chars)
-- [x] **Title too long** — `temple-city.html` trimmed to 62 chars
+### Schema.org (Ahrefs crawl — 143 page error)
+- [x] **AggregateRating field types fixed** — `ratingValue`, `reviewCount`, `bestRating`, `worstRating` were strings → now proper JSON numbers (float/int)
+  - Fixed on 139 residential city pages, service pages, blog posts
+  - Fixed `Review.reviewRating.ratingValue` strings in `index.html`
 
-### Technical / Performance
-- [x] **HSTS + security headers** — created `_headers` file for Cloudflare Pages (`Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`)
-- [x] **Sitemap** — added missing `/commercial` hub page (was in file system, not sitemap); updated lastmod for 6 modified pages
-- [x] **CSS externalized** — massive win for text/HTML ratio and page weight:
-  - `css/commercial-city.css` — 138 commercial city pages + 8 service pages (38KB saved each)
-  - `css/city-page.css` — 138 residential city pages (37KB saved each)
-  - `css/blog-post.css` — 4 blog posts (39KB saved each)
-  - `css/index.css`, `services.css`, `gallery.css`, `contact.css`, `commercial.css`, `service-areas.css`, `about.css`, `blog.css`, `blog-shower-door.css`, `blog-commercial-storefront.css` — hub pages
-  - **Result:** text/HTML ratio improved from ~8% → 15-19% on city/service pages
+### OG URL Mismatch (Ahrefs — 7 pages)
+- [x] **og:url hardcoded to `/corona`** on 7 city pages — template copy-paste bug
+  - Fixed: la-habra, bellflower, arcadia, beverly-hills, west-hollywood, cerritos, norwalk
+  - Each now matches its own canonical URL
+
+### Title Too Long (Ahrefs — 4-6 pages)
+- [x] `blog/commercial-storefront-glass-repair-los-angeles.html` trimmed 62c → 58c
+- [x] All 5 `case-studies/*.html` titles trimmed to ≤60c (noindexed but clean)
+
+### Links to Redirect (Ahrefs — 138 pages)
+- [x] **BreadcrumbList `item` URL had trailing slash** (e.g., `/reseda/`) — hits Cloudflare `/*/ → /:splat` 301 rule
+  - Fixed on all 138 residential city pages
+
+### Reviews
+- [x] **Confirmed** reviews already diversified from Session 1 (17 reviews, deterministic by filename seed). Script ran clean (no changes = already done).
 
 ---
 
-## Still Under 10% Text/HTML Ratio (needs body copy added)
-
-| Page | Ratio | Issue |
+## Expected Improvements on Next Ahrefs Crawl
+| Issue | Before | After (expected) |
 |---|---|---|
-| `gallery.html` | 0.031 | JS-heavy gallery — hard without refactor |
-| `services.html` | 0.058 | Nav/feature-heavy — add intro paragraphs |
-| `contact.html` | 0.063 | Form page — naturally low, low priority |
-| `service-areas.html` | 0.064 | Link-list heavy — add regional intro copy |
-| `commercial-glass.html` | 0.081 | Add more body paragraphs |
-| `review.html` | 0.035 | **noindexed** — ignore |
+| Schema.org validation errors | 143 pages | ~0 |
+| OG URL ≠ canonical | 7 pages | 0 |
+| Pages with links to redirect | 1+ pages | 0 |
+| Title too long | 4 pages | 0 |
 
 ---
 
-## Remaining SEO Tasks (priority order)
+## Still Open (priority order)
 
 ### High Priority
-1. **Diversify reviews per page** — same 6 reviews on all 300+ pages. 17 Yelp reviews available. Duplicate content signal. Need to rotate which 6 show per page using a Python script.
-2. **Trigger fresh Semrush crawl** — all fixes deployed, need updated report to see real remaining errors (current data is stale May 23 crawl). Hit "Rerun campaign" and screenshot new Errors + Warnings tabs.
-3. **Add body copy to thin pages** — `services.html`, `service-areas.html`, `commercial-glass.html` need more visible text to push ratio above 10%
+1. **Internal linking** — 24+5 pages have only 1 dofollow incoming link. Need to add cross-links from related city/service pages.
+2. **Google Search Console** — pull Coverage Errors, Core Web Vitals, top queries positions 4-20 (closest to page 1). These are the real ranking opportunities.
+3. **Semrush fresh crawl** — hit "Rerun campaign" to see what's left after all May 25 fixes.
 
 ### Medium Priority
-4. **HowTo schema** on `blog/glass-shower-door-installation-los-angeles.html` — quick structured data win
-5. **Blog paragraph expansion** — body paragraphs should be 80–130 words for AI citation coverage. Check all 6 blog posts.
-6. **Expand `llms.txt`** — add commercial hub page + new blog posts to Pages/Blog Posts sections (currently missing `/commercial`, `/commercial/{city}` pages)
-7. **Google Search Console** — need screenshots of: Coverage Errors, Core Web Vitals, top queries by impressions (positions 4-20 are closest to page 1)
+4. **Blog paragraph expansion (continued)** — `glass-shower-door-installation` still 10/15 paras under 80w. Could push avg from 74w → 90w+.
+5. **`services.html` body copy** — still ~5.8% text/HTML ratio. Add 2-3 intro paragraphs explaining service overview.
+6. **Add body copy to `service-areas.html`** — already has good copy but city link grid makes ratio low. Consider adding a "Why Southern California?" section.
 
 ### Manual (can't script)
-8. **BBB listing NAP fix** — wrong address + phone on bbb.org (DA 91 backlink, high value) → fix at bbb.org
-9. **Citation building** — Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps, BuildZoom
-10. **Google review velocity** — text customers direct GBP review link after each job
-11. **GBP primary category** — verify "Glass repair service" is primary + add secondary categories
+7. **BBB listing NAP fix** — wrong address + phone on bbb.org (DA 91 backlink, high value)
+8. **Citation building** — Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps, BuildZoom
+9. **Google review velocity** — text customers direct GBP review link after each job
+10. **GBP primary category** — verify "Glass repair service" is primary + add secondary categories
 
 ---
 
-## CSS Architecture (new — this session)
+## Ahrefs Status (as of May 25 crawl — this session)
+- **Health score: 100** (Errors: 0, Warnings: 7, Notices: many)
+- Active warnings:
+  - Noindex page: 8 (intentional — case-studies + review.html)
+  - OG URL mismatch: 7 → **FIXED, pending recrawl**
+  - Page has links to redirect: 1 → **FIXED, pending recrawl**
+  - Slow page: 1 (pacific-palisades.html, 2,761ms TTFB — cold Cloudflare cache, not a code issue)
+  - 3XX redirect: 1 (HTTP→HTTPS Cloudflare redirect — expected, not fixable)
+- Notices that are noise: Title changed (290), Word count changed (141) — from our content edits
 
+## Semrush Status (as of May 23 crawl — stale)
+- Health score: 92% | Errors: 29 | Warnings: 113
+- All major errors from May 23 crawl are now fixed. Need fresh crawl.
+
+---
+
+## CSS Architecture (unchanged from Session 1)
 All inline CSS extracted. Files in `/css/`:
-- `commercial-city.css` — shared by `commercial/*.html` + service pages (shower-enclosures, window-repair, sliding-window-repair, custom-mirrors, emergency-glass, storefront-glass, commercial-glass, window-installation-alhambra)
-- `city-page.css` — shared by all root-level city pages (reseda, burbank, glendale, etc.)
-- `blog-post.css` — shared by 4 blog posts (emergency, foggy-window, frameless-shower-door, storefront-glass-replacement)
+- `commercial-city.css` — shared by `commercial/*.html` + service pages
+- `city-page.css` — shared by all root-level city pages
+- `blog-post.css` — shared by 4 blog posts
 - Individual CSS files for each hub page
 
-**IMPORTANT:** If adding new city pages, use `<link rel="stylesheet" href="/css/city-page.css">` instead of inline `<style>` blocks.
+**IMPORTANT:** New city pages use `<link rel="stylesheet" href="/css/city-page.css">` not inline styles.
 
 ---
 
 ## Key Files / Paths
-- `sitemap.xml` — 298 URLs, lastmods updated
-- `_headers` — Cloudflare security headers (new this session)
-- `_redirects` — URL redirect rules
-- `llms.txt` — AI indexing file (complete, not causing real issues)
-- `css/` — all extracted stylesheets (new this session)
+- `sitemap.xml` — 299 URLs (commercial hub added), lastmods updated
+- `_headers` — Cloudflare security headers
+- `_redirects` — URL redirect rules (5 rules)
+- `llms.txt` — AI indexing file, commercial hub + city URLs added
+- `css/` — all extracted stylesheets
+- `scripts/diversify_reviews.py` — deterministic review rotation (17 reviews, seed=filename)
+- `scripts/reviews.json` — all 17 Yelp reviews
 
-## Semrush Audit Status (as of May 23 crawl — stale)
-- **Health score:** 92% | Errors: 29 | Warnings: 113 | Crawled: 100/100
-- Most errors/warnings from this crawl are NOW FIXED. Need fresh crawl to get accurate count.
-
-## Ahrefs Status
-- Broken images: fixed
-- Orphan pages: fixed (was 2, now 0)
-- Meta descriptions: fixed (was 6, now 0)
+## Review System (as of Session 1)
+- 17 reviews in `scripts/reviews.json`
+- All 149 pages with review sections have unique rotating sets of 6
+- Seed = filename → same 6 on every crawl, different across pages
+- Current 6 on any page deterministic: run dry-run to check
