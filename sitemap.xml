@@ -25,6 +25,18 @@
     <priority>0.8</priority>
   </url>
 <url>
+    <loc>https://www.americanglassexperts.us/terms-of-service</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+<url>
+    <loc>https://www.americanglassexperts.us/privacy-policy</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+<url>
     <loc>https://www.americanglassexperts.us/service-areas</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
