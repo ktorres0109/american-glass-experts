@@ -61,7 +61,8 @@ A: Frameless, semi-frameless, and framed enclosures in clear, frosted, or low-ir
 
 ## Pages
 - Homepage: https://www.americanglassexperts.us/
-- Services: https://www.americanglassexperts.us/services
+- Services (Residential): https://www.americanglassexperts.us/services
+- Commercial Glass Hub: https://www.americanglassexperts.us/commercial
 - Shower Enclosures: https://www.americanglassexperts.us/shower-enclosures
 - Window Repair: https://www.americanglassexperts.us/window-repair
 - Storefront Glass: https://www.americanglassexperts.us/storefront-glass
@@ -73,6 +74,20 @@ A: Frameless, semi-frameless, and framed enclosures in clear, frosted, or low-ir
 - Contact: https://www.americanglassexperts.us/contact
 - Blog: https://www.americanglassexperts.us/blog
 - Sitemap: https://www.americanglassexperts.us/sitemap.xml
+
+## Commercial City Pages (138 total — sample)
+Format: https://www.americanglassexperts.us/commercial/{city-slug}
+- Los Angeles: https://www.americanglassexperts.us/commercial/los-angeles
+- Glendale: https://www.americanglassexperts.us/commercial/glendale
+- Burbank: https://www.americanglassexperts.us/commercial/burbank
+- Pasadena: https://www.americanglassexperts.us/commercial/pasadena
+- Long Beach: https://www.americanglassexperts.us/commercial/long-beach
+- Santa Monica: https://www.americanglassexperts.us/commercial/santa-monica
+- Thousand Oaks: https://www.americanglassexperts.us/commercial/thousand-oaks
+- Oxnard: https://www.americanglassexperts.us/commercial/oxnard
+- San Bernardino: https://www.americanglassexperts.us/commercial/san-bernardino
+- Riverside: https://www.americanglassexperts.us/commercial/riverside
+- Full list: https://www.americanglassexperts.us/commercial
 
 ## Blog Posts
 - Foggy Window Repair Los Angeles: https://www.americanglassexperts.us/blog/foggy-window-repair-los-angeles
