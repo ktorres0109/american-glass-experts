@@ -741,14 +741,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-<script>
-// Theme toggle
-const btn=document.querySelector('.theme-toggle');
-if(btn)btn.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',t);localStorage.setItem('age-theme',t);});
-// Mobile nav
-const hb=document.getElementById('nav-hamburger'),mn=document.getElementById('nav-mobile');
-if(hb&&mn)hb.addEventListener('click',()=>mn.classList.toggle('open'));
-// Scroll nav
-window.addEventListener('scroll',()=>{const n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>40);});
-</script>
-</html>
