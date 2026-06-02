@@ -1,3 +1,6 @@
+# secrets — never commit
+secrets/
+
 # wrangler files
 .wrangler
 .dev.vars*

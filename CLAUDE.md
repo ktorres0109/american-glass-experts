@@ -86,7 +86,28 @@ On hold — noindex on `case-studies.html` + 5 sub-pages, removed from nav. Re-e
 - Expand blog paragraphs — body paragraphs under optimal AI citation range (~80-130 words, target 134-167)
 - HowTo schema on the installation guide blog post
 
+## API Keys and Credentials
+All private secrets live in `secrets/credentials.json`.
+This folder is gitignored — **never push it to GitHub**.
+
+Rules:
+- Private API keys → always read from `secrets/credentials.json`
+- Never hardcode private keys into HTML, JS, or CSS
+- Never create credential files outside `secrets/`
+- When adding a new key: store in `secrets/credentials.json`, document below
+
+### Keys intentionally hardcoded (public by design — do not move)
+- **Web3Forms key** (`53665885-fb86-4fce-8d07-d90806ff1317`) — client-side form key, must be in HTML to work
+- **Google Analytics ID** (`G-0N1LQ71T8T`) — public tracking ID
+- **IndexNow key** (`faa237c5f0e41eee3f2be30cfcc96af2`) — public verification key for Bing/Yandex
+- **JSON-LD schema data** — public SEO markup
+- **Cloudflare Wrangler account ID** — non-sensitive account metadata in `.wrangler/`
+
+### Current credentials in secrets/credentials.json
+*(none — no private secrets found in repo as of 2026-05-27)*
+
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
 - After changes: `git add -A && git commit -m "..." && git push origin main`
 - Cloudflare auto-deploys on push
+- **Never include `secrets/` in any git command.** Verify `.gitignore` before pushing.
