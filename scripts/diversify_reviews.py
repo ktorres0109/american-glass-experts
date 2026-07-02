@@ -117,7 +117,9 @@ def main():
     files = []
     for p in patterns:
         files.extend(ROOT.glob(p))
-    files = sorted(set(files))
+    # commercial.html carries hand-picked commercial reviews (Jesus R.,
+    # Salinas R., Elise Z.) — do not rotate them back to the general pool
+    files = sorted(f for f in set(files) if f.name != "commercial.html")
 
     updated = skipped = 0
     for f in files:

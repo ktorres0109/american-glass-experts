@@ -14,3 +14,9 @@ fix_template_errors.py
 generated_meta_descriptions.json
 new_pages_for_gsc*.txt
 *\ 2.html
+
+# GSC index monitor — local tooling, contains .env credentials
+gsc-index-monitor/
+
+# macOS
+.DS_Store

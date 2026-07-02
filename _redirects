@@ -1,5 +1,6 @@
 /index.html / 301
 /index / 301
+/commercial-glass /commercial 301
 /commercial-glass-* /commercial/:splat 301
 /*/ /:splat 301
 /*.html /:splat 301

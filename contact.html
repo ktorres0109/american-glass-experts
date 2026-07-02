@@ -191,6 +191,7 @@
                 <button type="button" id="btn-commercial" onclick="selectProjectType('Commercial')" class="btn btn-outline" style="flex:1;justify-content:center;padding:12px;font-size:.9rem;font-weight:600;transition:all .2s;">🏢 Commercial</button>
               </div>
               <input type="hidden" id="cf-service" value="Not specified" />
+              <p id="commercial-note" style="display:none;font-size:.78rem;color:var(--text-dim);margin:8px 0 0;">Property managers &amp; businesses: COI furnished before every job · permits filed under CSLB #1125850 · multi-property account programs available.</p>
             </div>
             <div class="form-group"><label class="form-label" for="cf-city">Your City</label><input class="form-input" id="cf-city" type="text" placeholder="e.g. Woodland Hills, Sherman Oaks..." /></div>
             <div class="form-group"><label class="form-label" for="cf-message">Tell Us About Your Project</label><textarea class="form-textarea" id="cf-message" style="min-height:120px;" placeholder="Size, style preferences, timeline, any photos to describe what you need..."></textarea></div>
@@ -296,6 +297,7 @@ function selectProjectType(type) {
     comBtn.style.background = 'var(--blue)'; comBtn.style.color = '#fff'; comBtn.style.borderColor = 'var(--blue)';
     resBtn.style.background = ''; resBtn.style.color = ''; resBtn.style.borderColor = '';
   }
+  document.getElementById('commercial-note').style.display = type === 'Commercial' ? 'block' : 'none';
 }
 
 document.getElementById('contact-main-form').addEventListener('submit', async e => {
