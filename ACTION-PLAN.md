@@ -14,7 +14,7 @@ BBB lists wrong address (Simi Valley) and wrong phone ((818) 426-4649). This is 
 
 **Action:** Go to bbb.org → find "American Glass Experts" → claim listing → update to:
 - Name: American Glass Experts Inc.
-- Address: 6853 Reseda Blvd, Reseda, CA 91335
+- Address: 6933 Reseda Blvd Unit J, Reseda, CA 91335
 - Phone: (805) 750-6471
 - Category: Glass & Glazing Contractors
 
@@ -92,7 +92,7 @@ Footer says `© 2025` but blog posts are dated April 2026 — contradiction visi
 ### 8. Build Missing Tier 1–2 Citations
 **Impact:** High | **Effort:** 3–4 hrs total | **Category:** Local SEO / Backlinks
 
-None of these directories appear in current citations. All use exact NAP: "American Glass Experts Inc." / "6853 Reseda Blvd, Reseda, CA 91335" / "(805) 750-6471"
+None of these directories appear in current citations. All use exact NAP: "American Glass Experts Inc." / "6933 Reseda Blvd Unit J, Reseda, CA 91335" / "(805) 750-6471"
 
 | Directory | Action |
 |---|---|

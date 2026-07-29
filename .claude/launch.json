@@ -4,7 +4,7 @@
     {
       "name": "age-static",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8787", "--directory", "/Users/kel/Documents/projects/american-glass-experts"],
+      "runtimeArgs": ["-m", "http.server", "8787", "--directory", "/Users/kel/projects/american-glass-experts"],
       "port": 8787
     }
   ]

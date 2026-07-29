@@ -3,7 +3,7 @@
 **Audit Date:** 2026-04-30
 **Business Type:** Hybrid SAB (Service-Area Business) — Glass Repair & Installation Contractor
 **License:** C-17 Glazing Contractor, CSLB #1125850
-**Location:** 6853 Reseda Blvd, Reseda, CA 91335
+**Location:** 6933 Reseda Blvd Unit J, Reseda, CA 91335
 
 ---
 
@@ -265,8 +265,8 @@ Static `.html` served via Cloudflare CDN is a **significant advantage** — full
 
 | Source | Address | Phone | Status |
 |---|---|---|---|
-| Website (all pages) | 6853 Reseda Blvd, Reseda CA 91335 | (805) 750-6471 | ✓ |
-| Homepage JSON-LD | 6853 Reseda Blvd, Reseda, CA 91335 | +1-805-750-6471 | ✓ |
+| Website (all pages) | 6933 Reseda Blvd Unit J, Reseda CA 91335 | (805) 750-6471 | ✓ |
+| Homepage JSON-LD | 6933 Reseda Blvd Unit J, Reseda, CA 91335 | +1-805-750-6471 | ✓ |
 | **BBB** | **1112 Richardson Ave, Simi Valley CA 93065** | **(818) 426-4649** | ✗ CRITICAL |
 
 ### Reviews

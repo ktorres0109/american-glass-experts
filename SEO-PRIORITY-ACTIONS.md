@@ -88,7 +88,7 @@ Not an error — Google crawls on its own schedule. But worth monitoring.
 ## Priority 6 — BBB Listing NAP
 
 **Issue:** BBB listing has wrong address + phone (DA 91 — high authority citation sending wrong signals).
-**Fix:** Claim/correct listing at bbb.org. Address: 6853 Reseda Blvd, Reseda CA 91335. Phone: (805) 750-6471.
+**Fix:** Claim/correct listing at bbb.org. Address: 6933 Reseda Blvd Unit J, Reseda CA 91335. Phone: (805) 750-6471.
 
 ---
 
