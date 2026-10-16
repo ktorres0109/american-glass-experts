@@ -1,0 +1,20 @@
+# Keep non-site files out of Workers static assets (assets.directory is ".")
+.git
+.github
+.gitignore
+.claude
+.wrangler
+.venv
+node_modules
+secrets
+scripts
+tests
+src
+gsc-index-monitor
+*.md
+*.py
+*.sh
+*.json
+wrangler.jsonc
+requirements.txt
+new_pages_for_gsc.txt
