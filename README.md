@@ -14,7 +14,7 @@ Static HTML/CSS website for American Glass Experts Inc., a glass repair and inst
 
 ## Before Launch Checklist
 
-- [x] Phone number: (805) 750-6471
+- [x] Phone number: (818) 426-4649
 - [ ] Web3Forms key — open `contact.html`, find `YOUR_WEB3FORMS_ACCESS_KEY`, replace with key from https://web3forms.com (free)
 - [ ] Photos — replace `img-placeholder` divs with real `<img>` tags
 
