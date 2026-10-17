@@ -165,10 +165,10 @@ SERVICES = [
 
 # CTA variants — short
 CTAS = [
-    "Free estimates. (818) 426-4649.",
-    "Call (818) 426-4649.",
-    "Free estimate. (818) 426-4649.",
-    "(818) 426-4649.",
+    "Free estimates. (805) 750-6471.",
+    "Call (805) 750-6471.",
+    "Free estimate. (805) 750-6471.",
+    "(805) 750-6471.",
 ]
 
 # License variants — short
@@ -189,9 +189,9 @@ def shorten(desc, max_len=155):
         ("C-17 Licensed contractor.", "C-17 Licensed."),
         ("C-17 Licensed, CSLB #1125850.", "C-17 Licensed."),
         ("C-17 contractor.", "C-17 Licensed."),
-        ("Free estimates. (818) 426-4649.", "(818) 426-4649."),
-        ("Free estimate. (818) 426-4649.", "(818) 426-4649."),
-        ("Call (818) 426-4649.", "(818) 426-4649."),
+        ("Free estimates. (805) 750-6471.", "(805) 750-6471."),
+        ("Free estimate. (805) 750-6471.", "(805) 750-6471."),
+        ("Call (805) 750-6471.", "(805) 750-6471."),
         (", Los Angeles County", ""),
         (", San Bernardino County", ""),
         (", Riverside County", ""),
