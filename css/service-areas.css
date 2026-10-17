@@ -979,3 +979,6 @@ section { padding: 100px 0; }
 .aud-btn:not(.active):hover { background: var(--bg-soft); color: var(--charcoal); }
 [data-theme="dark"] .aud-btn:not(.active):hover { color: var(--white); }
 
+
+/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
+@media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }

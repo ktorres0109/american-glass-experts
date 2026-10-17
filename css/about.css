@@ -179,3 +179,6 @@ section{padding:100px 0;}
 .skip-link{position:absolute;top:-100px;left:16px;background:var(--blue);color:#fff;padding:10px 20px;border-radius:0 0 var(--r) var(--r);font-size:.85rem;font-weight:700;z-index:9999;transition:top 0.2s;}
 .skip-link:focus{top:0;}
 @media(max-width:768px){.container{padding:0 20px;}section{padding:72px 0;}.top-bar{padding:8px 20px;}.top-bar-right{display:none;}.nav-inner{padding:0 20px;}.nav-links{display:none;}.nav-hamburger{display:flex;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
+
+/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
+@media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }

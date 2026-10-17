@@ -931,3 +931,6 @@ section { padding: 100px 0; }
   100% { transform: translateX(-50%); }
 }
 #svc-gallery-strip:hover { animation-play-state: paused; }
+
+/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
+@media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }

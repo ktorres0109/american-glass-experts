@@ -291,3 +291,6 @@ section { padding: 88px 0; }
 .contact-prefer-write:hover { color: rgba(255,255,255,0.65); }
 
 
+
+/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
+@media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }

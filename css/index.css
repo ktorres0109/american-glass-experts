@@ -909,3 +909,7 @@ section { padding: 100px 0; }
   .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
 }
 
+
+/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
+@media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }
+@media (max-width: 768px) { .commercial-strip-grid { grid-template-columns: 1fr !important; } }
