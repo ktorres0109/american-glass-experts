@@ -2,9 +2,10 @@
 
 ## Site
 - **URL:** https://www.americanglassexperts.us
-- **Repo:** https://github.com/ktorres0109/american-glass-experts (Cloudflare Pages, auto-deploys on push to `main`)
-- **Stack:** Static HTML (336+ files), no framework. All CSS inline per file.
-- **Clean URLs:** Cloudflare Worker strips `.html`
+- **Repo:** https://github.com/ktorres0109/american-glass-experts
+- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). Deploy by hand: `wrangler login` once, then `wrangler deploy` from the repo root. After deploying, confirm with `curl` that a changed page is live.
+- **Stack:** Static HTML (313 pages), no framework. CSS is in `/css/*.css` (one sheet per page type), plus some inline styles.
+- **Clean URLs:** `_redirects` strips `.html`; response headers come from `_headers` (the Worker script does not run for asset hits)
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
 
 ## Business
@@ -59,7 +60,7 @@ Dark/light toggle via `data-theme` on `<html>`, stored in `localStorage('age-the
 - R2 CDN: `https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/{n}.jpg`
 
 ## Case Studies
-On hold — noindex on `case-studies.html` + 5 sub-pages, removed from nav. Re-enable when real photos ready: remove noindex, add nav link back to Commercial dropdown.
+On hold, removed from nav. State is inconsistent as of 2026-11-16: only 2 of the 5 sub-pages carry noindex, `case-studies.html` and the other 3 are indexable, and all 6 are in `sitemap.xml`. Owner has not decided which way to go.
 
 ## History of Changes
 1. Full nav updated across all 336+ pages: Residential ▾ / Commercial ▾ dropdowns
@@ -109,5 +110,6 @@ Rules:
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
 - After changes: `git add -A && git commit -m "..." && git push origin main`
-- Cloudflare auto-deploys on push
+- Cloudflare does NOT auto-deploy right now (see Hosting above); run `wrangler deploy`
+- Visual checks: headless Playwright with Brave (`/Applications/Brave Browser.app`), or Zen. Never Chrome.
 - **Never include `secrets/` in any git command.** Verify `.gitignore` before pushing.
