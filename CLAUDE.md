@@ -98,10 +98,16 @@ On hold, removed from nav. Owner confirmed 2026-11-16 the case studies are real 
 - Still weak: "commercial window repair" (945 impressions, position 17), "commercial glass repair near me" (790, position 47), "custom mirror installation" (631, position 79), "shower door repair near me" (622, position 50).
 
 ### Key pages (commercial money pages)
-- `/glass-partitions`, `/operable-glass-walls`, `/commercial/glass-door-repair`, `/storefront-glass`, `/commercial/window-repair`, `/commercial/emergency-glass`, `/commercial` (hub), `/case-studies`.
+- `/glass-partitions`, `/operable-glass-walls`, `/commercial/glass-door-repair`, `/glass-railings`, `/storefront-glass`, `/commercial/window-repair`, `/commercial/emergency-glass`, `/commercial` (hub), `/case-studies`.
 - New service pages are made by cloning `glass-partitions.html`: replace the block from `<section class="page-hero">` to `<!-- REVIEWS -->`, update title, description, JSON-LD (`Service`, `FAQPage`, `WebPage` name), and the `'partitions'` entry in the `SERVICES` object, which feeds the quote modal. Pages under `commercial/` need absolute asset paths (`/flag-us.svg`).
 - Then: add to `sitemap.xml` and `llms.txt`, link from `commercial.html` and related pages, and ping IndexNow.
 - Root URLs starting with `/commercial-glass-` are redirected by `_redirects`; do not create pages with that prefix.
+
+### Added late 2026-11-16
+- `/glass-railings` page. "Commercial" added to the top and mobile menus sitewide. Top menu collapses to the hamburger at 1180px (rule appended to every `css/*.css` and to pages with inline nav CSS); with six links the header overflows below that, so keep this rule if links are added.
+- Footer "Services" column sitewide links `/commercial`, `/operable-glass-walls`, `/commercial/glass-door-repair`.
+- Real job photos already exist in the R2 gallery and are now used in `#project-photos` grids. Verified by eye: partitions/office glass 8, 14, 20, 35, 40, 43, 49, 56, 57, 58; glass doors 28, 41, 50; stair railings 59, 60, 64; storefronts 6, 68, 71; board-up 74; retail interiors 1, 2, 3, 5, 38. Look at an image before using it; captions must describe only what is visible.
+- Homepage offer catalog schema lists operable walls, door repair, railings. Money pages use a real photo as `og:image`.
 
 ### How to work on this site
 - Batch edits: Python script with exact-string asserts and a count before writing. Validate every JSON-LD block with `json.loads` after edits.
@@ -112,10 +118,10 @@ On hold, removed from nav. Owner confirmed 2026-11-16 the case studies are real 
 - GA4 event `click_to_call` fires on every `tel:` link tap.
 
 ### Open work, best first
-1. Real job photos for `/glass-partitions`, `/operable-glass-walls`, `/commercial/glass-door-repair`, and the case studies (owner is collecting them; ask each session).
+1. More real job photos, especially operable (sliding/folding) walls and case studies; the owner is collecting them. Gallery photos already cover partitions, doors, and railings.
 2. Per-city real job content (photo plus two lines) on the city pages that bring work, to get them re-indexed.
 3. Strengthen `/commercial/window-repair` for "commercial window repair" (position 17).
-4. `service-areas.html` links 114 of 138 commercial city pages; 24 are missing.
+4. `service-areas.html` links 121 of 138 commercial city pages; 17 are missing (their residential cards use different markup).
 5. Re-run the GSC index check in a few weeks and compare with the 120 baseline.
 
 ## Pending Tasks (manual — owner only)

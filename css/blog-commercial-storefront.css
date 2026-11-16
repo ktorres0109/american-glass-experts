@@ -206,3 +206,7 @@ section { padding: 88px 0; }
 .contact-prefer-write:hover { color: rgba(255,255,255,0.65); }
 
 
+
+/* Collapse top menu to hamburger before the links run out of room */
+@media (max-width: 1180px) { .nav-links { display: none !important; } .nav-hamburger { display: flex !important; } }
+.nav-logo { flex-shrink: 0; }

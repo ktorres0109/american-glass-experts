@@ -934,3 +934,7 @@ section { padding: 100px 0; }
 
 /* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
 @media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }
+
+/* Collapse top menu to hamburger before the links run out of room */
+@media (max-width: 1180px) { .nav-links { display: none !important; } .nav-hamburger { display: flex !important; } }
+.nav-logo { flex-shrink: 0; }

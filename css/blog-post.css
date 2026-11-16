@@ -889,3 +889,6 @@ section { padding: 100px 0; }
     .price-table th{background:var(--bg-soft);padding:10px 16px;text-align:left;font-size:.85rem;color:var(--text-mid)}
     .price-table td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:.9rem}
   
+/* Collapse top menu to hamburger before the links run out of room */
+@media (max-width: 1180px) { .nav-links { display: none !important; } .nav-hamburger { display: flex !important; } }
+.nav-logo { flex-shrink: 0; }
