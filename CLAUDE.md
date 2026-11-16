@@ -3,7 +3,7 @@
 ## Site
 - **URL:** https://www.americanglassexperts.us
 - **Repo:** https://github.com/ktorres0109/american-glass-experts
-- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). There are two Workers: **`american-glass-experts` serves the live domain**; `american-glass-web` (the name in `wrangler.jsonc`) is only a workers.dev copy. Deploy by hand: `wrangler login` once, then `wrangler deploy --name american-glass-experts` from the repo root. After deploying, confirm with `curl` that a changed page is live.
+- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). There are two Workers: **`american-glass-experts` serves the live domain**; `american-glass-web` is only a workers.dev copy. `wrangler.jsonc` was renamed to `american-glass-experts` on 2026-11-16 so plain `wrangler deploy` hits the live worker. Deploy by hand: `wrangler login` once, then `wrangler deploy --name american-glass-experts` from the repo root. After deploying, confirm with `curl` that a changed page is live.
 - **Stack:** Static HTML (313 pages), no framework. CSS is in `/css/*.css` (one sheet per page type), plus some inline styles.
 - **Clean URLs:** `_redirects` strips `.html`; response headers come from `_headers` (the Worker script does not run for asset hits)
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
