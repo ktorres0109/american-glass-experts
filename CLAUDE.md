@@ -3,13 +3,15 @@
 ## Site
 - **URL:** https://www.americanglassexperts.us
 - **Repo:** https://github.com/ktorres0109/american-glass-experts
-- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). Deploy by hand: `wrangler login` once, then `wrangler deploy` from the repo root. After deploying, confirm with `curl` that a changed page is live.
+- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). There are two Workers: **`american-glass-experts` serves the live domain**; `american-glass-web` (the name in `wrangler.jsonc`) is only a workers.dev copy. Deploy by hand: `wrangler login` once, then `wrangler deploy --name american-glass-experts` from the repo root. After deploying, confirm with `curl` that a changed page is live.
 - **Stack:** Static HTML (313 pages), no framework. CSS is in `/css/*.css` (one sheet per page type), plus some inline styles.
 - **Clean URLs:** `_redirects` strips `.html`; response headers come from `_headers` (the Worker script does not run for asset hits)
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
 
 ## Business
-- Licensed glass contractor — C-17, CSLB #1125850
+- Licensed glass contractor — C-17, CSLB #1125850 (issued 2024-08-30, active through 2028-08-31, verified on CSLB 2026-11-16; CSLB address of record is still Simi Valley)
+- Emergency board-up is 24 hours (owner confirmed); shop hours Mon–Sat 7am–10pm
+- Owner confirmed true: 1,000+ jobs, 20+ years combined experience, bonded and insured, curtain wall / high-rise work
 - Southern California, residential + commercial.
 - Address: 6933 Reseda Blvd Unit J, Reseda, CA 91335 | Phone: (805) 750-6471
 
@@ -60,7 +62,7 @@ Dark/light toggle via `data-theme` on `<html>`, stored in `localStorage('age-the
 - R2 CDN: `https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/{n}.jpg`
 
 ## Case Studies
-On hold, removed from nav. State is inconsistent as of 2026-11-16: only 2 of the 5 sub-pages carry noindex, `case-studies.html` and the other 3 are indexable, and all 6 are in `sitemap.xml`. Owner has not decided which way to go.
+On hold, removed from nav. Owner confirmed 2026-11-16 the case studies are real and should be shown, especially from commercial pages. No noindex tags remain; all 6 are in `sitemap.xml`. They still have no photos.
 
 ## History of Changes
 1. Full nav updated across all 336+ pages: Residential ▾ / Commercial ▾ dropdowns
@@ -110,6 +112,6 @@ Rules:
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
 - After changes: `git add -A && git commit -m "..." && git push origin main`
-- Cloudflare does NOT auto-deploy right now (see Hosting above); run `wrangler deploy`
+- Cloudflare does NOT auto-deploy right now (see Hosting above); run `wrangler deploy --name american-glass-experts`
 - Visual checks: headless Playwright with Brave (`/Applications/Brave Browser.app`), or Zen. Never Chrome.
 - **Never include `secrets/` in any git command.** Verify `.gitignore` before pushing.
