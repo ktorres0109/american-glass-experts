@@ -505,6 +505,10 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-label" for="modal-phone">Phone Number</label>
+            <input class="form-input" id="modal-phone" type="tel" autocomplete="tel" placeholder="(805) 555-0123" required />
+          </div>
+          <div class="form-group">
             <label class="form-label" for="modal-notes">Any Notes (optional)</label>
             <textarea class="form-textarea" id="modal-notes" placeholder="Size, timeline, anything helpful..."></textarea>
           </div>
@@ -717,6 +721,7 @@ function initModal() {
       e.preventDefault();
       const name     = document.getElementById('modal-name').value.trim();
       const location = document.getElementById('modal-location').value.trim();
+      const phone    = document.getElementById('modal-phone').value.trim();
       const notes    = document.getElementById('modal-notes').value.trim();
       const service  = modalState.service;
       const type     = modalState.type     || document.getElementById('modal-type-select')?.value || '';
@@ -724,7 +729,7 @@ function initModal() {
       const fixture  = modalState.fixture  || '';
 
       const prefs = [type, glass, fixture].filter(Boolean).join(', ');
-      const message = `Customer ${name} requested an estimate in ${location}, wants ${service}${prefs ? `, prefers ${prefs}` : ''}${notes ? `, notes: ${notes}` : ''}.`;
+      const message = `Customer ${name} (phone: ${phone}) requested an estimate in ${location}, wants ${service}${prefs ? `, prefers ${prefs}` : ''}${notes ? `, notes: ${notes}` : ''}.`;
 
       const submitBtn = form.querySelector('[type="submit"]');
       submitBtn.disabled = true;
