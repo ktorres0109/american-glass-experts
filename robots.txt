@@ -15,6 +15,22 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+# ChatGPT search and live browsing (not model training)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
 # Block AI training crawlers (search grounding still allowed via above rules)
 User-agent: CCBot
 Disallow: /

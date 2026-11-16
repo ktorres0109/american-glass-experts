@@ -25,10 +25,7 @@
 
   <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": [
-    "HomeAndConstructionBusiness",
-    "GlassOrMirrorShop"
-  ],
+  "@type": "HomeAndConstructionBusiness",
   "@id": "https://www.americanglassexperts.us/#business",
   "name": "American Glass Experts Inc.",
   "description": "Licensed C-17 glass repair and installation serving Los Angeles, Ventura, San Bernardino, and Riverside Counties. Shower enclosures, storefronts, windows, mirrors, and emergency board-up.",
@@ -100,8 +97,15 @@
   },
   "sameAs": [
     "https://www.yelp.com/biz/american-glass-experts-san-fernando-valley-4",
-    "https://maps.google.com/?cid=12823616644875683456"
+    "https://maps.google.com/?cid=12823616644875683456",
+    "https://www.instagram.com/americanglassexperts",
+    "https://www.tiktok.com/@american.glass.experts"
   ],
+  "founder": {
+    "@type": "Person",
+    "name": "Frank Salinas",
+    "jobTitle": "Lead Glazier"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Glass Installation & Replacement Services",
@@ -230,6 +234,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-0N1LQ71T8T');
+  // Count phone-link taps as a GA4 event so calls from the site can be measured
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) gtag('event', 'click_to_call', { page_path: location.pathname });
+  });
 </script>
 <link rel="stylesheet" href="/css/index.css">
 </head>

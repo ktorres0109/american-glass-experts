@@ -169,6 +169,11 @@ p{line-height:1.75;}
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-0N1LQ71T8T');
+  // Count phone-link taps as a GA4 event so calls from the site can be measured
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) gtag('event', 'click_to_call', { page_path: location.pathname });
+  });
 </script>
 <style>/* Mobile header: keep logo, Call Now and menu; quote + flag are in the menu/footer */
 @media (max-width: 768px) { .nav-right > a.btn[href="/contact"], .nav-right > img[src$="flag-us.svg"] { display: none !important; } }</style>

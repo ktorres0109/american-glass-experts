@@ -34,6 +34,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-0N1LQ71T8T');
+  // Count phone-link taps as a GA4 event so calls from the site can be measured
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) gtag('event', 'click_to_call', { page_path: location.pathname });
+  });
 </script>
 <link rel="stylesheet" href="/css/commercial-city.css">
 </head>
@@ -224,7 +229,7 @@
         <img src="https://pub-b4878fccfc85401e99bc2b4eff65255a.r2.dev/gallery/57.jpg" alt="Office glass partition wall installed by American Glass Experts in Los Angeles" style="width:100%;border-radius:12px;object-fit:cover;max-height:360px;" loading="lazy" />
         <div style="margin-top:24px;">
           <h3 style="font-size:1rem;margin-bottom:12px;">What We Install</h3>
-          <ul style="margin:0;"><li>Glass office fronts and private offices</li><li>Glass conference and meeting rooms</li><li>Full-height glass walls and room dividers</li><li>Glass doors: swing or sliding, with hardware</li><li>Partial-height dividers with glass lites</li><li><a href="/operable-glass-walls" style="color:var(--blue);font-weight:600;">Operable glass walls</a>: sliding, stacking, and folding</li><li>Clear, low-iron (extra clear), frosted, tinted, or laminated glass</li></ul>
+          <ul style="margin:0;"><li>Glass office fronts and private offices</li><li>Glass conference and meeting rooms</li><li>Full-height glass walls and room dividers</li><li>Glass doors: swing or sliding, with hardware</li><li>Partial-height dividers with glass lites</li><li><a href="/operable-glass-walls" style="color:var(--blue);font-weight:600;">Operable glass walls</a>: sliding, stacking, folding, and swing doors</li><li>Clear, low-iron (extra clear), frosted, tinted, or laminated glass</li></ul>
         </div>
       </div>
     </div>

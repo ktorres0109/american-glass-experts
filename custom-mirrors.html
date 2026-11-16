@@ -34,6 +34,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-0N1LQ71T8T');
+  // Count phone-link taps as a GA4 event so calls from the site can be measured
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) gtag('event', 'click_to_call', { page_path: location.pathname });
+  });
 </script>
 <link rel="stylesheet" href="/css/commercial-city.css">
 </head>

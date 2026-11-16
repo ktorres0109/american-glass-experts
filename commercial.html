@@ -78,6 +78,19 @@
 
 
 <link rel="stylesheet" href="/css/commercial.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0N1LQ71T8T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0N1LQ71T8T');
+  // Count phone-link taps as a GA4 event so calls from the site can be measured
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a) gtag('event', 'click_to_call', { page_path: location.pathname });
+  });
+</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -291,7 +304,7 @@
 <!-- WHY CHOOSE US -->
 <section style="padding:80px 0;">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,6vw,80px);align-items:center;">
       <div>
         <span class="section-label">Why Commercial Clients Choose Us</span>
         <h2 style="margin-bottom:32px;">Built for Commercial Work</h2>
