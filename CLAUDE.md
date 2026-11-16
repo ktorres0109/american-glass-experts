@@ -71,23 +71,59 @@ On hold, removed from nav. Owner confirmed 2026-11-16 the case studies are real 
 4. `index.html` updated with commercial highlight strip + footer commercial column
 5. `privacy-policy.html`, `terms-of-service.html` exist
 6. Footer: `Terms | Privacy | Sitemap | Service Areas` in footer-bottom row across all pages
-7. Case studies soft taken down (noindex, removed from nav)
+7. Case studies soft taken down (noindex, removed from nav); re-enabled 2026-11-16
 8. Reviews section (6 cards, 2×3 grid) added to all 148+ pages before CTA
 9. Dark mode double-toggle bug fixed on 189 pages (rogue `<script>` after `</body>`)
 10. `services.html` contact-strip upgraded to collapsible inline form
 11. Map sections removed from all pages except `contact.html`
 12. Reviews updated to 6 cards — Alexis M./Jesus S./Joshua B./Mercy R./Dylan N./Lisandro O. (real Yelp reviews)
+13. 2026-11-16: phone field added to estimate modal (295 pages); `/glass-partitions` rebuilt; `/operable-glass-walls` and `/commercial/glass-door-repair` created; partitions, operable walls, and door links added to all 276 city pages; Company Facts table and AboutPage schema on `/about`; business details inlined in `Service.provider` on 138 commercial city pages; `robots.txt` names OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, Perplexity-User; `llms.txt` refreshed; `click_to_call` GA4 event sitewide; GA added to `/commercial`; mobile overflow fixed on `/commercial`; invalid schema type `GlassOrMirrorShop` removed; auto-deploy repaired
 
-## Pending Tasks (manual — cannot be scripted)
-- Fix BBB listing NAP (wrong address + phone — DA 91 hurting local authority) → bbb.org
-- Build citations: Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps, BuildZoom
-- Boost Google review velocity (text customers direct review link after each job)
-- Verify GBP primary category is "Glass repair service" + add secondary categories
+## State and Playbook (written 2026-11-16, read this first)
 
-## Optional SEO Improvements (scriptable)
-- Diversify reviews per page — 17 Yelp reviews available, currently same 6 on all 300+ pages
-- Expand blog paragraphs — body paragraphs under optimal AI citation range (~80-130 words, target 134-167)
-- HowTo schema on the installation guide blog post
+**Business goal:** more commercial leads. The owner's brother lives on this business. Priority order: office glass partitions and glass walls, operable glass walls, commercial glass doors, storefronts, commercial windows, then residential.
+
+### Facts confirmed by the owner (safe to state on the site)
+- Serves all 138 listed cities. Keep every city page; never noindex or delete one.
+- Installs fixed glass partitions and operable glass walls (sliding, stacking, folding) and swing glass doors.
+- Emergency board-up is 24 hours a day. Shop hours are Mon–Sat 7am–10pm.
+- True claims: 1,000+ jobs, 20+ years combined experience, bonded and insured, curtain wall / high-rise work.
+- Case studies are real. Show them. They have no photos yet.
+- Do not invent prices, timelines, client names, certifications, or project details. Reuse wording already on the site.
+
+### Measured on 2026-11-16 (Google Search Console)
+- 90 days: 52,406 impressions, 84 clicks (CTR 0.16%). Most clicks are brand searches.
+- Index check of 312 URLs: 120 indexed, 188 "Crawled - currently not indexed" (106 commercial city pages, about 80 residential). June 2026 was 251 indexed. No technical block. Cause: city pages are 46–56% identical and the domain has little authority. More template text will not fix it; real per-city job photos and consistent listings will.
+- Query gaps that had no page: partitions, operable glass walls, commercial glass door repair. All three now have pages.
+- Still weak: "commercial window repair" (945 impressions, position 17), "commercial glass repair near me" (790, position 47), "custom mirror installation" (631, position 79), "shower door repair near me" (622, position 50).
+
+### Key pages (commercial money pages)
+- `/glass-partitions`, `/operable-glass-walls`, `/commercial/glass-door-repair`, `/storefront-glass`, `/commercial/window-repair`, `/commercial/emergency-glass`, `/commercial` (hub), `/case-studies`.
+- New service pages are made by cloning `glass-partitions.html`: replace the block from `<section class="page-hero">` to `<!-- REVIEWS -->`, update title, description, JSON-LD (`Service`, `FAQPage`, `WebPage` name), and the `'partitions'` entry in the `SERVICES` object, which feeds the quote modal. Pages under `commercial/` need absolute asset paths (`/flag-us.svg`).
+- Then: add to `sitemap.xml` and `llms.txt`, link from `commercial.html` and related pages, and ping IndexNow.
+- Root URLs starting with `/commercial-glass-` are redirected by `_redirects`; do not create pages with that prefix.
+
+### How to work on this site
+- Batch edits: Python script with exact-string asserts and a count before writing. Validate every JSON-LD block with `json.loads` after edits.
+- Visual check before calling UI done: headless Playwright with Brave, 1280 and 390 wide, check `document.documentElement.scrollWidth` equals the viewport and no `pageerror`. Use `.claude/skills/seo/.venv/bin/python`; Bash sandbox must be off.
+- Google data: `/opt/homebrew/bin/python3.14 .claude/skills/seo/scripts/gsc_query.py` and `gsc_inspect.py`. If auth returns 401, the user must re-run `google_auth.py --auth --creds ~/.config/claude-seo/client_secret.json` (OAuth app is in Testing mode, token dies every 7 days). PageSpeed API key is invalid. Keyword Planner needs the adwords scope and the `google-ads` package.
+- After deploy: IndexNow POST to `https://api.indexnow.org/indexnow` with key `faa237c5f0e41eee3f2be30cfcc96af2` (see `ping-indexnow.sh`). Bing feeds ChatGPT search.
+- Lead forms post to Web3Forms. The estimate modal (`#modal-form`) requires a phone number since 2026-11-16; keep it required.
+- GA4 event `click_to_call` fires on every `tel:` link tap.
+
+### Open work, best first
+1. Real job photos for `/glass-partitions`, `/operable-glass-walls`, `/commercial/glass-door-repair`, and the case studies (owner is collecting them; ask each session).
+2. Per-city real job content (photo plus two lines) on the city pages that bring work, to get them re-indexed.
+3. Strengthen `/commercial/window-repair` for "commercial window repair" (position 17).
+4. `service-areas.html` links 114 of 138 commercial city pages; 24 are missing.
+5. Re-run the GSC index check in a few weeks and compare with the 120 baseline.
+
+## Pending Tasks (manual — owner only)
+- Same address everywhere: CSLB record (still 1112 Richardson Ave, Simi Valley, phone (818) 426-4649), Yelp, BBB, Google Business Profile, MapQuest should all show 6933 Reseda Blvd Unit J and (805) 750-6471. Mixed addresses are why customers doubted ChatGPT's listing.
+- Google Business Profile: add services "Glass partitions", "Office glass walls", "Operable glass walls", "Commercial glass door repair"; post job photos.
+- Request indexing about 10 URLs a day from `~/Desktop/AGE-pages-to-index.txt`.
+- Citations: Angi, Houzz, Bing Places, Thumbtack, Nextdoor, Apple Maps, BuildZoom. Sign up for Bing Webmaster Tools.
+- Ask each customer for a Google review after the job.
 
 ## API Keys and Credentials
 All private secrets live in `secrets/credentials.json`.
