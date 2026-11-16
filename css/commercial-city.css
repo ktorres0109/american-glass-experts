@@ -873,6 +873,7 @@ section { padding: 100px 0; }
     .content-section p{color:var(--text-mid);line-height:1.8;margin-bottom:14px}
     .content-section ul{color:var(--text-mid);line-height:1.8;padding-left:20px}
     .content-section li{margin-bottom:8px}
+    .content-section li a{color:var(--blue);font-weight:600}
     [data-theme="dark"]
     .blog-meta{font-size:.8rem;color:var(--text-dim);margin-bottom:24px;letter-spacing:.05em;text-transform:uppercase}
     .blog-body h2{font-family:var(--head);font-size:1.45rem;margin:36px 0 12px}

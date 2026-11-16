@@ -3,7 +3,7 @@
 ## Site
 - **URL:** https://www.americanglassexperts.us
 - **Repo:** https://github.com/ktorres0109/american-glass-experts
-- **Hosting:** Cloudflare Worker `american-glass-web` with static assets (`wrangler.jsonc`, `.assetsignore`). **Auto-deploy on push is broken** (Workers Builds check fails on every commit since at least 2026-10-16). There are two Workers: **`american-glass-experts` serves the live domain**; `american-glass-web` is only a workers.dev copy. `wrangler.jsonc` was renamed to `american-glass-experts` on 2026-11-16 so plain `wrangler deploy` hits the live worker. Deploy by hand: `wrangler login` once, then `wrangler deploy --name american-glass-experts` from the repo root. After deploying, confirm with `curl` that a changed page is live.
+- **Hosting:** Cloudflare Worker `american-glass-experts` with static assets (`wrangler.jsonc`, `.assetsignore`). Auto-deploys on push to `main` via Workers Builds (fixed 2026-11-16: a root `requirements.txt` made the build pip-install Playwright and fail; it now lives in `tests/`. Never put `requirements.txt` or `package.json` in the repo root). `american-glass-web` is an unused workers.dev copy. Manual fallback: `wrangler deploy`. After pushing, check the build with `gh api repos/ktorres0109/american-glass-experts/commits/<sha>/check-runs` and `curl` a changed page.
 - **Stack:** Static HTML (313 pages), no framework. CSS is in `/css/*.css` (one sheet per page type), plus some inline styles.
 - **Clean URLs:** `_redirects` strips `.html`; response headers come from `_headers` (the Worker script does not run for asset hits)
 - **Working dir:** `/Users/kel/Documents/projects/american-glass-experts/`
@@ -112,6 +112,6 @@ Rules:
 ## Technical Rules
 - Use Python batch scripts for changes touching many files — dry-run count first
 - After changes: `git add -A && git commit -m "..." && git push origin main`
-- Cloudflare does NOT auto-deploy right now (see Hosting above); run `wrangler deploy --name american-glass-experts`
+- Cloudflare auto-deploys on push (see Hosting above); verify the build passed
 - Visual checks: headless Playwright with Brave (`/Applications/Brave Browser.app`), or Zen. Never Chrome.
 - **Never include `secrets/` in any git command.** Verify `.gitignore` before pushing.
