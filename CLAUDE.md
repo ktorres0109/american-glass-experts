@@ -109,6 +109,10 @@ On hold, removed from nav. Owner confirmed 2026-11-16 the case studies are real 
 - Real job photos already exist in the R2 gallery and are now used in `#project-photos` grids. Verified by eye: partitions/office glass 8, 14, 20, 35, 40, 43, 49, 56, 57, 58; glass doors 28, 41, 50; stair railings 59, 60, 64; storefronts 6, 68, 71; board-up 74; retail interiors 1, 2, 3, 5, 38. Look at an image before using it; captions must describe only what is visible.
 - Homepage offer catalog schema lists operable walls, door repair, railings. Money pages use a real photo as `og:image`.
 
+### Shared header and footer (2026-11-16)
+- Every page except `review.html` has the same `<nav>`, `#nav-mobile` menu, and `<footer>`, copied from `index.html` with absolute asset paths. Only differences: `class="active"` on the current nav link; city pages keep their own `footer-desc`, "Nearby" footer column, and copyright line; other pages get a "Company" column. To change header or footer, edit `index.html` then re-apply to all pages with a batch script (regex on `<nav>…</nav>`, `#nav-mobile`, `<footer>…</footer>`).
+- All 6 blog posts use `css/blog-post.css`. Homepage H1 is "Glass Partitions & Storefronts" (owner asked for a commercial-first homepage).
+
 ### How to work on this site
 - Batch edits: Python script with exact-string asserts and a count before writing. Validate every JSON-LD block with `json.loads` after edits.
 - Visual check before calling UI done: headless Playwright with Brave, 1280 and 390 wide, check `document.documentElement.scrollWidth` equals the viewport and no `pageerror`. Use `.claude/skills/seo/.venv/bin/python`; Bash sandbox must be off.
